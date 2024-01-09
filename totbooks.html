@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CESA Library</title>
+    <style>
+        body {
+            background-color: grey; 
+            margin: 0; 
+            font-family: Arial, sans-serif; 
+        }
+
+        .DASHBOARD {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .accname {
+            padding: 5px;
+        }
+
+        .general {
+            background-color: rgb(78, 255, 101);
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 20px; /* Added margin to separate from the above content */
+        }
+
+        .selection {
+            margin: 10px 5px; /* Adjusted margin */
+            width: 30%;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: white; /* Added a background color */
+            cursor: pointer; /* Added a pointer cursor on hover */
+        }
+
+        .selection img {
+            display: block;
+            margin: 0 auto; /* Centered image */
+        }
+    </style>
+</head>
+<body>
+    <div class="DASHBOARD">
+        <div class="accname">
+          
+        </div>
+        <br>
+        <div class="general">
+            <h3><u>CATEGORY</u></h3>
+            <a href="membersonline.html" target="main">
+                <button  class="selection">
+                <img src="membonline.jpg" width="20%" height="20%" alt="Members Online">
+                <p>C</p>
+            </button></a>
+
+            <a href="notreturned.html" target="main"><button class="selection">
+                <img src="membonline.jpg" width="20%" height="20%" alt="Not Returned">
+                <p>C++</p>
+            </button></a>
+
+            <button class="selection">
+                <img src="java.jpg" width="20%" height="18%" alt="Total Books">
+                <p>JAVA</p>
+            </button>
+        
+        <br>
+        <button class="selection">
+            <img src="js.jpg" width="20%" height="20%" alt="Issue Book">
+            <p>JAVA SCRIPT</p>
+        </button>
+
+        <button class="selection">
+            <img src="newbook.png" width="20%" height="20%" alt="Add New Book">
+            <p>PHP</p>
+        </button>
+
+        <button onclick="membersonline.html" target="main" class="selection">
+            <img src="settings.png" width="20%" height="20%" alt="Settings">
+            <p>PYTHON</p>
+        </button>
+    </div>
+</body>
+</html>
