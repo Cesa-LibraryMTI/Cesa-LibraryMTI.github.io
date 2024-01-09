@@ -1,0 +1,52 @@
+.container {
+    height: 350px;
+    width: 200px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+img {
+    margin: auto 30%;
+    width: 30%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input,
+.button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.button {
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+a {
+    color: #f44336;
+    text-decoration: none;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+label {
+    font-size: 14px;
+}
