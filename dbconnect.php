@@ -1,7 +1,7 @@
 <?php
-$servername = "localhost";
+$servername = "192.168.0.179";
 $username = "root";
-$password = "";
+$password = "mtitsr123";
 $dbname = "Library";
             
 // Create connection
