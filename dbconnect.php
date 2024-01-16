@@ -1,7 +1,7 @@
 <?php
-$servername = "192.168.0.179";
+$servername = "localhost";
 $username = "root";
-$password = "mtitsr123";
+$password = "";
 $dbname = "Library";
             
 // Create connection
@@ -12,5 +12,4 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 echo "Connected successfully";
-?>           
-                
+ 
