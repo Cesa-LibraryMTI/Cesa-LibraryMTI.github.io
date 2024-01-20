@@ -13,3 +13,5 @@ Goals:
   USER page
     Search
 
+try to add all the elements needed and also create the website and database structure
+
