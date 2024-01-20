@@ -1,0 +1,15 @@
+THIS IS OUR MINOR PROJECT FOR SEMESTER 4
+
+
+AIM: To implement a function Library website with html,css,js,php and mysql
+
+Goals:
+  LOGIN page
+  ADMIN page
+    Total members
+    ADD book
+    ISSUE book
+    Search
+  USER page
+    Search
+
