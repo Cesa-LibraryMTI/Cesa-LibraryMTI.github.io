@@ -7,7 +7,7 @@
 <body>
 <div class="container">
     <img src="contact.png" alt="Login" align="center">
-    <form action="/login" method="post">
+    <form method="POST">
       <label>EMAIL:</label>
       <input type="email" name="email" placeholder="Email" required>
       <label>PASSWORD:</label>
@@ -20,14 +20,20 @@
 </body>
 <?php
   include 'dbconnect.php';
-  $sql = "SELECT username,password FROM details WHERE username = '$uname' and password = '$pass'";
-  $result = $conn->query($sql);
+  if($_SERVER['REQUEST_METHOD']=='POST'){
+    
+    $uname = $_POST['email'];
+    $pass = $_POST['password'];
+    $sql = "SELECT username,password FROM details WHERE username = '$uname' and password = '$pass'";
+    $result = $conn->query($sql);
 
-  if (($result !== false)&&($result->num_rows > 0)) {
-      print "<br><h1><font color = 'blue'><i>Welcome<i><font></h1><br>";
-  }else{
+    if (($result !== false)&&($result->num_rows == 1)) {
+      echo 'found';
+      header("Location: index.html");
+    }else{
       print "<br><h1><font color = 'blue'><i>Wrong credentials<i><font></h1><br>";
+    }
+    $conn->close();
   }
-  $conn->close();
 ?>
 </html>
