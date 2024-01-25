@@ -7,11 +7,18 @@ Goals:
   LOGIN page
   ADMIN page
     Total members
+    total books
+    not returened books
     ADD book
     ISSUE book
     Search
   USER page
     Search
+    profile
+    avilable books
+    top rated book
+    most read book
+
 
 try to add all the elements needed and also create the website and database structure
 
