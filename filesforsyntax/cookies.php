@@ -16,4 +16,14 @@ if($totalcount == 1){
   echo "<p>This is your visit count: $totalcount</p><hr>";
   echo "<p>last time you were on ".date("d:m:y")." at $last_visit</p>";
 }
+if(isset($_COOKIE['lastloggedin'])&& isset($_COOKIE['loggedname'])){
+  $lastlogged = $_COOKIE['lastloggedin'];
+  $lname = $_COOKIE['loggedname'];
+  echo "<p>last logged in on this computer: $lastlogged as $lname</p>";
+}
+if(isset($_SESSION['name'])){
+  setcookie('loggedname',$_SESSION['name']);
+  setcookie('lastloggedin',date("h:i:s"));
+}
+
 ?>

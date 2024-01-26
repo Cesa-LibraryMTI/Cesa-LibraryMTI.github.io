@@ -8,11 +8,13 @@ session_start();
   <body>
     <h1>Welome</h1>
 <?php 
+$str = "SIGN IN";
 if(isset($_SESSION['name'])){
   $name = $_SESSION['name'];
   echo "<h2>Welcome $name</h2>";
+  $str = "LOG OUT";
 }
+echo "<a href = 'login.php'>$str</a>";
 ?>
-  <a href = 'login.php'>LOG OUT</a>
   </body>
 </html>     
