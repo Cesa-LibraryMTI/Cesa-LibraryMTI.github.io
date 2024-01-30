@@ -81,9 +81,11 @@
 
     <main>
         <div>
+            <form action="membsearch.php" method="POST">
             <label for="search">Search:</label>
             <input type="text" id="search" name="search" placeholder="Enter your search">
-            <button onclick="searchTable()">Search</button>
+            <input type="submit" value="Search">
+            </form>
         </div>
 
         <table id="mainTable">
@@ -124,6 +126,7 @@
        
     </main>
 
+    
     <script>
         function searchTable() {
             // Implement your search logic here
