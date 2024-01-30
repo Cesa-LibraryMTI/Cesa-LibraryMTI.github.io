@@ -6,7 +6,8 @@
   if($result != false and $result->num_rows == 1){
     session_start();
     $_SESSION['name'] = $name;
-    header("Location: test.php");
+    $_SESSION['logged'] = 1;
+    header("Location: index.php");
   }else{
     echo "<h1>Wrong Credentials</h1>";
   }

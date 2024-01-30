@@ -1,6 +1,10 @@
 <?php
 session_start();
-if(isset($_SESSION['name'])){  
+if((isset($_SESSION['logged']))&&($_SESSION['logged'] == 1)){
+  header('Location: index.php');
+  exit();
+}
+if((isset($_SESSION['name']))&&($_SESSION['logged'] == 0)){  
   session_unset();
   session_destroy();
 }
@@ -19,9 +23,9 @@ if(isset($_SESSION['name'])){
       <input type="submit" value="login">
     </form> 
 <?php
+include 'dbconnect.php';
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-  include 'dbconnect.php';
-  include 'server.php'; 
+  include 'server.php';
 }
 include 'cookies.php';
 ?>

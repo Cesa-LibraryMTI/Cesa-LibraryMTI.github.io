@@ -14,7 +14,7 @@ if(isset($_SESSION['name'])){
   echo "<h2>Welcome $name</h2>";
   $str = "LOG OUT";
 }
-echo "<a href = 'login.php'>$str</a>";
+echo "<a href = 'logout.php'>$str</a>";
 ?>
   </body>
 </html>     
