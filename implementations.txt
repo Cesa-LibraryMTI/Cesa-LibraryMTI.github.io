@@ -55,4 +55,5 @@ Back end
 
 try to add all the elements needed and also create the website and database structure
 
-hello
+
+implementing form arch linux btw and neovim nvchad
