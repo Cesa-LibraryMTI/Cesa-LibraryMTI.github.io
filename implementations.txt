@@ -41,6 +41,14 @@ Back end
         issued
         held
 
+      notreturned
+        sino
+        adno
+        issuedate
+        duedate
+        fine
+        
+
     procedures:
       check available
       check taken
