@@ -1,23 +1,6 @@
 <html>
     <head><title>Members Online</title>
-    <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #ffffff;
-}
-</style>
-    </style>
+    <link rel="stylesheet" href="styles/tables.css">
     </head>
     <h3 align="center"><u>NOT RETURNED</u></h3>
     <table>
@@ -29,7 +12,7 @@ tr:nth-child(even) {
         </tr>
         <?php
                 include 'dbconnect.php';
-                $sql = "SELECT adno,name,fine,days FROM books";
+                $sql = "SELECT sino,name,fine,days FROM books";
                 $result = $conn->query($sql);
 
                 
@@ -37,7 +20,7 @@ tr:nth-child(even) {
                 if (($result !== false)&&($result->num_rows > 0)) {
                     while ($row = $result->fetch_assoc()) {
                         // Access individual columns using the column name
-                        $adno= $row['adno'];
+                        $adno= $row['sino'];
                         $name = $row['name'];
                         $fine = $row['fine'];
                         $days = $row['days'];

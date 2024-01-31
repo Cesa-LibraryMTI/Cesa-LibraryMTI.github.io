@@ -113,7 +113,7 @@
                         
 
                         // Perform actions with the data (e.g., display or process)
-                        echo "<tr><td>$adno</td><td>$name</td></tr>";
+                        echo "<tr><td>$id</td><td>$name</td></tr>";
                     }
                 }else{
                     print "<br><h1><font color = 'blue'><i>Wrong credentials<i><font></h1><br>";
