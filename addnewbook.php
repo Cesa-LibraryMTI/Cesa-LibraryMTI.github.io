@@ -80,6 +80,7 @@ label {
     $bauthor=$_POST['bauthor'];
     $bprice=$_POST['bprice'];
     $sql = "insert into books values('$bsino','$bname','$bauthor','$bprice')";
+    $conn->query($sql);
   }
 ?>
 </html>

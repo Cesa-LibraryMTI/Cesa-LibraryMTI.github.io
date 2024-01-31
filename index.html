@@ -1,13 +1,164 @@
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <frameset rows="34%,*"  frameborder="no">
-    <frame name="top" src="top.html">
-    <frameset cols="15%,*">
-         
-        <frame name="link" src="leftlink.html">
-        <frame name="main" src="bottom.html"> 
-    </frameset> 
-</frameset>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CESA Library</title>
+    <style>
+        body {
+            background-color: grey; /* Changed bgcolor to a CSS style */
+            margin: 0; /* Remove default margin */
+            font-family: Arial, sans-serif; /* Set a default font */
+        }
+
+        .DASHBOARD {
+            position: absolute;
+            margin: 10%;
+            text-align: center;
+            padding: 20px;
+            
+        }
+
+        .accname {
+            padding: 5px;
+        }
+
+        .general {
+            background-color: rgb(78, 255, 101);
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 20px; /* Added margin to separate from the above content */
+        }
+
+        .selection {
+            margin: 10px 5px; /* Adjusted margin */
+            width: 30%;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: white; /* Added a background color */
+            cursor: pointer; /* Added a pointer cursor on hover */
+        }
+
+        .selection img {
+            display: block;
+            margin: 0 auto; /* Centered image */
+        }
+
+        .header {
+                background-color: #cfb939; /* Add a background color to the header */
+                color: #fff; /* Set text color to white */
+                padding: 5px;
+                text-align: center;
+                position: fixed;
+                height:10%;
+                width: 100%;
+            }
+    
+            .logout {
+                float: right; /* Align the button to the right */
+                background-color: #000000d5; /* Add a background color to the button */
+                color: #fff; /* Set text color to white */
+                border-radius: 20px;
+                padding: 10px 20px; /* Adjust padding */
+                cursor: pointer;
+                border-color: antiquewhite;
+                border-width: 2px;
+                margin-right: 0px;
+            }
+    
+            .logout:hover {
+                background-color: #ff1500; /* Darken the background color on hover */
+               
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333;
+            }
+
+            li {
+                float: left;
+            }
+
+            li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+            .link{
+                position: fixed;
+                width: 100%;
+                margin-top: 5%;
+            }
+
+/* Change the link color to #111 (black) on hover */
+            li a:hover {
+                background-color: #111;
+            }
+
+    </style>
+
+</head>
+<body>                 
+    <div class="header">
+        <h1>CESA MTI</h1>
+    </div>
+    <div class="link">
+        <ul >
+            <li><a class="active" href="bottom.html">Home</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">About</a></li>
+            <li style="float:right"><input type="button" class="logout" onclick="http://mtithrissur.ac.in/" value="LOG OUT" ></li>
+        </ul>
+    </div>
+    <div class="DASHBOARD" name="main">
+        <div class="accname">
+            <h2>WELCOME TO DASHBOARD</h2>
+            User Name
+        </div>
+        <br>
+        <div class="general">
+            <p>GENERAL INFORMATION</p>
+            <a href="members.html" target="main">
+                <button  class="selection">
+                <img src="membonline.jpg" width="20%" height="20%" alt="Members Online">
+                <p>MEMBERS<br><span>Message</span></p>
+            </button></a>
+
+            <a href="notreturned.html" target="main"><button class="selection">
+                <img src="membonline.jpg" width="20%" height="20%" alt="Not Returned">
+                <p>NOT RETURNED!<br><span>Message</span></p>
+            </button></a>
+            
+            <a href="totbooks.php" target="main"><button class="selection">
+                <img src="membonline.jpg" width="20%" height="20%" alt="Total Books">
+                <p>TOTAL BOOKS<br><span>Message</span></p>
+            </button></a>
+        </div>
+        <br>
+        <a href="bookissue.html" target="main" class = "selection">
+        <button class = "selection">
+            <img src="membonline.jpg" width = "20%" height = "20%" alt="Issue Book">
+            + ISSUE BOOK
+        </button></a>
+
+        <a href="addnewbook.php" target="main" class="selection">
+            <button class="selection" target="main">
+            <img src="images/newbook.png" width="20%" height="20%" alt="Add New Book">
+            ADD NEW BOOK
+        </button></a>
+
+        <a href="addnewbook.html" target="main" class="selection">
+            <button onclick="membersonline.html" target="main" class="selection">
+                <img src="images/settings.png" width="20%" height="20%" alt="Settings">
+                SETTINGS
+            </button>
+        </a>
+        
+    </div>
+</body>
 </html>

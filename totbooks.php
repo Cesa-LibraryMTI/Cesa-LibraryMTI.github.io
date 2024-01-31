@@ -70,33 +70,33 @@
             <h3><u>CATEGORY</u></h3>
             <a href="membersonline.html" target="main">
                 <button  class="selection">
-                <img src="membonline.jpg" width="20%" height="20%" alt="Members Online">
+                <img src="images/membonline.jpg" width="20%" height="20%" alt="Members Online">
                 <p>C</p>
             </button></a>
 
             <a href="notreturned.html" target="main"><button class="selection">
-                <img src="membonline.jpg" width="20%" height="20%" alt="Not Returned">
+                <img src="images/membonline.jpg" width="20%" height="20%" alt="Not Returned">
                 <p>C++</p>
             </button></a>
 
             <button class="selection">
-                <img src="java.jpg" width="20%" height="18%" alt="Total Books">
+                <img src="images/java.jpg" width="20%" height="18%" alt="Total Books">
                 <p>JAVA</p>
             </button>
         
         <br>
         <button class="selection">
-            <img src="js.jpg" width="20%" height="20%" alt="Issue Book">
+            <img src="images/js.jpg" width="20%" height="20%" alt="Issue Book">
             <p>JAVA SCRIPT</p>
         </button>
 
         <button class="selection">
-            <img src="newbook.png" width="20%" height="20%" alt="Add New Book">
+            <img src="images/newbook.png" width="20%" height="20%" alt="Add New Book">
             <p>PHP</p>
         </button>
 
         <button onclick="membersonline.html" target="main" class="selection">
-            <img src="settings.png" width="20%" height="20%" alt="Settings">
+            <img src="images/settings.png" width="20%" height="20%" alt="Settings">
             <p>PYTHON</p>
         </button>
     </div>

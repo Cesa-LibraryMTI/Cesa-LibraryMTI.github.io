@@ -1,7 +1,7 @@
 <html>
 <head>
-    <script src = "login.js"></script>
-    <link rel = "stylesheet" href = "login.css">
+    <script src = "js/login.js"></script>
+    <link rel = "stylesheet" href = "styles/login.css">
     <title>Login</title>
 </head>
 <body>
