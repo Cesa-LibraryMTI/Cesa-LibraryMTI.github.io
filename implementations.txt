@@ -41,14 +41,6 @@ Back end
         issued
         held
 
-      notreturned
-        sino
-        adno
-        issuedate
-        duedate
-        fine
-        
-
     procedures:
       check available
       check taken
@@ -60,6 +52,7 @@ Back end
     validation user forms
   php:
     server side scripting
+    calculating fine
 
 try to add all the elements needed and also create the website and database structure
 

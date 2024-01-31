@@ -107,12 +107,8 @@
             
                 if (($result !== false)&&($result->num_rows > 0)) {
                     while ($row = $result->fetch_assoc()) {
-                        // Access individual columns using the column name
                         $id = $row['adno'];
                         $name = $row['name'];
-                        
-
-                        // Perform actions with the data (e.g., display or process)
                         echo "<tr><td>$id</td><td>$name</td></tr>";
                     }
                 }else{
