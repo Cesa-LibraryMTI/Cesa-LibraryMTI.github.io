@@ -33,7 +33,7 @@ Front end
 Back end
   dbms:
     tables:
-
+    
       users
         primary uid
         usertype
@@ -54,10 +54,12 @@ Back end
     procedures:
       check available
       check taken
+
     trigger:
       check maxbook per user == 1
       check holded books
       check max held === 1    
+
   javascript
     validation user forms
   php:
@@ -65,6 +67,3 @@ Back end
     calculating fine
 
 try to add all the elements needed and also create the website and database structure
-
-
-implementing form arch linux btw and neovim nvchad
