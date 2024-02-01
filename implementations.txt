@@ -15,7 +15,10 @@ Front end
       heldbooks
       Search
     profile - Rishikesh
-    not returned books - Albin 
+    not returned - Albin
+      monthly records
+      dues
+      other detials 
     ADD book - Albin
     
   USER page
