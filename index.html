@@ -3,104 +3,17 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CESA Library</title>
-    <style>
-        body {
-            background-color: grey; /* Changed bgcolor to a CSS style */
-            margin: 0; /* Remove default margin */
-            font-family: Arial, sans-serif; /* Set a default font */
+    <link rel="stylesheet" href="styles/index.css">
+    <script>
+       function loadContent(page) {
+            fetch(page)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('contentContainer').innerHTML = data;
+                })
+                .catch(error => console.error('Error fetching content:', error));
         }
-
-        .DASHBOARD {
-            position: absolute;
-            margin: 10%;
-            text-align: center;
-            padding: 20px;
-            z-index: -1;
-        }
-
-        .accname {
-            padding: 5px;
-        }
-
-        .general {
-            background-color: rgb(78, 255, 101);
-            padding: 20px;
-            border-radius: 20px;
-            margin-top: 20px; /* Added margin to separate from the above content */
-        }
-
-        .selection {
-            margin: 10px 5px; /* Adjusted margin */
-            width: 30%;
-            border-radius: 10px;
-            padding: 10px;
-            background-color: white; /* Added a background color */
-            cursor: pointer; /* Added a pointer cursor on hover */
-        }
-
-        .selection img {
-            display: block;
-            margin: 0 auto; /* Centered image */
-        }
-
-        .header {
-                background-color: #cfb939; /* Add a background color to the header */
-                color: #fff; /* Set text color to white */
-                padding: 5px;
-                text-align: center;
-                position: fixed;
-                height:10%;
-                width: 100%;
-            }
-    
-            .logout {
-                float: right; /* Align the button to the right */
-                background-color: #000000d5; /* Add a background color to the button */
-                color: #fff; /* Set text color to white */
-                border-radius: 20px;
-                padding: 10px 20px; /* Adjust padding */
-                cursor: pointer;
-                border-color: antiquewhite;
-                border-width: 2px;
-                margin-right: 0px;
-            }
-    
-            .logout:hover {
-                background-color: #ff1500; /* Darken the background color on hover */
-               
-            }
-            ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
-                background-color: #333;
-            }
-
-            li {
-                float: left;
-            }
-
-            li a {
-                display: block;
-                color: white;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-            }
-            .link{
-                position: fixed;
-                width: 100%;
-                margin-top: 5%;
-            }
-
-/* Change the link color to #111 (black) on hover */
-            li a:hover {
-                background-color: #111;
-            }
-
-    </style>
-
+    </script>
 </head>
 <body>                 
     <div class="header">
@@ -108,14 +21,14 @@
     </div>
     <div class="link">
         <ul >
-            <li><a class="active" href="bottom.html">Home</a></li>
-            <li><a href="#news">News</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#about">About</a></li>
-            <li style="float:right"><input type="button" class="logout" onclick="http://mtithrissur.ac.in/" value="LOG OUT" ></li>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="#news" onclick="loadContent('news')">News</a></li>
+            <li><a href="#contact" onclick="loadContent('contact.html')">Contact</a></li>
+            <li><a href="#" onclick="loadContent('about.html')">About</a></li>
+            <li class = 'lg'><input type="button" class="logout" onclick="http://mtithrissur.ac.in/" value="log in"></li>
         </ul>
     </div>
-    <div class="DASHBOARD" name="main">
+    <div class="DASHBOARD" id = 'contentContainer' name="main">
         <div class="accname">
             <h2>WELCOME TO DASHBOARD</h2>
             User Name
@@ -123,37 +36,37 @@
         <br>
         <div class="general">
             <p>GENERAL INFORMATION</p>
-            <a href="members.php" target="main">
+            <a href="members.php">
                 <button  class="selection">
                 <img src="images/membonline.jpg" width="20%" height="20%" alt="Members Online">
                 <p>MEMBERS<br><span>Message</span></p>
             </button></a>
 
-            <a href="notreturned.php" target="main"><button class="selection">
+            <a href="notreturned.php"><button class="selection">
                 <img src="images/membonline.jpg" width="20%" height="20%" alt="Not Returned">
                 <p>NOT RETURNED!<br><span>Message</span></p>
             </button></a>
             
-            <a href="totbooks.php" target="main"><button class="selection">
+            <a href="totbooks.php"><button class="selection">
                 <img src="images/membonline.jpg" width="20%" height="20%" alt="Total Books">
                 <p>TOTAL BOOKS<br><span>Message</span></p>
             </button></a>
         </div>
         <br>
-        <a href="bookissue.html" target="main" class = "selection">
+        <a href="bookissue.html" class = "selection">
         <button class = "selection">
             <img src="images/membonline.jpg" width = "20%" height = "20%" alt="Issue Book">
             + ISSUE BOOK
         </button></a>
 
-        <a href="addnewbook.php" target="main" class="selection">
-            <button class="selection" target="main">
+        <a href="addnewbook.php" class="selection">
+            <button class="selection">
             <img src="images/newbook.png" width="20%" height="20%" alt="Add New Book">
             ADD NEW BOOK
         </button></a>
 
-        <a href="addnewbook.html" target="main" class="selection">
-            <button onclick="membersonline.html" target="main" class="selection">
+        <a href="addnewbook.html" class="selection">
+            <button onclick="membersonline.html" class="selection">
                 <img src="images/settings.png" width="20%" height="20%" alt="Settings">
                 SETTINGS
             </button>
