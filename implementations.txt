@@ -7,23 +7,30 @@ Goals:
 Front end
   LOGIN page
   ADMIN page
-    Total members
-    total books
-    not returened books
-    ADD book
-    available books
-      issue book 
-    Search
+    dashboard - Mithul
+    Total members - Mithul
+    total books - Rishikesh
+      available books
+        issue book
+      heldbooks
+      Search
+    profile - Rishikesh
+    not returned books - Albin 
+    ADD book - Albin
+    
   USER page
-    Search
-    profile
-    All books
+    dashboard - Nirmal
+    profile - Nirmal
+    notifications - Nabeel
+    All books - Nabeel
+      search
       available/taken
         hold book
 
 Back end
   dbms:
     tables:
+
       users
         primary uid
         usertype
