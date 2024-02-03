@@ -6,7 +6,9 @@ body {
 
 .DASHBOARD {
     position: absolute;
-    margin: 10%;
+    margin: 5%;
+    margin-right: 10%;
+    margin-left: 10%;
     text-align: center;
     padding: 20px;
     z-index: -1;
@@ -25,7 +27,7 @@ body {
 
 .selection {
     margin: 10px 5px; /* Adjusted margin */
-    width: 30%;
+    width: 20%;
     border-radius: 10px;
     padding: 10px;
     background-color: white; /* Added a background color */
@@ -36,62 +38,3 @@ body {
     display: block;
     margin: 0 auto; /* Centered image */
 }
-
-.header {
-        background-color: #cfb939; /* Add a background color to the header */
-        color: #fff; /* Set text color to white */
-        padding: 5px;
-        text-align: center;
-        position: fixed;
-        height:10%;
-        width: 100%;
-    }
-
-    .logout {
-        float: right; /* Align the button to the right */
-        background-color: #000000d5; /* Add a background color to the button */
-        color: #fff; /* Set text color to white */
-        border-radius: 20px;
-        padding: 14px 16px; /* Adjust padding */
-        cursor: pointer;
-        border-color: antiquewhite;
-        border-width: 2px;
-        margin: 0;
-    }
-
-    .logout:hover {
-        background-color: #ff1500; /* Darken the background color on hover */
-       
-    }
-    ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #333;
-    }
-
-    li {
-        float: left;
-    }
-
-    li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-    }
-    .link{
-        position: fixed;
-        width: 100%;
-        margin-top: 5%;
-    }
-    .lg{
-        float: right;
-    }
-/* Change the link color to #111 (black) on hover */
-    li a:hover {
-        background-color: #111;
-    }
-    
