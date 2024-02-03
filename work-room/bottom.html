@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popular Topics to Learn</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        .topic-card {
+            transition: transform 0.3s;
+        }
+        .topic-card:hover {
+            transform: translateY(-5px);
+        }
+        .icon {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto text-center p-6">
+        <h2 class="text-2xl font-bold mb-4">Popular Topics to Learn</h2>
+        <div class="grid grid-cols-5 gap-4"> <!-- Update here -->
+            <!-- Business Analysis -->
+            <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
+                <i class="fas fa-trophy icon mb-2 text-blue-500"></i>
+                <h3 class="font-semibold">Business Analysis</h3>
+                <p>2 Courses</p>
+            </div>
+
+            <!-- Computer Science -->
+            <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
+                <i class="fas fa-laptop-code icon mb-2 text-blue-500"></i>
+                <h3 class="font-semibold">Computer Science</h3>
+                <p>5 Courses</p>
+            </div>
+
+            <!-- Data Science & Analytics -->
+            <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
+                <i class="fas fa-chart-line icon mb-2 text-blue-500"></i>
+                <h3 class="font-semibold">Data Science & Analytics</h3>
+                <p>6 Courses</p>
+            </div>
+
+            <!-- Design Architect -->
+            <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
+                <i class="fas fa-pencil-ruler icon mb-2 text-blue-500"></i>
+                <h3 class="font-semibold">Design Architect</h3>
+                <p>2 Courses</p>
+            </div>
+
+            <!-- Engineering & Architecture -->
+            <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
+                <i class="fas fa-hard-hat icon mb-2 text-blue-500"></i>
+                <h3 class="font-semibold">Engineering & Architecture</h3>
+                <p>4 Courses</p>
+            </div>
+        </div>
+        <button class="mt-6 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-8 rounded-full">
+            Browse all categories <i class="fas fa-arrow-right ml-2"></i>
+        </button>
+    </div>
+
+    <script src="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet"></script>
+</body>
+</html>
