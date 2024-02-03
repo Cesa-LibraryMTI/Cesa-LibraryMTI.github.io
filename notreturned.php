@@ -22,11 +22,9 @@
                         // Access individual columns using the column name
                         $adno= $row['sino'];
                         $name = $row['name'];
-                        $fine = $row['fine'];
-                        $days = $row['days'];
 
                         // Perform actions with the data (e.g., display or process)
-                        echo "<tr><td>$adno</td><td>$name</td><td>$fine</td><td>$days</td></tr>";
+                        echo "<tr><td>$adno</td><td>$name</td>";
                     }
                 }else{
                     print "<br><h1><font color = 'blue'><i>Wrong credentials<i><font></h1><br>";
