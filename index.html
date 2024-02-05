@@ -4,30 +4,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CESA Library</title>
     <link rel="stylesheet" href="styles/index.css">
-    <script>
-       function loadContent(page) {
-            fetch(page)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('contentContainer').innerHTML = data;
-                })
-                .catch(error => console.error('Error fetching content:', error));
-        }
-    </script>
+    <link rel="stylesheet" href="work-room/index.css">
+
 </head>
-<body>                 
-    <div class="header">
-        <h1>CESA MTI</h1>
-    </div>
-    <div class="link">
-        <ul >
-            <li><a class="active" href="index.html">Home</a></li>
-            <li><a href="#news" onclick="loadContent('news')">News</a></li>
-            <li><a href="#contact" onclick="loadContent('contact.html')">Contact</a></li>
-            <li><a href="#" onclick="loadContent('about.html')">About</a></li>
-            <li class = 'lg'><input type="button" class="logout" onclick="http://mtithrissur.ac.in/" value="log in"></li>
-        </ul>
-    </div>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#">CESA</a>
+            </div>
+            <input type="checkbox" id="click">
+            <label for="click" class="mainicon">
+                <div class="menu">
+                    <i class="bi bi-list"></i>
+                </div>
+            </label>
+            <ul>
+                <li><a href="index.html" class="active">HOME</a></li>
+                <li><a href="#" onclick="loadContent('about.html')">ABOUT</a></li>
+                <li><a href="#" onclick="loadContent('contact.html')">PROFILE</a></li>
+                <li><a href="#" onclick="loadContent('news')">NOTIFICATION</a></li>
+            </ul>
+        </nav>
+    </header>
+
+                
     <div class="DASHBOARD" id = 'contentContainer' name="main">
         <div class="accname">
             <h2>WELCOME TO DASHBOARD</h2>

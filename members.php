@@ -4,74 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Issue</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #333;
-            color: #fff;
-        }
-
-        input[type="text"] {
-            padding: 8px;
-            width: 200px;
-        }
-
-        button {
-            padding: 8px;
-            cursor: pointer;
-        }
-
-        #miniTable {
-            margin-top: 20px;
-            width: 30%;
-        }
-
-        #miniTable, #miniTable th, #miniTable td {
-            border: 1px solid #ddd;
-        }
-
-        #miniTable th, #miniTable td {
-            padding: 5px;
-            text-align: left;
-        }
-
-        #miniTable th {
-            background-color: #333;
-            color: #fff;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/members.css">
 </head>
 <body>
 
