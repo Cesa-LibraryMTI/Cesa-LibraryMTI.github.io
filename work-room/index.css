@@ -31,6 +31,9 @@
     .logo {
         font-size: 1.3rem;
         font-weight: 600;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
     }
 
     .logo a {
@@ -125,12 +128,15 @@
         li {
             padding: 1rem 1.1rem;
         }
-
         .menu {
             display: block;
             font-size: 2rem;
             font-weight: bold;
             color: #fff;
+            position: absolute;
+            top: 50%;
+            right: 5%;
+            transform: translate(0, -50%);
         }
 
         ul {
