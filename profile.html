@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .status-bar {
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 0.25rem 1rem;
+            font-size: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header {
+            background-color: #04a76b;
+            color: white;
+            padding: 1rem;
+            font-size: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .profile-pic {
+            margin: 2rem auto;
+            width: 100px;
+            height: 100px;
+            background-image: url('your-new-profile-pic-url.jpg');
+            background-size: cover;
+            border-radius: 50%;
+            position: relative;
+        }
+        .profile-pic > .camera {
+            position: absolute;
+            right: -0.25rem;
+            bottom: -0.25rem;
+            background-color: #04a76b;
+            padding: 0.5rem;
+            border-radius: 50%;
+            color: white;
+        }
+        .info-section {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+        }
+        .info-section:not(:last-child) {
+            border-bottom: 1px solid #dddddd;
+        }
+        .info-section i {
+            min-width: 30px;
+            text-align: center;
+        }
+        .info-section .name,
+        .info-section .about,
+        .info-section .phone {
+            flex-grow: 1;
+            margin-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="status-bar">
+        <div>4G</div>
+        <div>09:42</div>
+        <div>71%</div>
+    </div>
+    <div class="header">
+        <i class="fas fa-angle-left"></i>
+        <span>Profile</span>
+        <span></span> <!-- Placeholder for symmetry -->
+    </div>
+    <div class="profile-pic">
+        <i class="fas fa-camera camera"></i>
+    </div>
+    <div class="info-section">
+        <i class="fas fa-user"></i>
+        <div class="name">
+            <h2>Rishikesh</h2>
+            <p>This is not your username or pin. This name will be visible to your WhatsApp contacts.</p>
+        </div>
+        <i class="fas fa-pencil-alt"></i>
+    </div>
+    <div class="info-section">
+        <i class="fas fa-info-circle"></i>
+        <div class="about">
+            <h3>About</h3>
+            <p>Urgent calls only</p>
+        </div>
+        <i class="fas fa-pencil-alt"></i>
+    </div>
+    <div class="info-section">
+        <i class="fas fa-phone"></i>
+        <div class="phone">
+            <h3>Phone</h3>
+            <p>+91 96059 89075</p>
+        </div>
+        <i class="fas fa-pencil-alt"></i>
+    </div>
+</body>
+</html>
+
+
+
