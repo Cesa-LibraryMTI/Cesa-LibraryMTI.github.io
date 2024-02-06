@@ -13,9 +13,10 @@
         background-repeat: no-repeat;
         height: 100vh;
     }
-
     /*nav */
     nav {
+        position: sticky;
+        top: 0; /* Stick to the top of the viewport */
         display: flex;
         justify-content: space-between;
         max-width: 80%;
@@ -118,10 +119,6 @@
     @media only screen and (max-width:480px) {
         html {
             font-size: 85%;
-        }
-
-        header {
-            height: 100vh;
         }
 
         li {
