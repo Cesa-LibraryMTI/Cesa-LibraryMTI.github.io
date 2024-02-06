@@ -133,10 +133,7 @@
             font-size: 2rem;
             font-weight: bold;
             color: #fff;
-            position: absolute;
-            top: 50%;
-            right: 5%;
-            transform: translate(0, -50%);
+            position:relative; left:80px;
         }
 
         ul {
