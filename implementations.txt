@@ -40,7 +40,7 @@ Back end
         name
         username
         password
-        holding
+        foregin bookid
 
       books
         primary bookid
