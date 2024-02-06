@@ -134,7 +134,6 @@
             font-weight: bold;
             color: #fff;
             position: absolute;
-            top: 50%;
             right: 5%;
             transform: translate(0, -50%);
         }
