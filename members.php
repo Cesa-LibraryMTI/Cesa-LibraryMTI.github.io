@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/members.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
+      
         /*search*/
         .search {
             display: flex;
@@ -89,6 +90,7 @@
                 <tr>
                     <th>ad.no</th>
                     <th>name</th>
+                    <th></th>
                     
                 </tr>
             </thead>
@@ -105,7 +107,7 @@
                     while ($row = $result->fetch_assoc()) {
                         $id = $row['adno'];
                         $name = $row['name'];
-                        echo "<tr><td>$id</td><td>$name</td></tr>";
+                        echo "<tr><td>$id</td><td>$name</td><td><i class='bi bi-trash3-fill icon mb-2 text-blue-500'></i></td></tr>";
                     }
                 }else{
                     print "<br><h1><font color = 'blue'><i>Wrong credentials<i><font></h1><br>";
@@ -120,6 +122,7 @@
 
     
     <script>
+      
         function searchTable() {
             // Implement your search logic here
             alert("Implement your search logic here.");
