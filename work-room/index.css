@@ -31,9 +31,8 @@
     .logo {
         font-size: 1.3rem;
         font-weight: 600;
-        position: absolute;
-        top: 50%;
-        transform: translate(0, -50%);
+        display: flex;
+        align-items: center;
     }
 
     .logo a {
@@ -133,7 +132,7 @@
             font-size: 2rem;
             font-weight: bold;
             color: #fff;
-            position:relative; left:80px;
+            float: right;
         }
 
         ul {
