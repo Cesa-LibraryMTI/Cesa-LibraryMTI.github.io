@@ -79,10 +79,10 @@ label {
 <?php
   if($_SERVER['REQUEST_METHOD']=='POST'){
     include 'dbconnect.php';
-    $bsino=$_POST['adno'];
-    $bname=$_POST['name'];
-    $bauthor=$_POST['password'];
-    $bprice=$_POST['membtype'];
+    $adno=$_POST['adno'];
+    $name=$_POST['name'];
+    $password=$_POST['password'];
+    $membtype=$_POST['membtype'];
     $sql = "insert into books values('$adno','$name','$password','$membtype')";
     $conn->query($sql);
   }
