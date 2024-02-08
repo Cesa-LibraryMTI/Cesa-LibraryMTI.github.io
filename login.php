@@ -2,11 +2,14 @@
 <head>
     <script src = "js/login.js"></script>
     <link rel = "stylesheet" href = "styles/login.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <title>Login</title>
 </head>
 <body>
 <div class="container">
-    <img src="contact.png" alt="Login" align="center">
+    <i class="bi bi-person-circle icon mb-2 text-blue-500" style="font-size: 3em;"></i>
+
+
     <form method="POST">
       <label>EMAIL:</label>
       <input type="email" name="email" placeholder="Email" required>
