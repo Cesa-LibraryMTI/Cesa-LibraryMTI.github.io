@@ -6,7 +6,7 @@
   height: 350px;    
   width: 200px;
   margin: 20px auto;
-  padding: 20px;
+  padding: 10px;
   border: 1px solid #ccc;
 }
 
@@ -52,30 +52,25 @@ label {
     <table>
 
         <tr>
-            <td><label>SI NO:</label></td>
-            <td><input type="text" name="bsino"></td>  
+            <td><label>AD NO:</label></td>
+            <td><input type="text" name="adno"></td>  
         </tr>
         <tr>
-            <td><label>BOOK NAME:</label></td>
-            <td><input type="text" name="bname"></td>
+            <td><label> USERNAME:</label></td>
+            <td><input type="text" name="name"></td>
         </tr>
         <tr>
-            <td><label>AUTHOR:</label></td>
-            <td><input type="text" name="bauthor"></td>
+            <td><label>PASSWORD:</label></td>
+            <td><input type="PASSWORD" name="password"></td>
         </tr>
         <tr>
-            <td><label>CAEGORY:</label></td>
-            <td><select name="" id="">
-              <option value="python">python</option>
-              <option value="java">java</option>
-              <option value="c">c</option>
-              <option value="c++">c++</option>
+            <td><label>USER TYPE:</label></td>
+            <td><select name="membtype" id="">
+              <option value="0">user</option>
+              <option value="1">admin</option>
             </select></td>
         </tr>
-        <tr>
-            <td><label>price:</label></td>
-            <td><input type="text" name="bprice"></td>
-        </tr>
+        
     </table>
       <button type="submit">confirm</button>
     </form>
@@ -84,11 +79,11 @@ label {
 <?php
   if($_SERVER['REQUEST_METHOD']=='POST'){
     include 'dbconnect.php';
-    $bsino=$_POST['bsino'];
-    $bname=$_POST['bname'];
-    $bauthor=$_POST['bauthor'];
-    $bprice=$_POST['bprice'];
-    $sql = "insert into books values('$bsino','$bname','$bauthor','$bprice')";
+    $bsino=$_POST['adno'];
+    $bname=$_POST['name'];
+    $bauthor=$_POST['password'];
+    $bprice=$_POST['membtype'];
+    $sql = "insert into books values('$adno','$name','$password','$membtype')";
     $conn->query($sql);
   }
 ?>

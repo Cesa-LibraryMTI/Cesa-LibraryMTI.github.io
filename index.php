@@ -126,7 +126,7 @@
         <h2 class="text-2xl font-bold mb-4">blah blah!!</h2>
         <div class="grid grid-cols-3 gap-4"> <!-- Update here -->
             <!-- Business Analysis -->
-            <a href="">
+            <a href="addmember.php">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
                 <i class="bi bi-person-plus-fill icon mb-2 text-blue-500"></i>
                 <h3 class="font-semibold">Add members</h3>
@@ -144,7 +144,7 @@
             </a>
 
             <!-- Data Science & Analytics -->
-            <a href="">
+            <a href="addnewbook.php">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
                 <i class="bi bi-database-fill-add icon mb-2 text-blue-500"></i>
                 <h3 class="font-semibold">Add new book</h3>
