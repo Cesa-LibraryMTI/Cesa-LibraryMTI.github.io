@@ -73,7 +73,7 @@
                     <?php
                         
                         include 'dbconnect.php';
-                        $sql="SELECT COUNT(adno) as member_count FROM members";
+                        $sql="SELECT COUNT(uid) as member_count FROM members";
                         $result=$conn->query($sql);
                         $rows=$result->fetch_assoc();
                         echo $rows['member_count'];
@@ -89,15 +89,22 @@
                 <i class="bi bi-people-fill icon mb-2 text-red-500"></i>
                 <h3 class="font-semibold">Not Returned</h3>
                 <p>
-                    <?php
-                        
-                        include 'dbconnect.php';
-                        $sql="SELECT COUNT(adno) as member_count FROM members where bid!=0";
-                        $result=$conn->query($sql);
-                        $rows=$result->fetch_assoc();
+                <?php
+                    include 'dbconnect.php';
+
+                    $sql = "SELECT COUNT(uid) as member_count FROM members WHERE uid IN (SELECT uid FROM booklog WHERE return_date='0000-00-00')";
+                    $result = $conn->query($sql);
+
+                    if ($result !== false) {
+                        $rows = $result->fetch_assoc();
                         echo $rows['member_count'];
-                        
-                    ?>
+                    } else {
+                        echo "Error in query: " . $conn->error;
+                    }
+
+                    $conn->close();
+                ?>
+
                     </p>
             </div>
             </a>
@@ -111,7 +118,7 @@
                     <?php
                         
                         include 'dbconnect.php';
-                        $sql="SELECT COUNT(sino) as book_count FROM books";
+                        $sql="SELECT COUNT(bid) as book_count FROM books";
                         $result=$conn->query($sql);
                         $rows=$result->fetch_assoc();
                         echo $rows['book_count'];

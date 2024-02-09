@@ -49,7 +49,7 @@ Back end
         category
 
       booklog
-        memberid: foreign key
+        uid: foreign key
         bookid: foreign key
         issuedate
         returndate

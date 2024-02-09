@@ -69,7 +69,7 @@
 <body>
 
     <header>
-        <h1>members</h1>
+        <h1>TOTAL MEMBER'S</h1>
     </header>
 
     <main>
@@ -98,16 +98,16 @@
                 
                 <?php
                 include 'dbconnect.php';
-                $sql = "SELECT adno,name FROM members";
+                $sql = "SELECT uid,name FROM members";
                 $result = $conn->query($sql);
 
                 
             
                 if (($result !== false)&&($result->num_rows > 0)) {
                     while ($row = $result->fetch_assoc()) {
-                        $id = $row['adno'];
+                        $uid = $row['uid'];
                         $name = $row['name'];
-                        echo "<tr><td>$id</td><td>$name</td><td><i class='bi bi-trash3-fill icon mb-2 text-blue-500'></i></td></tr>";
+                        echo "<tr><td>$uid</td><td>$name</td><td><i class='bi bi-trash3-fill icon mb-2 text-blue-500'></i></td></tr>";
                     }
                 }else{
                     print "<br><h1><font color = 'blue'><i>Wrong credentials<i><font></h1><br>";
