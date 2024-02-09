@@ -43,13 +43,16 @@ Back end
         foregin bookid
 
       books
-        primary bookid
+        bookid: primary key
         name
         author
         price
         category
-        issued
-        held
+
+      booklog
+        bookid: foreign key
+        issuedate
+        returndate
 
     procedures:
       check available
