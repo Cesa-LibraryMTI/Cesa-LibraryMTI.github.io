@@ -77,6 +77,7 @@
                         $result=$conn->query($sql);
                         $rows=$result->fetch_assoc();
                         echo $rows['member_count'];
+                       
                     ?>
                 </p>
             </div>
@@ -91,10 +92,11 @@
                     <?php
                         
                         include 'dbconnect.php';
-                        $sql="SELECT COUNT(adno) as member_count FROM members";
+                        $sql="SELECT COUNT(adno) as member_count FROM members where bid!=0";
                         $result=$conn->query($sql);
                         $rows=$result->fetch_assoc();
                         echo $rows['member_count'];
+                        
                     ?>
                     </p>
             </div>
@@ -113,6 +115,7 @@
                         $result=$conn->query($sql);
                         $rows=$result->fetch_assoc();
                         echo $rows['book_count'];
+                        
                     ?>
                     </p>
             </div>

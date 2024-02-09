@@ -64,6 +64,10 @@ label {
             <td><input type="text" name="bauthor"></td>
         </tr>
         <tr>
+            <td><label>number of copies:</label></td>
+            <td><input type="number" name="copy"></td>
+        </tr>
+        <tr>
             <td><label>CAEGORY:</label></td>
             <td><select name="" id="">
               <option value="python">python</option>

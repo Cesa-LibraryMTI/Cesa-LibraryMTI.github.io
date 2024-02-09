@@ -1,113 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CESA Library</title>
+    <title>Book Issue</title>
+    <link rel="stylesheet" href="styles/members.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
-        body {
-            background-color: grey; 
-            margin: 0; 
-            font-family: Arial, sans-serif; 
-        }
-
-        .DASHBOARD {
+      
+        /*search*/
+        .search {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             text-align: center;
-            padding: 20px;
-        }
-
-        .accname {
-            padding: 5px;
-        }
-
-        .general {
-            background-color: rgb(78, 255, 101);
-            padding: 20px;
-            border-radius: 20px;
-            margin-top: 20px; /* Added margin to separate from the above content */
-        }
-
-        .selection {
-            margin: 10px 5px; /* Adjusted margin */
-            width: 30%;
-            border-radius: 10px;
-            padding: 10px;
-            background-color: white; /* Added a background color */
-            cursor: pointer; /* Added a pointer cursor on hover */
-        }
-
-        .selection img {
-            display: block;
-            margin: 0 auto; /* Centered image */
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #333;
-            color: #fff;
-        }
+          }
+          
+          .search__input {
+            font-family: inherit;
+            font-size: inherit;
+            background-color: #f4f2f2;
+            border: none;
+            color: #646464;
+            padding: 0.7rem 1rem;
+            border-radius: 30px;
+            width: 12em;
+            transition: all ease-in-out .5s;
+            margin-right: -2rem;
+          }
+          
+          .search_input:hover, .search_input:focus {
+            box-shadow: 0 0 1em #00000013;
+          }
+          
+          .search__input:focus {
+            outline: none;
+            background-color: #f0eeee;
+          }
+          
+          .search__input::-webkit-input-placeholder {
+            font-weight: 100;
+            color: #ccc;
+          }
+          
+          .search_input:focus + .search_button {
+            background-color: #f0eeee;
+          }
+          
+          .search__button {
+            border: none;
+            background-color: #f4f2f2;
+            margin-top: .1em;
+            
+          }
+          
+          .search__button:hover {
+            cursor: pointer;
+          }
+          
+          .search__icon {
+            height: 1.3em;
+            width: 1.3em;
+            fill: #b4b4b4;
+          }
+        /*search*/
     </style>
+
 </head>
 <body>
-    <div class="DASHBOARD">
-        <div class="accname">
-          
-        </div>
-        <br>
-        <div class="general">
-            <h3><u>CATEGORY</u></h3>
-            <a href="membersonline.html" target="main">
-                <button  class="selection">
-                <img src="images/membonline.jpg" width="20%" height="20%" alt="Members Online">
-                <p>C</p>
-            </button></a>
 
-            <a href="notreturned.html" target="main"><button class="selection">
-                <img src="images/membonline.jpg" width="20%" height="20%" alt="Not Returned">
-                <p>C++</p>
-            </button></a>
+    <header>
+        <h1>Total Books</h1>
+    </header>
 
-            <button class="selection">
-                <img src="images/java.jpg" width="20%" height="18%" alt="Total Books">
-                <p>JAVA</p>
+    <main>
+        <div>
+
+            <form action="membsearch.php" method="POST">
+            <div class="search">
+            <input type="text" class="search__input" placeholder="Type your text">
+            <button class="search__button">
+            <i class="bi bi-search"></i>
             </button>
-        
-        <br>
-        <button class="selection">
-            <img src="images/js.jpg" width="20%" height="20%" alt="Issue Book">
-            <p>JAVA SCRIPT</p>
-        </button>
+            
+            </form>
+        </div>
 
-        <button class="selection">
-            <img src="images/newbook.png" width="20%" height="20%" alt="Add New Book">
-            <p>PHP</p>
-        </button>
-
-        <button onclick="membersonline.html" target="main" class="selection">
-            <img src="images/settings.png" width="20%" height="20%" alt="Settings">
-            <p>PYTHON</p>
-        </button>
-    </div>
-    <div>
-        <table>
+        <table id="mainTable">
+            <thead>
             <tr>
                 <th>SI NO</th>
                 <th>BOOK NAME</th>
                 <th>AUTHOR</th>
                 <th>PRICE</th>
             </tr>
+            </thead>
+            <tbody>
+                
             <?php
                 include 'dbconnect.php';
                 $sql = "SELECT sino,name,author,price FROM books";
@@ -131,7 +120,20 @@
                 }
                 $conn->close();
             ?>
+            </tbody>
         </table>
-    </div>
+
+       
+    </main>
+
+    
+    <script>
+      
+        function searchTable() {
+            // Implement your search logic here
+            alert("Implement your search logic here.");
+        }
+    </script>
+
 </body>
 </html>
