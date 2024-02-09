@@ -1,4 +1,3 @@
-DROP FUNCTION checker;
 delimiter //
 CREATE FUNCTION checker(uname varchar(32),pass varchar(32)) RETURNS INT
 BEGIN

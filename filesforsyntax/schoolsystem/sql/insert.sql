@@ -1,4 +1,3 @@
-DROP FUNCTION inserter;
 delimiter //
 CREATE FUNCTION inserter(utype CHAR(1),uname varchar(32),pword varchar(32)) RETURNS INT
 BEGIN
@@ -23,10 +22,3 @@ BEGIN
   RETURN illegal;
 END //
 delimiter  ;
-/* 
-Generates a random userid, 
-checks for duplicates, 
-regenerates random userid if duplicate exist
-returns illegal = 1 if username and password is taken
-and inserts the row
- */

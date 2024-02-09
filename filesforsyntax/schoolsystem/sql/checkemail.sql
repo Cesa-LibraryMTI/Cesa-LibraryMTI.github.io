@@ -1,4 +1,4 @@
-drop function emailchecker;
+
 delimiter $$
 create function emailchecker(em varchar(255)) returns int 
 begin

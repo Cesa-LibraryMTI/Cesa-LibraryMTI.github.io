@@ -124,7 +124,7 @@
                         echo $rows['book_count'];
                         
                     ?>
-                    </p>
+                </p>
             </div>
             </a>
            

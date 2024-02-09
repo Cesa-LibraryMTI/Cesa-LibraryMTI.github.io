@@ -1,7 +1,7 @@
  body{
    margin: 0;
  }
- .connected, .disconnected, .wrongcredentials{
+ .wrongcredentials{
    text-align: center;
    border: none;
    font-weight: bold;
@@ -9,7 +9,7 @@
    text-align: center;
    border-radius: 10px;
  }
- .disconnected p,.wrongcredentials p{ 
+ .wrongcredentials p{ 
    background-color: #ff9966;
    border: 2px solid red;
    border-radius: 20px;
