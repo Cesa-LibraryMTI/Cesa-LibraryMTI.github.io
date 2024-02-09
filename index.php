@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <title>Nav</title>
-    <link rel="stylesheet" href="work-room/index.css">
+    <link rel="stylesheet" href="styles/index.css">
     
     <style>
 
