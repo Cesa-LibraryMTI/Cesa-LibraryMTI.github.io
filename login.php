@@ -1,3 +1,18 @@
+<?php
+  session_start();
+  if((isset($_SESSION['logged']))){
+    if($_SESSION['logged'] == 1){
+      header('Location: index.php');
+      exit();
+    }else if($_SESSION['logged'] == 0){
+      header('Location: about.html');
+      exit();
+    }else if(($_SESSION['logged'] == -1)){  
+      session_unset();
+      session_destroy();
+    }
+  }
+?>
 <html>
   <head>
     <meta charset="UTF-8">

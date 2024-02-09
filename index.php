@@ -1,4 +1,19 @@
-
+<?php
+    session_start();
+    if(isset($_SESSION['logged'])){
+        if($_SESSION['logged'] == 0){
+            header("Location: about.html");
+            exit();
+        }
+        if($_SESSION['logged']==-1){
+            header("Location: login.php");
+            exit();
+        }
+    }else{
+        header("Location: login.php");
+        exit();
+    }
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -52,7 +67,7 @@
                 <li><a href="#" class="active">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">settings</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="logout.php">LOG OUT</a></li>
             </ul>
         </nav>
     </header>
