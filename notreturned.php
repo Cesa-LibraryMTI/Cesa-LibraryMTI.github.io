@@ -107,17 +107,17 @@ $result = $conn->query($sql);
 $currentdate = $result->fetch_assoc()['currentdate'];
 
 // Select relevant data from the members table
-$sql = "SELECT uid, name FROM members WHERE uid IN (SELECT uid FROM booklog WHERE return_date='0000-00-00')";
+$sql = "SELECT uid, username FROM members WHERE uid IN (SELECT uid FROM booklog WHERE return_date is NULL)";
 $result = $conn->query($sql);
 
 if ($result !== false && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         // Access individual columns using the column name
         $uid = $row['uid'];
-        $name = $row['name'];
+        $name = $row['username'];
 
         // Fetch the issue_date from the booklog table
-        $sql = "SELECT issue_date FROM booklog WHERE uid=$uid AND return_date='0000-00-00'";
+        $sql = "SELECT issue_date FROM booklog WHERE uid=$uid AND return_date is NULL";
         $res = $conn->query($sql);
         
         if ($res !== false && $res->num_rows > 0) {

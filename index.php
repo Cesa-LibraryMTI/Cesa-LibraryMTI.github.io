@@ -92,7 +92,7 @@
                 <?php
                     include 'dbconnect.php';
 
-                    $sql = "SELECT COUNT(uid) as member_count FROM members WHERE uid IN (SELECT uid FROM booklog WHERE return_date='0000-00-00')";
+                    $sql = "SELECT COUNT(uid) as member_count FROM members WHERE uid IN (SELECT uid FROM booklog WHERE return_date is NULL)";
                     $result = $conn->query($sql);
 
                     if ($result !== false) {
