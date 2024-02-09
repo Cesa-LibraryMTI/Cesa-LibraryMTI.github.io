@@ -35,12 +35,11 @@ Back end
     tables:
     
       users
-        primary uid
+        uid: primary key
         usertype
         name
         username
         password
-        foregin bookid
 
       books
         bookid: primary key
@@ -50,6 +49,7 @@ Back end
         category
 
       booklog
+        memberid: foreign key
         bookid: foreign key
         issuedate
         returndate
