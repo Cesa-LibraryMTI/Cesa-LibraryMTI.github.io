@@ -75,8 +75,8 @@
                         include 'dbconnect.php';
                         $sql="SELECT COUNT(uid) as member_count FROM members";
                         $result=$conn->query($sql);
-                        $rows=$result->fetch_assoc();
-                        echo $rows['member_count'];
+                        if($rows=$result->fetch_assoc());
+                        
                        
                     ?>
                 </p>
@@ -145,7 +145,7 @@
             </a>
 
             <!-- Computer Science -->
-            <a href="bookissue.html">
+            <a href="bookissue.php">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
                 <i class="bi bi-journal-bookmark icon mb-2 text-blue-500"></i>
                 <h3 class="font-semibold">Issue Book</h3>
