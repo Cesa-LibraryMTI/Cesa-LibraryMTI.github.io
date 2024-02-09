@@ -119,9 +119,6 @@
                                 echo "<tr><td>$bid</td><td>$bname</td><td>$bauthor</td><td>$bprice</td></tr>";
                             }
                         }
-                        else{
-                            echo "wrong";
-                        }
                         
 
                     ?>
