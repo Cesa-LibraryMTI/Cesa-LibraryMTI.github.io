@@ -7,65 +7,8 @@
     <title>NOT RETURNED</title>
     <link rel="stylesheet" href="styles/members.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <style>
-      
-        /*search*/
-        .search {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-align: center;
-          }
-          
-          .search__input {
-            font-family: inherit;
-            font-size: inherit;
-            background-color: #f4f2f2;
-            border: none;
-            color: #646464;
-            padding: 0.7rem 1rem;
-            border-radius: 30px;
-            width: 12em;
-            transition: all ease-in-out .5s;
-            margin-right: -2rem;
-          }
-          
-          .search_input:hover, .search_input:focus {
-            box-shadow: 0 0 1em #00000013;
-          }
-          
-          .search__input:focus {
-            outline: none;
-            background-color: #f0eeee;
-          }
-          
-          .search__input::-webkit-input-placeholder {
-            font-weight: 100;
-            color: #ccc;
-          }
-          
-          .search_input:focus + .search_button {
-            background-color: #f0eeee;
-          }
-          
-          .search__button {
-            border: none;
-            background-color: #f4f2f2;
-            margin-top: .1em;
-          }
-          
-          .search__button:hover {
-            cursor: pointer;
-          }
-          
-          .search__icon {
-            height: 1.3em;
-            width: 1.3em;
-            fill: #b4b4b4;
-          }
-        /*search*/
-    </style>
-
+    <link rel="stylesheet" href="styles/search.css">
+    <script src="js/search.js"></script>
 </head>
 <body>
 
@@ -78,15 +21,11 @@
 
             <form action="membsearch.php" method="POST">
             <div class="search">
-            <input type="text" class="search__input" placeholder="Type your text">
-            <button class="search__button">
-            <i class="bi bi-search"></i>
-            </button>
-            
-            </form>
+            <input type="text" class="search__input" id ="myInput" placeholder="Type your text" onkeyup="searchTable()">
+            </form></div>
         </div>
 
-        <table id="mainTable">
+        <table id="myTable">
             <thead>
                 <tr>
                 <th>admisson no:</th>
@@ -150,15 +89,5 @@ $conn->close();
 
        
     </main>
-
-    
-    <script>
-      
-        function searchTable() {
-            // Implement your search logic here
-            alert("Implement your search logic here.");
-        }
-    </script>
-
 </body>
 </html>

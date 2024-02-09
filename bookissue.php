@@ -4,81 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Issue</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #333;
-            color: #fff;
-        }
-
-        input[type="text"] {
-            padding: 8px;
-            width: 200px;
-        }
-
-        button {
-            padding: 8px;
-            cursor: pointer;
-        }
-
-        #miniTable {
-            margin-top: 20px;
-            width: 30%;
-        }
-
-        #miniTable, #miniTable th, #miniTable td {
-            border: 1px solid #ddd;
-        }
-
-        #miniTable th, #miniTable td {
-            padding: 5px;
-            text-align: left;
-        }
-
-        #miniTable th {
-            background-color: #333;
-            color: #fff;
-        }
-
-        .issue{
-            background-image: url( 
-'issuebutton.jpg'); 
-            background-size: cover;  
-            font-size: 2rem; 
-        }
-    </style>
+    <link rel="stylesheet" href="styles/tables.css">
+    <link rel="stylesheet" href="styles/search.css">
+    <script src = "js/search.js"></script>
 </head>
 <body>
 
@@ -87,13 +15,14 @@
     </header>
 
     <main>
-        <div>
-            <label for="search">Search:</label>
-            <input type="text" id="search" name="search" placeholder="Enter your search">
-            <button onclick="searchTable()">Search</button>
-        </div>
+    <div>
+        <form action="membsearch.php" method="POST">
+        <div class="search">
+        <input type="text" class="search__input" id ="myInput" placeholder="Type your text" onkeyup="searchTable()">
+        </form></div>
+    </div>
 
-        <table id="mainTable">
+        <table id="myTable">
             <thead>
                 <tr>
                     <th>Book id</th>
