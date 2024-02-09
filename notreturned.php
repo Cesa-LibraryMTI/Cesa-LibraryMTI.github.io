@@ -68,13 +68,11 @@ if ($result !== false && $result->num_rows > 0) {
             $res = $conn->query($sql);
             $days = $res->fetch_assoc()['day'];
 
-            // Calculate the fine (assuming a fine of $10 per day for days > 15)
-            $fine = ($days > 15) ? $days * 10 : 0;
+            // Calculate the fine (assuming a fine of $10 per day for days > 15 and $30 for days > 30)
+            $fine = ($days > 15) ? (($days > 30) ?15*10+($days-30)*20:($days-15)*10) : 0;
 
             // Perform actions with the data (e.g., display or process)
             echo "<tr><td>$uid</td><td>$name</td><td>$issue_date</td><td>$days</td><td>$fine</td></tr>";
-        } else {
-            echo "<br><h1><font color='blue'><i>No records found in booklog for UID: $uid</i></font></h1><br>";
         }
     }
 } else {
