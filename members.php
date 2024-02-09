@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Book Issue</title>
     <link rel="stylesheet" href="styles/members.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -11,9 +11,9 @@
         /*search*/
         .search {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
             text-align: center;
+            border-radius: 30px;
+            width: fit-content;
           }
           
           .search__input {
@@ -25,8 +25,8 @@
             padding: 0.7rem 1rem;
             border-radius: 30px;
             width: 12em;
-            transition: all ease-in-out .5s;
             margin-right: -2rem;
+            transition: all ease-in-out .5s;
           }
           
           .search_input:hover, .search_input:focus {
@@ -46,23 +46,6 @@
           .search_input:focus + .search_button {
             background-color: #f0eeee;
           }
-          
-          .search__button {
-            border: none;
-            background-color: #f4f2f2;
-            margin-top: .1em;
-          }
-          
-          .search__button:hover {
-            cursor: pointer;
-          }
-          
-          .search__icon {
-            height: 1.3em;
-            width: 1.3em;
-            fill: #b4b4b4;
-          }
-        /*search*/
     </style>
 
 </head>
@@ -75,17 +58,14 @@
     <main>
         <div>
 
-            <form action="membsearch.php" method="POST">
+            <form method="POST">
             <div class="search">
-            <input type="text" class="search__input" placeholder="Type your text">
-            <button class="search__button">
-            <i class="bi bi-search"></i>
-            </button>
-            
+              <input type="text" class="search__input" id='myInput' placeholder="Type your text" onkeyup="searchTable()">
+            </div>
             </form>
         </div>
 
-        <table id="mainTable">
+        <table id="myTable">
             <thead>
                 <tr>
                     <th>ad.no</th>
@@ -98,7 +78,7 @@
                 
                 <?php
                 include 'dbconnect.php';
-                $sql = "SELECT uid,name FROM members";
+                $sql = "SELECT uid,username FROM members";
                 $result = $conn->query($sql);
 
                 
@@ -106,7 +86,7 @@
                 if (($result !== false)&&($result->num_rows > 0)) {
                     while ($row = $result->fetch_assoc()) {
                         $uid = $row['uid'];
-                        $name = $row['name'];
+                        $name = $row['username'];
                         echo "<tr><td>$uid</td><td>$name</td><td><i class='bi bi-trash3-fill icon mb-2 text-blue-500'></i></td></tr>";
                     }
                 }else{
@@ -124,8 +104,22 @@
     <script>
       
         function searchTable() {
-            // Implement your search logic here
-            alert("Implement your search logic here.");
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[1];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }            
+         }
         }
     </script>
 
