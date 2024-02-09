@@ -76,7 +76,7 @@
                         $sql="SELECT COUNT(uid) as member_count FROM members";
                         $result=$conn->query($sql);
                         if($rows=$result->fetch_assoc());
-                        
+                        echo $rows['member_count'];
                        
                     ?>
                 </p>
