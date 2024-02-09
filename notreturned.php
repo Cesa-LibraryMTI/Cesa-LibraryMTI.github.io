@@ -20,11 +20,12 @@
                 if (($result !== false)&&($result->num_rows > 0)) {
                     while ($row = $result->fetch_assoc()) {
                         // Access individual columns using the column name
+                        if(bid!=0)
                         $adno= $row['sino'];
                         $name = $row['name'];
 
                         // Perform actions with the data (e.g., display or process)
-                        echo "<tr><td>$adno</td><td>$name</td>";
+                        echo "<tr><td>$adno</td><td>$name</td></tr>";
                     }
                 }else{
                     print "<br><h1><font color = 'blue'><i>Wrong credentials<i><font></h1><br>";
