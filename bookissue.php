@@ -107,7 +107,7 @@
                     <?php
                         include 'dbconnect.php';
 
-                        $sql="SELECT * FROM books WHERE bid!=(SELECT bid FROM booklog WHERE return_date='0000-00-00 &&') OR (SELECT bid FROM booklog)";
+                        $sql="SELECT * FROM books WHERE bid!=(SELECT bid FROM booklog WHERE return_date='0000-00-00')";
                         $result=$conn->query($sql);
                         if(($result != false)&&($result->num_rows > 0))
                         {
