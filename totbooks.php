@@ -70,7 +70,7 @@
 <body>
 
     <header>
-        <h1>Total Books</h1>
+        <h1>TOTAL BOOK'S</h1>
     </header>
 
     <main>
@@ -99,7 +99,7 @@
                 
             <?php
                 include 'dbconnect.php';
-                $sql = "SELECT sino,name,author,price FROM books";
+                $sql = "SELECT bid,bname,bauthor,bprice FROM books";
                 $result = $conn->query($sql);
 
                 
@@ -107,13 +107,13 @@
                 if (($result !== false)&&($result->num_rows > 0)) {
                     while ($row = $result->fetch_assoc()) {
                         // Access individual columns using the column name
-                        $id = $row['sino'];
-                        $name = $row['name'];
-                        $author = $row['author'];
-                        $price = $row['price'];
+                        $bid = $row['bid'];
+                        $bname = $row['bname'];
+                        $bauthor = $row['bauthor'];
+                        $bprice = $row['bprice'];
 
                         // Perform actions with the data (e.g., display or process)
-                        echo "<tr><td>$id</td><td>$name</td><td>$author</td><td>$price</td></tr>";
+                        echo "<tr><td>$bid</td><td>$bname</td><td>$bauthor</td><td>$bprice</td></tr>";
                     }
                 }else{
                     print "<br><h1><font color = 'blue'><i>Wrong credentials<i><font></h1><br>";
