@@ -1,10 +1,25 @@
 <html>
 <head>
+
+<script>
+    function showInputBox() {
+      var dropdown = document.getElementById('myDropdown');
+      var selectedOption = dropdown.options[dropdown.selectedIndex].value;
+
+      // Check if the selected option requires displaying the input box
+      if (selectedOption === 'other') {
+        document.getElementById('inputBoxContainer').style.display = 'block';
+      } else {
+        document.getElementById('inputBoxContainer').style.display = 'none';
+      }
+    }
+  </script>
+
     <style>
 
 .container {
-  height: 350px;    
-  width: 200px;
+  height: 500px;    
+  width: 300px;
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -69,12 +84,32 @@ label {
         </tr>
         <tr>
             <td><label>CAEGORY:</label></td>
-            <td><select name="" id="">
-              <option value="python">python</option>
-              <option value="java">java</option>
-              <option value="c">c</option>
-              <option value="c++">c++</option>
-            </select></td>
+            <td><select name="bcategory" id="myDropdown" onchange="showInputBox()">
+
+            <?php
+              include 'dbconnect.php'; // Corrected the file name
+              echo "<option value='other'>new category</option>";
+              $sql = "SELECT DISTINCT bcategory FROM books";
+              $result = $conn->query($sql);
+
+              if (($result !== false) && ($result->num_rows > 0)) {
+                while ($row = $result->fetch_assoc()) {
+                $category = $row['bcategory'];
+                echo "<option value='$category'>$category</option>";
+                }
+              } else {
+              echo "<h1>wrong credentials</h1>";
+              }
+              
+              echo "</select></td></tr>";
+        $conn->close();
+        ?>
+        
+        <div id="inputBoxContainer">
+        <label for="inputBox">New Category:</label>
+        <input type="text" id="inputBox" name="new_category" placeholder="category name">
+        </div>  
+    
         </tr>
         <tr>
             <td><label>price:</label></td>
@@ -88,11 +123,14 @@ label {
 <?php
   if($_SERVER['REQUEST_METHOD']=='POST'){
     include 'dbconnect.php';
-    $bsino=$_POST['bsino'];
+    $bid=$_POST['bsino'];
     $bname=$_POST['bname'];
     $bauthor=$_POST['bauthor'];
     $bprice=$_POST['bprice'];
-    $sql = "insert into books values('$bsino','$bname','$bauthor','$bprice')";
+    $category=$_POST['bcategory'];
+    if($category==='other')
+      $category=$_POST['new_catgory'];
+    $sql = "insert into books values('$bsino','$bname','$bauthor','$bprice',$category)";
     $conn->query($sql);
   }
 ?>

@@ -109,7 +109,6 @@
 
                     $sql = "SELECT COUNT(uid) as member_count FROM members WHERE uid IN (SELECT uid FROM booklog WHERE return_date is NULL)";
                     $result = $conn->query($sql);
-
                     if ($result !== false) {
                         $rows = $result->fetch_assoc();
                         echo $rows['member_count'];
