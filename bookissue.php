@@ -28,7 +28,8 @@
                     <th>Book id</th>
                     <th>book name</th>
                     <th>Author</th>
-		            <th>issue</th>
+                    <th>category</th>
+		            <th>Price</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +46,8 @@
                                 $bname= $row['bname'];
                                 $bauthor=$row['bauthor'];
                                 $bprice=$row['bprice'];
-                                echo "<tr><td>$bid</td><td>$bname</td><td>$bauthor</td><td>$bprice</td></tr>";
+                                $bcategory=$row['bcategory'];
+                                echo "<tr><td>$bid</td><td>$bname</td><td>$bauthor</td><td>$bcategory</td><td>$bprice</td></tr>";
                             }
                         }
                         

@@ -129,8 +129,9 @@ label {
     $bprice=$_POST['bprice'];
     $category=$_POST['bcategory'];
     if($category==='other')
-      $category=$_POST['new_catgory'];
-    $sql = "insert into books values('$bsino','$bname','$bauthor','$bprice',$category)";
+      $category=$_POST['new_category'];
+    $sql = "insert into books values('$bid','$bname','$bauthor','$bprice','$category')";
+    echo "<h1>INSERTED SCUCCESFULLY<h1>";
     $conn->query($sql);
   }
 ?>
