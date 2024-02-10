@@ -20,16 +20,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     <script src = "js/login.js"></script>
-    <link rel = "stylesheet" href = "styles/login.css">
+    <link rel = "stylesheet" href = "styles/pages.css">
   </head>
   <body>
-    <div class = "loginform">  
+    <div class = "container">  
       <form name = "login.html" method = "POST">
 
-        <div class = "loginhead">
+        <div class = "formhead">
           <h3>LOGIN</h3>
         </div>
-        <table>
+        <table id = 'logintable'>
           <tr>
             <td><input type="text" name="uname" placeholder="username" required></td>
           </tr>
@@ -37,7 +37,7 @@
             <td><input type="password" name="pass" placeholder="password" required></td>
           </tr>
           <tr>
-            <td><input type="submit" value="Log in" id = "loginbutton" onclick="return check()"></td>
+            <td><input type="submit" value="Log in" id = "submitbutton" onclick="return check()"></td>
           </tr>
           <tr>
             <td>Dont have an account? <a href = "register.php">SIGN UP</a></td>
@@ -63,7 +63,7 @@
         $_SESSION['name'] = $uname;
         $_SESSION['logged'] = 0;
         header('Location: about.html');
-      }else echo "<div class = 'wrongcredentials'><p>wrong credentials</p></div>";
+      }else echo "<div class = 'failed'><p>wrong credentials</p></div>";
   }
   }
 ?>

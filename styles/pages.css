@@ -1,0 +1,78 @@
+body{
+  margin: 0;
+}
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 10px;
+}
+.container form{
+  border: 2px solid #000000b5;
+  border-radius: 10px;
+  padding: 10px;
+}
+.formhead{
+  padding: 10px;
+  color: white;
+  text-align: center;
+  background-color: #000000b5;
+  border: 2px solid #000000b5;
+  border-radius: 10px;
+}
+.container table{
+  margin: 10px;
+  padding: 10px; 
+}
+.container input, button, select, option{
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #000000b5;
+  border-radius: 3px;
+}
+.container input:focus, button:focus{
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #000000b5;
+  border-radius: 3px;
+}
+#submitbutton{
+  color: white;
+  font-weight: bold;
+  background-color: #000000b5;
+  border: 2px solid #000000b5;
+  cursor: pointer;
+  border-radius: 20px;
+}
+#submitbutton:hover{
+  border: 2px solid #ff9966;
+  background-color: #ff9966;
+}
+.successfull,.failed{
+  text-align: center;
+   border: none;
+   font-weight: bold;
+   padding: 10px;
+   text-align: center;
+   border-radius: 10px;
+}
+.successfull p{
+  background-color: #99ff99;
+  border: 2px solid green;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 3px;
+}
+.failed p{
+  background-color: #ff9966;
+  border: 2px solid red;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 1px;
+}
+#logintable td{
+  padding-bottom: 20px;
+}
