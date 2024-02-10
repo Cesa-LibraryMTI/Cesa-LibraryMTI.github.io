@@ -1,60 +1,14 @@
 <html>
 <head>
-    <style>
-
-.container {
-  height: 350px;    
-  width: 200px;
-  margin: 20px auto;
-  padding: 10px;
-  border: 1px solid #ccc;
-}
-
-form {
-  margin-bottom: 20px;
-}
-
-input,
-button {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid rgb(0, 0, 0);
-  border-radius: 3px;
-}
-
-button {
-  background-color: green;
-  color: white;
-  cursor: pointer;
-  border-radius: 20px;
-}
-
-.checkbox {
-  display: flex;
-  align-items: center;
-}
-
-input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-label {
-  font-size: 14px;
-}
-
-    </style>
+  <link rel="stylesheet" href="styles/pages.css">
 </head>
 <body>
 <div class="container">
-    <h3 align="center">ADD BOOK</h3>
     <form method='POST'>
-    <table>
-
-        <tr>
-            <td><label>AD NO:</label></td>
-            <td><input type="text" name="adno"></td>  
-        </tr>
+      <div class="formhead">
+        <h3>ADD MEMBERS</h3>
+      </div>
+    <table id = 'logintable'>
         <tr>
             <td><label> USERNAME:</label></td>
             <td><input type="text" name="name"></td>
@@ -62,6 +16,10 @@ label {
         <tr>
             <td><label>PASSWORD:</label></td>
             <td><input type="PASSWORD" name="password"></td>
+        </tr>
+        <tr>
+            <td><label>CONFIRM PASSWORD:</label></td>
+            <td><input type="PASSWORD" name="cpassword"></td>
         </tr>
         <tr>
             <td><label>USER TYPE:</label></td>
@@ -72,19 +30,27 @@ label {
         </tr>
         
     </table>
-      <button type="submit">confirm</button>
-    </form>
-    </div>
-</body>
-<?php
+      <button type="submit" id='submitbutton'>confirm</button>
+      <?php
   if($_SERVER['REQUEST_METHOD']=='POST'){
     include 'dbconnect.php';
-    $adno=$_POST['adno'];
     $name=$_POST['name'];
     $password=$_POST['password'];
     $membtype=$_POST['membtype'];
-    $sql = "insert into books values('$adno','$name','$password','$membtype')";
-    $conn->query($sql);
+    $sql = "select inserter('$membtype','$name','$password') as illegal";
+    $result = $conn->query($sql);
+    if($result !== false){
+      $illegal = $result->fetch_assoc()['illegal'];
+      if($illegal){
+        echo "<div class='failed'><p>Failed to create</p></div>";
+      }else{
+        echo "<div class='successfull'><p>Created user</p></div>";
+      }
+    }
   }
 ?>
+    </form>
+    </div>
+</body>
+
 </html>
