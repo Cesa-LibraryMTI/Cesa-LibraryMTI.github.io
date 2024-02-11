@@ -69,13 +69,32 @@
                         $uid = $row['uid'];
                         $name = $row['username'];
                         echo "<tr><td>$uid</td><td>$name</td><td>";
-                        echo "<form method='post' action = 'issue_user.php'><input type = 'hidden' name = 'user' value =$uid><input type = 'hidden' name = 'book' value =$bid><button class = 'mbuttons' name = 'issue' onclick = 'return valid($bid,$uid)'><i class='bi bi-cart-fill'></i></button></form></td></tr>";
+                        echo "<form method='post'><input type = 'hidden' name = 'user' value =$uid><input type = 'hidden' name = 'book' value =$bid><button class = 'mbuttons' name = 'issue' onclick = 'return valid($bid,$uid)'><i class='bi bi-cart-fill'></i></button></form></td></tr>";
                     }
                 }
                 $conn->close();
             ?>
             </tbody>
         </table>
+        <?php
+        include 'dbconnect.php';
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+           if(isset($_POST['user'])){
+            $uid = $_POST['user'];
+            $bid = $_POST['book'];
+            do{
+                $tid = rand(1,100000000);
+                $sq1 = "select count(tid) as cn from booklog where tid = $tid";
+                $r1 = $conn->query($sq1);
+                $c = $r1->fetch_assoc()['cn'];
+            }while($c != 0);
+            $sql = "insert into booklog values ($tid,$uid,$bid,now(),NULL)";
+            $conn->query($sql);
+            header("Location: bookissue.php");
+           }
+        }
+        $conn->close();
+        ?>
     </main>
 </body>
 </html>

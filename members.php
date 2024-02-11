@@ -18,13 +18,11 @@
     </style>
     <script src="js/search.js"></script>
     <script>
-        function valid(){
-            var result = confirm("Are you sure you want to proceed?");
+        function valid(name){
+            var result = confirm("Are you sure you want to delete user "+name+" permenantly?");
             if (result) {
-                alert("User deleted");
                 return true;
             } else {
-                alert("User not deleted");
                 return false;
             }
         }
@@ -68,12 +66,21 @@
                         $uid = $row['uid'];
                         $name = $row['username'];
                         echo "<tr><td>$uid</td><td>$name</td><td>";
-                        echo "<form method='post' action = 'delete_user.php'><input type = 'hidden' name = 'user' value = $uid><button class = 'mbuttons' name = 'delete' onclick = 'return valid()'><i class='bi bi-trash3-fill icon mb-2'></i></button></form></td></tr>";
+                        echo "<form method='post'><input type = 'hidden' name = 'user' value = $uid><button class = 'mbuttons' name = 'delete' onclick = 'return valid(`$name`)'><i class='bi bi-trash3-fill icon mb-2'></i></button></form></td></tr>";
                     }
                 }
                 $conn->close();
             ?>
             </tbody>
+            <?php
+                include 'dbconnect.php';
+                if($_SERVER['REQUEST_METHOD']=='POST'){
+                    $userid = $_POST['user'];
+                    $sql = "delete from members where uid = $userid";
+                    $conn->query($sql);
+                }
+                $conn->close();
+            ?>
         </table>
     </main>
 </body>

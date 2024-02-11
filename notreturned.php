@@ -19,8 +19,8 @@
         }
     </style>
      <script>
-        function valid(){
-            var result = confirm("Are you sure you want to proceed?");
+        function valid(name,bname){
+            var result = confirm("Is the book "+bname+" returned by the user "+name+"?");
             if (result) {
                 return true;
             } else {
@@ -47,8 +47,10 @@
         <table id="myTable">
             <thead>
                 <tr>
-                <th>admisson no:</th>
+                <th>Transaction id:</th>
+                <th>user id:</th>
                 <th>name:</th>
+                <th>bookname</th>
                 <th>ISSUE DATE:</th>
                 <th>DAYS:</th>
                 <th>FINE:</th>
@@ -75,13 +77,14 @@ if ($result !== false && $result->num_rows > 0) {
         $name = $row['username'];
 
         // Fetch the issue_date from the booklog table
-        $sql = "SELECT tid,issue_date FROM booklog WHERE uid=$uid AND return_date is NULL";
+        $sql = "SELECT tid,issue_date,bname FROM booklog,books WHERE uid=$uid AND return_date is NULL AND books.bid = booklog.bid";
         $res = $conn->query($sql);
         
         if ($res !== false && $res->num_rows > 0) {
             $rows = $res->fetch_assoc();
             $tid = $rows['tid'];
             $issue_date = $rows['issue_date'];
+            $bname = $rows['bname'];
 
             // Calculate the difference in days between the current date and issue_date
             $sql = "SELECT DATEDIFF('$currentdate', '$issue_date') AS day";
@@ -92,8 +95,8 @@ if ($result !== false && $result->num_rows > 0) {
             $fine = ($days > 15) ? (($days > 30) ?15*10+($days-30)*20:($days-15)*10) : 0;
 
             // Perform actions with the data (e.g., display or process)
-            echo "<tr><td>$uid</td><td>$name</td><td>$issue_date</td><td>$days</td><td>$fine</td><td>";
-            echo "<form method='post' action = 'return_book.php'><input type = 'hidden' name = 'tid' value = $tid><button class = 'mbuttons' name = 'returned' onclick = 'return valid()'><i class='bi bi-arrow-return-left icon mb-2'></i></button></form></td></tr>";
+            echo "<tr><td>$tid</td><td>$uid</td><td>$name</td><td>$bname</td><td>$issue_date</td><td>$days</td><td>$fine</td><td>";
+            echo "<form method='post'><input type = 'hidden' name = 'tid' value = $tid><button class = 'mbuttons' name = 'returned' onclick = 'return valid(`$name`,`$bname`)'><i class='bi bi-arrow-return-left icon mb-2'></i></button></form></td></tr>";
         }
     }
 } else {
@@ -105,7 +108,16 @@ $conn->close();
 ?>
             </tbody>
         </table>
-
+<?php
+include 'dbconnect.php';
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    
+    $tid = $_POST['tid'];
+    $sql = "update booklog set return_date = now() where tid = $tid";
+    $conn->query($sql);
+}
+$conn->close();
+?>
        
     </main>
 </body>
