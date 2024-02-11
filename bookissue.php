@@ -6,6 +6,7 @@
     <title>Book Issue</title>
     <link rel="stylesheet" href="styles/tables.css">
     <link rel="stylesheet" href="styles/search.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script src = "js/search.js"></script>
 </head>
 <body>
@@ -30,6 +31,7 @@
                     <th>Author</th>
                     <th>category</th>
 		            <th>Price</th>
+                    <th>Issue</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,7 +49,7 @@
                                 $bauthor=$row['bauthor'];
                                 $bprice=$row['bprice'];
                                 $bcategory=$row['bcategory'];
-                                echo "<tr><td>$bid</td><td>$bname</td><td>$bauthor</td><td>$bcategory</td><td>$bprice</td></tr>";
+                                echo "<tr><td>$bid</td><td>$bname</td><td>$bauthor</td><td>$bcategory</td><td>$bprice</td><td><form action='issuemembers.php' method='POST'><input type='hidden' name ='bid' value ='$bid'><button class = 'mbuttons' name = 'issue' ><i class='bi bi-cart-fill'></i></button></form></td></tr>";
                             }
                         }
                         $conn->close();
