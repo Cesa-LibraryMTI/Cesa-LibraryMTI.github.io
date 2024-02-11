@@ -74,6 +74,7 @@
     }else{
       echo "<div class = 'failed'><p>Insert failed</p></div>";
     }
+    $conn->close();
   }
 ?>
     </form>

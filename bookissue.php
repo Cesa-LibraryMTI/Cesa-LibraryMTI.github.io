@@ -50,8 +50,7 @@
                                 echo "<tr><td>$bid</td><td>$bname</td><td>$bauthor</td><td>$bcategory</td><td>$bprice</td></tr>";
                             }
                         }
-                        
-
+                        $conn->close();
                     ?>
 
                     

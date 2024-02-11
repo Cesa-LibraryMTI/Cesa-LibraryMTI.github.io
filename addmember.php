@@ -48,6 +48,7 @@
       }
     }
   }
+  $conn->close();
 ?>
     </form>
     </div>

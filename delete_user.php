@@ -6,3 +6,4 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $conn->query($sql);
 }
 header("Location: members.php");
+$conn->close();
