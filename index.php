@@ -212,7 +212,7 @@
     </div>
 
     <div class="container mx-auto text-center p-6">
-        <h2 class="text-2xl font-bold mb-4">blah blah!!</h2>
+        <h2 class="text-2xl font-bold mb-4">Quick add</h2>
         <div class="grid grid-cols-3 gap-4"> <!-- Update here -->
             <!-- Business Analysis -->
             <a href="addmember.php">
@@ -249,13 +249,13 @@
     
 
     <div class="container mx-auto text-center p-6">
-        <h2 class="text-2xl font-bold mb-4">Reports</h2>
+        <h2 class="text-2xl font-bold mb-4">MANAGEMENT</h2>
         <div class="grid grid-cols-3 gap-4"> <!-- Update here -->
             <!-- Business Analysis -->
             <a href="">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
                 <i class="fas fa-chart-line icon mb-2 text-blue-500"></i>
-                <h3 class="font-semibold">Daily</h3>
+                <h3 class="font-semibold">Report</h3>
                 
             </div>
             </a>
@@ -263,17 +263,17 @@
             <!-- Computer Science -->
             <a href="">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
-                <i class="fas fa-chart-line icon mb-2 text-blue-500"></i>
-                <h3 class="font-semibold">Weekly</h3>
+                <i class="bi bi-database icon mb-2 text-blue-500"></i>
+                <h3 class="font-semibold">Database</h3>
                 
             </div>
             </a>
 
             <!-- Data Science & Analytics -->
-            <a href="">
+            <a href="log.php">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
-                <i class="fas fa-chart-line icon mb-2 text-blue-500"></i>
-                <h3 class="font-semibold">Monthly</h3>
+                <i class="bi bi-stack icon mb-2 text-blue-500"></i>
+                <h3 class="font-semibold">Logs</h3>
                 
             </div>
             </a>
