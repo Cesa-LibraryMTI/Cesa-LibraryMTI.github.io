@@ -67,11 +67,13 @@
       $category=$_POST['new_category'];
     $sql = "insert into books (bname,bauthor,bprice,bcategory) values('$bname','$bauthor','$bprice','$category')";
     $insresult = $conn->query($sql);
+    echo "<div class = 'successfull'></div>";
     if($insresult){
       echo "<div class = 'successfull'><p>Inserted successfully</p></div>";
     }else{
       echo "<div class = 'failed'><p>Insert failed</p></div>";
     }
+    $conn->close();
   }
 ?>
     </form>

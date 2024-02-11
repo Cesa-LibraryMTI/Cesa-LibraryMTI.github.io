@@ -47,8 +47,8 @@
         echo "<div class='successfull'><p>Created user</p></div>";
       }
     }
+    $conn->close();
   }
-  $conn->close();
 ?>
     </form>
     </div>

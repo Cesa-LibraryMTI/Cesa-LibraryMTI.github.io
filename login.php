@@ -66,6 +66,7 @@
       }else echo "<div class = 'failed'><p>wrong credentials</p></div>";
   }
   }
+  $conn->close();
 ?>
       </form>
     </div>

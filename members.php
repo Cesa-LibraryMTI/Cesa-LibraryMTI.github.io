@@ -70,7 +70,8 @@
                         echo "<tr><td>$uid</td><td>$name</td><td>";
                         echo "<form method='post' action = 'delete_user.php'><input type = 'hidden' name = 'user' value = $uid><button class = 'mbuttons' name = 'delete' onclick = 'return valid()'><i class='bi bi-trash3-fill icon mb-2'></i></button></form></td></tr>";
                     }
-                }            
+                }
+                $conn->close();
             ?>
             </tbody>
         </table>
