@@ -104,13 +104,6 @@
             animation: glow 1s ease-in-out infinite alternate;
             font-family: 'Arial', sans-serif;
         }
-
-.content {
-    /* Style your website content here */
-    
-}
-
-
         
     </style>
 </head>
