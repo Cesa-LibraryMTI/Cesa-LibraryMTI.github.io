@@ -30,7 +30,7 @@
             <option value = '' disabled>select a category</option>
 
             <?php
-              include 'dbconnect.php'; // Corrected the file name
+              include 'dbconnect.php';
               echo "<option value='other'>new category</option>";
               $sql = "SELECT DISTINCT bcategory FROM books";
               $result = $conn->query($sql);
@@ -43,9 +43,7 @@
               } else {
               echo "<h1>wrong credentials</h1>";
               }
-              
               echo "</select></td></tr>";
-        $conn->close();
         ?>
         
         <tr id="inputBoxContainer">
@@ -74,7 +72,6 @@
     }else{
       echo "<div class = 'failed'><p>Insert failed</p></div>";
     }
-    $conn->close();
   }
 ?>
     </form>
