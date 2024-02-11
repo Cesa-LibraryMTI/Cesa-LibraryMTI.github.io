@@ -89,20 +89,7 @@
 }
 
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
 
-
-body {
-            display: flex;
-            height: 100vh;
-            justify-content: center;
-            align-items: center;
-            background-color: #ffffff;
-            margin: 0;
-        }
         @keyframes glow {
             0% {
                 text-shadow: 0 0 10px #ffa502, 0 0 20px #ffa502, 0 0 30px #ffa502, 0 0 40px #ffa502, 0 0 50px #ffa502, 0 0 60px #ffa502, 0 0 70px #ffa502;
