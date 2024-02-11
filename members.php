@@ -78,6 +78,7 @@
                     $userid = $_POST['user'];
                     $sql = "delete from members where uid = $userid";
                     $conn->query($sql);
+                    header("Refresh:0");
                 }
                 $conn->close();
             ?>

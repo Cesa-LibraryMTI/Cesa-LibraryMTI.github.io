@@ -60,6 +60,7 @@
                 include 'dbconnect.php';
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $bid = $_POST['bid'];
+                    $bname = $_POST['bname'];
                 }
                 $sql = "SELECT uid,username FROM members WHERE uid NOT IN (SELECT uid from booklog WHERE return_date is NULL)";
                 $result = $conn->query($sql);
@@ -69,7 +70,7 @@
                         $uid = $row['uid'];
                         $name = $row['username'];
                         echo "<tr><td>$uid</td><td>$name</td><td>";
-                        echo "<form method='post'><input type = 'hidden' name = 'user' value =$uid><input type = 'hidden' name = 'book' value =$bid><button class = 'mbuttons' name = 'issue' onclick = 'return valid($bid,$uid)'><i class='bi bi-cart-fill'></i></button></form></td></tr>";
+                        echo "<form method='post'><input type = 'hidden' name = 'user' value =$uid><input type = 'hidden' name = 'book' value =$bid><button class = 'mbuttons' name = 'issue' onclick = 'return valid(`$bname`,`$name`)'><i class='bi bi-cart-fill'></i></button></form></td></tr>";
                     }
                 }
                 $conn->close();

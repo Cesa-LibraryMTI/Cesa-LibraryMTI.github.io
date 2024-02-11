@@ -15,7 +15,7 @@
             border-radius: 30px;
         }
         .mbuttons:hover{
-            border: 2px solid red;
+            border: 2px solid green;
         }
     </style>
      <script>
@@ -95,7 +95,7 @@ if ($result !== false && $result->num_rows > 0) {
             $fine = ($days > 15) ? (($days > 30) ?15*10+($days-30)*20:($days-15)*10) : 0;
 
             // Perform actions with the data (e.g., display or process)
-            echo "<tr><td>$tid</td><td>$uid</td><td>$name</td><td>$bname</td><td>$issue_date</td><td>$days</td><td>$fine</td><td>";
+            echo "<tr><td>$tid</td><td>$name</td><td>$uid</td><td>$bname</td><td>$issue_date</td><td>$days</td><td>$fine</td><td>";
             echo "<form method='post'><input type = 'hidden' name = 'tid' value = $tid><button class = 'mbuttons' name = 'returned' onclick = 'return valid(`$name`,`$bname`)'><i class='bi bi-arrow-return-left icon mb-2'></i></button></form></td></tr>";
         }
     }
@@ -115,6 +115,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $tid = $_POST['tid'];
     $sql = "update booklog set return_date = now() where tid = $tid";
     $conn->query($sql);
+    header("Refresh:0");
 }
 $conn->close();
 ?>
