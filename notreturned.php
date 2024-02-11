@@ -9,6 +9,27 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="styles/search.css">
     <script src="js/search.js"></script>
+    <style>
+        .mbuttons{
+            border: 2px solid white;
+            border-radius: 30px;
+        }
+        .mbuttons:hover{
+            border: 2px solid red;
+        }
+    </style>
+     <script>
+        function valid(){
+            var result = confirm("Are you sure you want to proceed?");
+            if (result) {
+                alert("User deleted");
+                return true;
+            } else {
+                alert("User not deleted");
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -32,7 +53,8 @@
                 <th>name:</th>
                 <th>ISSUE DATE:</th>
                 <th>DAYS:</th>
-                <th>FINE:</th>                    
+                <th>FINE:</th>
+                <th>RETURN</th>                    
                 </tr>
             </thead>
             <tbody>
@@ -51,16 +73,16 @@ $result = $conn->query($sql);
 
 if ($result !== false && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        // Access individual columns using the column name
         $uid = $row['uid'];
         $name = $row['username'];
 
         // Fetch the issue_date from the booklog table
-        $sql = "SELECT issue_date FROM booklog WHERE uid=$uid AND return_date is NULL";
+        $sql = "SELECT tid,issue_date FROM booklog WHERE uid=$uid AND return_date is NULL";
         $res = $conn->query($sql);
         
         if ($res !== false && $res->num_rows > 0) {
             $rows = $res->fetch_assoc();
+            $tid = $rows['tid'];
             $issue_date = $rows['issue_date'];
 
             // Calculate the difference in days between the current date and issue_date
@@ -72,7 +94,8 @@ if ($result !== false && $result->num_rows > 0) {
             $fine = ($days > 15) ? (($days > 30) ?15*10+($days-30)*20:($days-15)*10) : 0;
 
             // Perform actions with the data (e.g., display or process)
-            echo "<tr><td>$uid</td><td>$name</td><td>$issue_date</td><td>$days</td><td>$fine</td></tr>";
+            echo "<tr><td>$uid</td><td>$name</td><td>$issue_date</td><td>$days</td><td>$fine</td><td>";
+            echo "<form method='post' action = 'return_book.php'><input type = 'hidden' name = 'tid' value = $tid><button class = 'mbuttons' name = 'returned' onclick = 'return valid()'><i class='bi bi-arrow-return-left icon mb-2'></i></button></form></td></tr>";
         }
     }
 } else {
