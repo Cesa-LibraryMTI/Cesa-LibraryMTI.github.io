@@ -14,11 +14,16 @@
         exit();
     }
 ?>
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Popular Topics to Learn</title>
+    <title>Loading Screen</title>
+    
+
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
@@ -48,11 +53,91 @@
 
 
 
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Simulate content loading (you can replace this with your actual content loading logic)
+        setTimeout(function() {
+            hideLoadingScreen();
+        }, 2000); // Replace 2000 milliseconds with the actual time it takes to load your content
     
+        function hideLoadingScreen() {
+            document.querySelector('.loading-screen').style.display = 'none';
+            document.body.style.overflow = 'visible'; // Restore scrolling
+        }
+        
+    });
+    </script>
+    <style>
+        body {
+    margin: 0;
+    overflow: hidden; /* Prevent scrolling while loading */
+}
+
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Ensure it's on top of other elements */
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            margin: 0;
+        }
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px #ffa502, 0 0 20px #ffa502, 0 0 30px #ffa502, 0 0 40px #ffa502, 0 0 50px #ffa502, 0 0 60px #ffa502, 0 0 70px #ffa502;
+            }
+            100% {
+                text-shadow: 0 0 20px #ffd702, 0 0 30px #ffbb02, 0 0 40px #ffbb02, 0 0 50px #ffbb02, 0 0 60px #ffbb02, 0 0 70px #ffbb02, 0 0 80px #ffbb02;
+            }
+        }
+        .glowing-text {
+            font-size: 10rem;
+            color: #ffffff;
+            animation: glow 1s ease-in-out infinite alternate;
+            font-family: 'Arial', sans-serif;
+        }
+
+.content {
+    /* Style your website content here */
+    
+}
+
+
+        
+    </style>
 </head>
 
 <body>
-    <header>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="glowing-text">CESA</div>
+    </div>
+
+    <!-- Your Website Content -->
+    <div class="content">
+        <!-- Your content goes here -->
+        <header>
         <nav>
             <div class="logo">
                 <a href="#"> CESA </a>
@@ -219,5 +304,23 @@
     
 
     <script src="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet"></script>
+
+
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
