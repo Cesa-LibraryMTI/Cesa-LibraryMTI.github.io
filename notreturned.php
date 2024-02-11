@@ -22,10 +22,8 @@
         function valid(){
             var result = confirm("Are you sure you want to proceed?");
             if (result) {
-                alert("User deleted");
                 return true;
             } else {
-                alert("User not deleted");
                 return false;
             }
         }

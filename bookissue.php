@@ -39,7 +39,7 @@
                     <?php
                         include 'dbconnect.php';
 
-                        $sql="SELECT * FROM books WHERE bid NOT IN (SELECT bid FROM booklog WHERE return_date is NULL)";
+                        $sql="SELECT * FROM books WHERE bid NOT IN (SELECT bid FROM copies WHERE available = 0)";
                         $result=$conn->query($sql);
                         if(($result != false)&&($result->num_rows > 0))
                         {

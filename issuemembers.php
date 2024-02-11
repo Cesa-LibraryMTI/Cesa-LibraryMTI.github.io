@@ -69,7 +69,7 @@
                         $uid = $row['uid'];
                         $name = $row['username'];
                         echo "<tr><td>$uid</td><td>$name</td><td>";
-                        echo "<form method='post' action = 'delete_user.php'><input type = 'hidden' name = 'user' value =$bid><button class = 'mbuttons' name = 'issue' onclick = 'return valid($bid,$uid)'><i class='bi bi-cart-fill'></i></button></form></td></tr>";
+                        echo "<form method='post' action = 'issue_user.php'><input type = 'hidden' name = 'user' value =$uid><input type = 'hidden' name = 'book' value =$bid><button class = 'mbuttons' name = 'issue' onclick = 'return valid($bid,$uid)'><i class='bi bi-cart-fill'></i></button></form></td></tr>";
                     }
                 }
                 $conn->close();
