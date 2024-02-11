@@ -58,8 +58,6 @@
                 <!-- Add more rows as needed -->
             </tbody>
         </table>
-
-       
     </main>
 
    
