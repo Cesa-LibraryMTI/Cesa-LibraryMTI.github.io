@@ -72,7 +72,7 @@
     <style>
 body {
     margin: 0;
-    overflow: auto; /* Prevent scrolling while loading */
+    overflow: auto;
 }
 body::-webkit-scrollbar {
     display: none;
