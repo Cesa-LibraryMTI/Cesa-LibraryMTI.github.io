@@ -74,7 +74,9 @@ body {
     margin: 0;
     overflow: auto; /* Prevent scrolling while loading */
 }
-
+body::-webkit-scrollbar {
+    display: none;
+}
 .loading-screen {
     position: fixed;
     top: 0;
