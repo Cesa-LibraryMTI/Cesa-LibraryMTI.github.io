@@ -73,7 +73,23 @@
         </div>
        
     </div>
-    <
+    <script>
+            function refreshContent() {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        document.getElementById("refreshedContent").innerHTML = xhr.responseText;
+                        var div =document.getElementById("refreshedContent");
+                        div.scrollTop = div.scrollHeight;
+                    }
+                };
+                xhr.open("POST", "listmessage.php", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send();
+            }
+            refreshContent();
+            </script>
+
     <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $message = $_POST['msg'];
@@ -81,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     date_default_timezone_set("Asia/Kolkata");
     session_start();
     $name=$_SESSION['name'];
-    $sql = "INSERT INTO announce VALUES ('$name','$message', '" . date('Y-m-d') . "')";
+    $sql = "INSERT INTO announce VALUES ('$name','$message',now())";
     $result = $conn->query($sql);
 
     if ($result) {
@@ -93,22 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn->close();
 }
 ?>
-            <script>
-            function refreshContent() {
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
-                        document.getElementById("refreshedContent").innerHTML = xhr.responseText;
-                        var div =document.getElementById("refreshedContent");
-                        div.scrollTop = div.scrollHeight;
-                    }
-                };
-                xhr.open("GET", "listmessage.php", true);
-                xhr.send();
-            }
-            setTimeout(refreshContent, 1000);
             
-            </script>
-
 </body>
 </html>
