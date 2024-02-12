@@ -119,8 +119,6 @@ body {
         echo "<script> document.body.style.overflow = 'hidden';</script>";
         echo "<div class='loading-screen'><div class='glowing-text'>CESA</div></div>";
         echo "<script> setTimeout(function() {document.body.style.overflow = 'auto';}, 2000);</script>";
-    }else{
-
     }
     setcookie('count',$totalcount);
     ?>
