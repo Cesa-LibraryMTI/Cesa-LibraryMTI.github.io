@@ -93,7 +93,7 @@
                         echo "<tr><td>$bid</td><td>$bname</td><td>$bauthor</td><td>$bprice</td><td>$bcategory</td><td>$bcopy</td><td>$bavailable</td>";
                         echo "<td class = 'modbuttons'>";
                         echo "<form method='POST' action = 'editbook.php'><input type = 'hidden' name = 'sent' value = '1'><input type = 'hidden' name = 'book' value = $bid><input type = 'hidden' name = 'bookname' value = $bname><input type = 'hidden' name = 'bauthor' value = '$bauthor'><input type = 'hidden' name = 'bprice' value = '$bprice'><input type = 'hidden' name = 'bcategory' value = '$bcategory'><input type = 'hidden' name = 'bcopy' value = '$bcopy'><input type = 'hidden' name = 'bavailable' value = '$bavailable'><button type = 'submit' class = 'ebuttons' name = 'edit'><i class='bi bi-pencil-square icon mb-2'></i></button></form>";
-                        echo "<form method='post'><input type = 'hidden' name = 'book' value = $bid><button class = 'dbuttons' name = 'delete' onclick = 'return valid(`$bname`,$bcopy,$bavailable)'><i class='bi bi-trash3-fill icon mb-2'></i></button></form>";
+                        echo "<form method='post'><input type = 'hidden' name = 'book' value = $bid><input type = 'hidden' name = 'bookname' value = $bname><button class = 'dbuttons' name = 'delete' onclick = 'return valid(`$bname`,$bcopy,$bavailable)'><i class='bi bi-trash3-fill icon mb-2'></i></button></form>";
                         echo "</td>";
                         echo "</tr>";
                     }
@@ -117,9 +117,7 @@
             $result1 = $conn->query($sql1);
             $sql2 = "delete from books where bid = $bid";
             $result2 = $conn->query($sql2);
-            if($result1 && $result2)echo "<script>alert('Book $bname deleted');</script>";
-            else "<script>alert('Failed to delete book $bname');</script>";
-            header("Refresh:0");
+            echo "<script>location.replace(location.href);</script>";
         }
         $conn->close();
     }

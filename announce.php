@@ -12,7 +12,11 @@
     <style>
         body {
           font-family: 'Lato', sans-serif;
+          overflow: hidden;
         }
+        body::-webkit-scrollbar {
+    display: none;
+}
         .msg {
           max-width: 75%;
           margin-bottom: 0.75rem;
@@ -39,43 +43,37 @@
 
         .admin{
           border-radius: 20px;
-          background-color: grey;
+          background-color: aliceblue;
+        }
+        .admin p{
+          margin-left: 2px;
+        }
+        #refreshedContent{
+          width: 100%; /* Set the width */
+        height: 80%; /* Set the height */
+        border: 1px solid #ccc; /* Optional: Add a border for visibility */
+        overflow: auto;
+        }
+        #refreshedContent::-webkit-scrollbar {
+          display: none;
         }
     </style>
 </head>
 <body class="bg-gray-200 p-10">
     <div class="max-w-md mx-auto bg-white rounded-md shadow overflow-hidden">
-        <div class="p-4 space-y-2">
-          
-            <div class="msg incoming">
-              <div>Admin Name</div>
-                Hi Laura, is your charming boat available for this weekend to enjoy the beautiful ocean?
-                <div class="msg-time">10:11 AM</div>
-            </div>
-            
-            
-            <?php
-              include 'dbconnect.php';
-              $sql="SELECT * FROM announce";
-              $result = $conn->query($sql);
-
-                if (($result !== false)&&($result->num_rows > 0)) {
-                    while ($row = $result->fetch_assoc()) {
-                        $name = $row['name'];
-                        $message = $row['message'];
-                        $date = $row['date'];
-                        
-                        echo "<div class='msg outgoing'><div class='admin'>$name</div>$message<div class='msg-time'>$date</div></div>";
-                    }
-                }
-            ?>
-        <div class="p-4 bg-gray-100 flex items-center">
-          <form method='POST'>
+        <div class="p-4 space-y-2" id = 'refreshedContent'>
+       
+    </div>
+    <div class="max-w-md mx-auto bg-white rounded-md shadow overflow-hidden">
+    <div >
+          <form method='POST' class="p-4 bg-gray-100 flex items-center">
             <input type="text" name="msg" placeholder="Type a message here..." class="w-full p-3 rounded-full focus:outline-none focus:ring" required>
             <input type='submit' value='Send' class="mr-2 text-blue-500">
           </form>
         </div>
+       
     </div>
+    <
     <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $message = $_POST['msg'];
@@ -95,6 +93,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn->close();
 }
 ?>
+            <script>
+            function refreshContent() {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        document.getElementById("refreshedContent").innerHTML = xhr.responseText;
+                        var div =document.getElementById("refreshedContent");
+                        div.scrollTop = div.scrollHeight;
+                    }
+                };
+                xhr.open("GET", "listmessage.php", true);
+                xhr.send();
+            }
+            setTimeout(refreshContent, 1000);
+            
+            </script>
 
 </body>
 </html>
