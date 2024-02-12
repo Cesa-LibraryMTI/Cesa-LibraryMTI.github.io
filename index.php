@@ -109,11 +109,18 @@
 </head>
 
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen">
-        <div class="glowing-text">CESA</div>
-    </div>
-
+    <?php
+    $totalcount = 1;
+    if(isset($_COOKIE['count'])){
+        $totalcount = $_COOKIE['count'];
+        $totalcount++;
+    }
+    if($totalcount == 1){
+        echo "<div class='loading-screen'><div class='glowing-text'>CESA</div></div>";
+    }
+    setcookie('count',$totalcount);
+    ?>
+    
     <!-- Your Website Content -->
     <div class="content">
         <!-- Your content goes here -->
