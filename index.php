@@ -70,7 +70,7 @@
     });
     </script>
     <style>
-        body {
+body {
     margin: 0;
     overflow: hidden; /* Prevent scrolling while loading */
 }
@@ -117,6 +117,7 @@
     }
     if($totalcount == 1){
         echo "<div class='loading-screen'><div class='glowing-text'>CESA</div></div>";
+        echo "<script> setTimeout(function() {document.body.style.overflow = 'auto';}, 2000);</script>";
     }
     setcookie('count',$totalcount);
     ?>
