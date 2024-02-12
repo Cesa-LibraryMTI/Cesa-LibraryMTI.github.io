@@ -70,11 +70,13 @@
     });
     </script>
     <style>
-        body {
+body {
     margin: 0;
-    overflow: hidden; /* Prevent scrolling while loading */
+    overflow: auto;
 }
-
+body::-webkit-scrollbar {
+    display: none;
+}
 .loading-screen {
     position: fixed;
     top: 0;
@@ -109,11 +111,20 @@
 </head>
 
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen">
-        <div class="glowing-text">CESA</div>
-    </div>
-
+    <?php
+    $totalcount = 1;
+    if(isset($_COOKIE['count'])){
+        $totalcount = $_COOKIE['count'];
+        $totalcount++;
+    }
+    if($totalcount == 1){
+        echo "<script> document.body.style.overflow = 'hidden';</script>";
+        echo "<div class='loading-screen'><div class='glowing-text'>CESA</div></div>";
+        echo "<script> setTimeout(function() {document.body.style.overflow = 'auto';}, 2000);</script>";
+    }
+    setcookie('count',$totalcount);
+    ?>
+    
     <!-- Your Website Content -->
     <div class="content">
         <!-- Your content goes here -->

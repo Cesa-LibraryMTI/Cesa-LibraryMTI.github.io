@@ -63,12 +63,21 @@
     $bauthor=$_POST['bauthor'];
     $bprice=$_POST['bprice'];
     $category=$_POST['bcategory'];
+    $copy = $_POST['copy'];
     if($category==='other')
       $category=$_POST['new_category'];
-    $sql = "insert into books (bname,bauthor,bprice,bcategory) values('$bname','$bauthor','$bprice','$category')";
-    $insresult = $conn->query($sql);
+    do{
+      $bid = rand(1,100000000);
+      $sq1 = "select count(bid) as cn from books where bid = $bid";
+      $rt1 = $conn->query($sq1);
+      $c = $rt1->fetch_assoc()['cn'];
+    }while($c != 0);
+    $sql = "insert into books values($bid,'$bname','$bauthor','$bprice','$category')";
+    $sql2 = "insert into copies values($bid,$copy,$copy)";
+    $r1 = $conn->query($sql);
+    $r2 = $conn->query($sql2);
     echo "<div class = 'successfull'></div>";
-    if($insresult){
+    if($r1 && $r2){
       echo "<div class = 'successfull'><p>Inserted successfully</p></div>";
     }else{
       echo "<div class = 'failed'><p>Insert failed</p></div>";

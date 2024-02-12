@@ -37,9 +37,10 @@
             <tbody>
                 
                     <?php
+                        header("Refresh:15");
                         include 'dbconnect.php';
 
-                        $sql="SELECT * FROM books WHERE bid NOT IN (SELECT bid FROM booklog WHERE return_date is NULL)";
+                        $sql="SELECT * FROM books WHERE bid NOT IN (SELECT bid FROM copies WHERE available = 0)";
                         $result=$conn->query($sql);
                         if(($result != false)&&($result->num_rows > 0))
                         {
@@ -49,7 +50,7 @@
                                 $bauthor=$row['bauthor'];
                                 $bprice=$row['bprice'];
                                 $bcategory=$row['bcategory'];
-                                echo "<tr><td>$bid</td><td>$bname</td><td>$bauthor</td><td>$bcategory</td><td>$bprice</td><td><form action='issuemembers.php' method='POST'><input type='hidden' name ='bid' value ='$bid'><button class = 'mbuttons' name = 'issue' ><i class='bi bi-cart-fill'></i></button></form></td></tr>";
+                                echo "<tr><td>$bid</td><td>$bname</td><td>$bauthor</td><td>$bcategory</td><td>$bprice</td><td><form action='issuemembers.php' method='POST'><input type='hidden' name ='bid' value ='$bid'><input type='hidden' name ='bname' value ='$bname'><button class = 'mbuttons' name = 'issue' ><i class='bi bi-cart-fill'></i></button></form></td></tr>";
                             }
                         }
                         $conn->close();
