@@ -1,40 +1,18 @@
 <html>
 <head>
-
   <script src = 'js/category.js'></script>
   <link rel="stylesheet" href="styles/pages.css">
-    <?php
-        $bid = $_POST['book'];
-        $edit = $_POST['editable'];
-        $bname = $_POST['bookname'];
-        $bauth = $_POST['bauthor'];
-        $bcat = $_POST['bcategory'];
-        $bcp = $_POST['bcopy'];
-        $bav = $_POST['bavailable'];
-        $bp = $_POST['bprice'];
-        echo "<script>";
-        echo "document.getElementByID('bname').placeholder = $bname;";
-        echo "document.getElementByID('bname').value = $bname;";
-        echo "document.getElementByID('bauthor').placeholder = $bauth;";
-        echo "document.getElementByID('bauthor').value = $bauth;";
-        echo "document.getElementByID('inputBox').placeholder = $bcat;";
-        echo "document.getElementByID('inputBox').value = $bcat;";
-        echo "document.getElementByID('copy').placeholder = $bcp;";
-        echo "document.getElementByID('copy').value = $bcp;";
-        echo "document.getElementByID('bprice').placeholder = $bp;";
-        echo "document.getElementByID('bprice').value = $bp;";
-        if($bcp != $bav){
-            echo "document.getElementByID('copy').min = $bcp";
-        }
-        echo "</script>";
-    ?>
+   
 </head>
 <body>
 <div  class = 'container'>
     
     <form method='POST'>
+        <input type="hidden" name = 'chupdate' value = 'update'>
+        <input type="hidden" name = 'bookid' id = 'bookid'>
+        <input type="hidden" name = 'oldcopies' id = 'oldcopies'>
     <div class="formhead">
-      <h3>ADD BOOK</h3>
+      <h3>EDIT BOOK</h3>
     </div>
     <table>
         <tr>
@@ -81,8 +59,60 @@
         </tr>
     </table>
       <button type="submit" id = "submitbutton">confirm</button>
-      
+      <?php
+        if(isset($_POST['sent'])){
+            $bid = $_POST['book'];
+            $bname = $_POST['bookname'];
+            $bauth = $_POST['bauthor'];
+            $bcat = $_POST['bcategory'];
+            $bcp = $_POST['bcopy'];
+            $bav = $_POST['bavailable'];
+            $bp = $_POST['bprice'];
+            echo "<script>";
+            echo "document.getElementById('bookid').value = $bid;";
+            echo "document.getElementById('oldcopies').value = $bcp;";
+            echo "document.getElementById('bname').placeholder = '$bname';";
+            echo "document.getElementById('bname').value = '$bname';";
+            echo "document.getElementById('bauthor').placeholder = '$bauth';";
+            echo "document.getElementById('bauthor').value = '$bauth';";
+            echo "document.getElementById('inputBox').placeholder = '$bcat';";
+            echo "document.getElementById('inputBox').value = '$bcat';";
+            echo "document.getElementById('copy').placeholder = '$bcp';";
+            echo "document.getElementById('copy').value = '$bcp';";
+            echo "document.getElementById('bprice').placeholder = $bp;";
+            echo "document.getElementById('bprice').value = $bp;";
+            if($bcp != $bav){
+            echo "document.getElementById('copy').min = $bcp";
+            }
+            echo "</script>";
+        }
+        if(isset($_POST['chupdate'])){
+            include 'dbconnect.php';
+            $bookid=$_POST['bookid'];
+            $bname=$_POST['bname'];
+            $bauthor=$_POST['bauthor'];
+            $bprice=$_POST['bprice'];
+            $category=$_POST['bcategory'];
+            $copy = $_POST['copy'];
+            $ocopy = $_POST['oldcopies'];
+            if($category==='other') $category=$_POST['new_category'];
+            echo "update books set bname = '$bname',bauthor = '$bauthor',bprice = $bprice,bcategory = '$category' where bid = $bookid";
+            $sql = "update books set bname = '$bname',bauthor = '$bauthor',bprice = $bprice,bcategory = '$category' where bid = $bookid";
+            $sql2 = "update copies set copies = $copy,available = available+($copy-$ocopy) where bid = $bookid";
+            $r1 = $conn->query($sql);
+            $r2 = $conn->query($sql2);
+            echo "<div class = 'successfull'></div>";
+            if($r1 && $r2){
+              echo "<div class = 'successfull'><p>Updated successfully</p></div>";
+            }else{
+              echo "<div class = 'failed'><p>Update failed</p></div>";
+            }
+            $conn->close();
+            header("Location: totbooks.php");
+        }
+    ?>
     </form>
     </div>
+   
 </body>
 </html>
