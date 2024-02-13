@@ -78,10 +78,14 @@
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState == 4 && xhr.status == 200) {
-                        document.getElementById("refreshedContent").innerHTML = xhr.responseText;
-                        var div =document.getElementById("refreshedContent");
-                        refreshContent()
-                        div.scrollTop = div.scrollHeight;
+                        var div = document.getElementById('refreshedContent');
+                        var previousContent = div.innerHTML;
+                        div.innerHTML = xhr.responseText;
+                        if (div.innerHTML !== previousContent) {
+                          div.scrollTop = div.scrollHeight; 
+                        }
+                        refreshContent();
+
                     }
                 };
                 xhr.open("POST", "listmessage.php", true);
