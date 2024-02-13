@@ -81,7 +81,6 @@
                         document.getElementById("refreshedContent").innerHTML = xhr.responseText;
                         var div =document.getElementById("refreshedContent");
                         div.scrollTop = div.scrollHeight;
-                        refreshContent();
                     }
                 };
                 xhr.open("POST", "listmessage.php", true);
