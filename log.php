@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/members.css">
     <link rel="stylesheet" href="styles/search.css">
     <script src = "js/search.js"></script>
+    <link rel="stylesheet" href="styles/tables.css">
 </head>
 <body>
 
