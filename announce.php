@@ -80,6 +80,7 @@
                     if (xhr.readyState == 4 && xhr.status == 200) {
                         document.getElementById("refreshedContent").innerHTML = xhr.responseText;
                         var div =document.getElementById("refreshedContent");
+                        refreshContent()
                         div.scrollTop = div.scrollHeight;
                     }
                 };
