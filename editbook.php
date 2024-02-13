@@ -1,3 +1,19 @@
+<?php
+    session_start();
+    if(isset($_SESSION['logged'])){
+        if($_SESSION['logged'] == 0){
+            header("Location: about.html");
+            exit();
+        }
+        if($_SESSION['logged']==-1){
+            header("Location: login.php");
+            exit();
+        }
+    }else{
+        header("Location: login.php");
+        exit();
+    }
+?>
 <html>
 <head>
   <script src = 'js/category.js'></script>

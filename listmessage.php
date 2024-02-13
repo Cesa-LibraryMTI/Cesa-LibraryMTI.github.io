@@ -1,4 +1,18 @@
 <?php
+session_start();
+if(isset($_SESSION['logged'])){
+    if($_SESSION['logged'] == 0){
+        header("Location: about.html");
+        exit();
+    }
+    if($_SESSION['logged']==-1){
+        header("Location: login.php");
+        exit();
+    }
+}else{
+    header("Location: login.php");
+    exit();
+}
 include 'dbconnect.php';
 $sql="SELECT * FROM announce";
 $result = $conn->query($sql);
