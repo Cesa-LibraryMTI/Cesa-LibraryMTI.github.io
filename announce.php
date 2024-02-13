@@ -6,7 +6,8 @@
     <title>Messaging App</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 
 
     <style>
@@ -57,6 +58,13 @@
         #refreshedContent::-webkit-scrollbar {
           display: none;
         }
+        #console,#consolelog{
+          height: 5%;
+          overflow: scroll;
+        }
+        #consolelog::-webkit-scrollbar,#console::-webkit-scrollbar{
+          display: none;
+        }
     </style>
 </head>
 <body class="bg-gray-200 p-10">
@@ -104,13 +112,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name=$_SESSION['name'];
     $sql = "INSERT INTO announce VALUES ('$name','$message',now())";
     $result = $conn->query($sql);
-
     if ($result) {
-        echo "Message sent successfully!";
+        echo "Message sent successfully";
     } else {
-        echo "Error: " . $conn->error;
+        echo "<p style = 'width: 5%;overflow: scroll;'>Error:  $conn->error</p>";
     }
-
     $conn->close();
 }
 ?>
