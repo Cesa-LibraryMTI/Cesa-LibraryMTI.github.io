@@ -23,7 +23,6 @@
             </form></div>
         </div>
 
-        <table id="myTable">
             <thead>
             <tr>
                 <th>id</th>

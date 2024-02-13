@@ -1,4 +1,4 @@
-<?php
+213<?php
   session_start();
   if((isset($_SESSION['logged']))){
     if($_SESSION['logged'] == 1){
