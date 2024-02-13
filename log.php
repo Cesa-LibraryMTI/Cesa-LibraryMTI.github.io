@@ -23,7 +23,7 @@
             <input type="text" class="search__input" id = "myInput" placeholder="Type your text" onkeyup="searchTable()">
             </form></div>
         </div>
-
+        <table>
             <thead>
             <tr>
                 <th>id</th>
