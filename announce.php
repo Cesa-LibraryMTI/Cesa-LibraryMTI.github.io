@@ -84,7 +84,6 @@
                         if (div.innerHTML !== previousContent) {
                           div.scrollTop = div.scrollHeight; 
                         }
-                        refreshContent();
 
                     }
                 };
@@ -92,7 +91,8 @@
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhr.send();
             }
-            refreshContent();
+            setInterval(refreshContent,100);
+            
             </script>
 
     <?php
