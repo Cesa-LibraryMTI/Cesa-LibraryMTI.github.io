@@ -2,7 +2,7 @@
   session_start();
   if((isset($_SESSION['logged']))){
     if($_SESSION['logged'] == 1){
-      header('Location: ../index.php');
+      header('Location: ../');
       exit();
     }else if($_SESSION['logged'] == 0){
       header('Location: ../about.html');
@@ -57,12 +57,12 @@
         $_SESSION['name'] = $uname;
         $_SESSION['logged'] = 1;
 
-        header('Location: index.php');
+        header('Location: ../');
       }else if($row['exist'] == 0){
         session_start();
         $_SESSION['name'] = $uname;
         $_SESSION['logged'] = 0;
-        header('Location: about.html');
+        header('Location: ../about.html');
       }else echo "<div class = 'failed'><p>wrong credentials</p></div>";
   }
   }
