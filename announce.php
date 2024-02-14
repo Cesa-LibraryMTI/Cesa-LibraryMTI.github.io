@@ -28,7 +28,7 @@
     <style>
         body {
           font-family: 'Lato', sans-serif;
-          overflow: hidden;
+          overflow: auto;
         }
         body::-webkit-scrollbar {
     display: none;
@@ -123,7 +123,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $message = $_POST['msg'];
     include 'dbconnect.php';
     date_default_timezone_set("Asia/Kolkata");
-    session_start();
     $name=$_SESSION['name'];
     $sql = "INSERT INTO announce VALUES ('$name','$message',now())";
     $result = $conn->query($sql);

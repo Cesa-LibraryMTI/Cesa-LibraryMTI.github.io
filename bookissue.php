@@ -53,7 +53,6 @@
             <tbody>
                 
                     <?php
-                        header("Refresh:15");
                         include 'dbconnect.php';
 
                         $sql="SELECT * FROM books WHERE bid NOT IN (SELECT bid FROM copies WHERE available = 0)";
