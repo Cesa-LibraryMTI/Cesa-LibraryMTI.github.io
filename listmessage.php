@@ -14,6 +14,7 @@ if(isset($_SESSION['logged'])){
     exit();
 }
 include 'dbconnect.php';
+$uname= $_SESSION['name'];
 $sql="SELECT * FROM announce";
 $result = $conn->query($sql);
 
@@ -23,6 +24,11 @@ if (($result !== false)&&($result->num_rows > 0)) {
         $message = $row['message'];
         $date = $row['date'];
         
-        echo "<div class='msg outgoing'><div class='admin'><p>@$name</p></div><p>$message</p><div class='msg-time'>$date</div></div>";
+        if($uname != $name){
+            echo "<div class='msg incoming'><div class='username'><p>~$name</p></div><p>$message</p><div class='msg-time'>$date</div></div>";   
+        }
+        else{
+            echo "<div class='msg outgoing'><div class='username'><p>~$name</p></div><p>$message</p><div class='msg-time'>$date</div></div>";
+        }
     }
 }

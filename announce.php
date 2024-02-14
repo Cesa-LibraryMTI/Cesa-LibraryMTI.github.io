@@ -33,7 +33,24 @@
         body::-webkit-scrollbar {
     display: none;
 }
+        #refreshedContent{
+          width: 100%; /* Set the width */
+          height: 80%; /* Set the height */
+          border: 1px solid #ccc; /* Optional: Add a border for visibility */
+          overflow: auto;
+        }
+        #refreshedContent::-webkit-scrollbar {
+          display: none;
+        }
+        #console,#consolelog{
+          height: 5%;
+          overflow: scroll;
+        }
+        #consolelog::-webkit-scrollbar,#console::-webkit-scrollbar{
+          display: none;
+        }
         .msg {
+          min-width: 50%;
           max-width: 75%;
           margin-bottom: 0.75rem;
           padding: 0.5rem 1rem;
@@ -41,11 +58,10 @@
         }
         .incoming {
           background-color: #EBF4FF;
-          align-self: flex-start;
         }
         .outgoing {
+          margin-left: 30%;
           background-color: #DCF8C6;
-          align-self: flex-end;
         }
         .msg-time {
           color: #999;
@@ -64,22 +80,7 @@
         .admin p{
           margin-left: 2px;
         }
-        #refreshedContent{
-          width: 100%; /* Set the width */
-        height: 80%; /* Set the height */
-        border: 1px solid #ccc; /* Optional: Add a border for visibility */
-        overflow: auto;
-        }
-        #refreshedContent::-webkit-scrollbar {
-          display: none;
-        }
-        #console,#consolelog{
-          height: 5%;
-          overflow: scroll;
-        }
-        #consolelog::-webkit-scrollbar,#console::-webkit-scrollbar{
-          display: none;
-        }
+        
     </style>
 </head>
 <body class="bg-gray-200 p-10">
