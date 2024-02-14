@@ -23,6 +23,6 @@ if (($result !== false)&&($result->num_rows > 0)) {
         $message = $row['message'];
         $date = $row['date'];
         
-        echo "<div class='msg outgoing'><div class='admin'><p>@$name<p></div>$message<div class='msg-time'>$date</div></div>";
+        echo "<div class='msg outgoing'><div class='admin'><p>@$name</p></div><p>$message</p><div class='msg-time'>$date</div></div>";
     }
 }

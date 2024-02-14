@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result) {
         echo "Message sent successfully";
     } else {
-        echo "<p style = 'width: 5%;overflow: scroll;'>Error:  $conn->error</p>";
+        echo "<p>Error:  $conn->error</p>";
     }
     $conn->close();
 }
