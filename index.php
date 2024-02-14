@@ -6,11 +6,11 @@
             exit();
         }
         if($_SESSION['logged']==-1){
-            header("Location: login.php");
+            header("Location: login/");
             exit();
         }
     }else{
-        header("Location: login.php");
+        header("Location: login/");
         exit();
     }
 ?>
@@ -143,7 +143,7 @@ body::-webkit-scrollbar {
                 <li><a href="#" class="active">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">settings</a></li>
-                <li><a href="logout.php">LOG OUT</a></li>
+                <li><a href="logout/">LOG OUT</a></li>
             </ul>
         </nav>
     </header>
@@ -155,7 +155,7 @@ body::-webkit-scrollbar {
         <h2 class="text-2xl font-bold mb-4">General Information</h2>
             <div class="grid grid-cols-3 gap-4"><!-- Update here -->
                 <!-- Business Analysis -->
-            <a href="members.php">
+            <a href="members">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
                 <i class="bi bi-people-fill icon mb-2 text-blue-500"></i>
                 <h3 class="font-semibold">Total Members</h3>
@@ -163,7 +163,7 @@ body::-webkit-scrollbar {
                     
                     <?php
                         
-                        include 'dbconnect.php';
+                        include 'database/dbconnect.php';
                         $sql="SELECT COUNT(uid) as member_count FROM members";
                         $result=$conn->query($sql);
                         if($rows=$result->fetch_assoc());
@@ -175,13 +175,13 @@ body::-webkit-scrollbar {
             </a>
 
             <!-- Computer Science -->
-            <a href="notreturned.php">
+            <a href="notreturned">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
                 <i class="bi bi-people-fill icon mb-2 text-red-500"></i>
                 <h3 class="font-semibold">Not Returned</h3>
                 <p>
                 <?php
-                    include 'dbconnect.php';
+                    include 'database/dbconnect.php';
 
                     $sql = "SELECT COUNT(uid) as member_count FROM members WHERE uid IN (SELECT uid FROM booklog WHERE return_date is NULL)";
                     $result = $conn->query($sql);
@@ -200,14 +200,14 @@ body::-webkit-scrollbar {
             </a>
             
             <!-- Data Science & Analytics -->
-            <a href="totbooks.php">
+            <a href="books">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
                 <i class="bi bi-book icon mb-2 text-blue-500"></i>
                 <h3 class="font-semibold">Total Books</h3>
                 <p>
                     <?php
                         
-                        include 'dbconnect.php';
+                        include 'database/dbconnect.php';
                         $sql="SELECT COUNT(bid) as book_count FROM books";
                         $result=$conn->query($sql);
                         $rows=$result->fetch_assoc();
@@ -226,7 +226,7 @@ body::-webkit-scrollbar {
         <h2 class="text-2xl font-bold mb-4">Quick add</h2>
         <div class="grid grid-cols-3 gap-4"> <!-- Update here -->
             <!-- Business Analysis -->
-            <a href="addmember.php">
+            <a href="addmember">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
                 <i class="bi bi-person-plus-fill icon mb-2 text-blue-500"></i>
                 <h3 class="font-semibold">Add members</h3>
@@ -235,7 +235,7 @@ body::-webkit-scrollbar {
             </a>
 
             <!-- Computer Science -->
-            <a href="bookissue.php">
+            <a href="issuebook">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
                 <i class="bi bi-journal-bookmark icon mb-2 text-blue-500"></i>
                 <h3 class="font-semibold">Issue Book</h3>
@@ -244,7 +244,7 @@ body::-webkit-scrollbar {
             </a>
 
             <!-- Data Science & Analytics -->
-            <a href="addnewbook.php">
+            <a href="addbook">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
                 <i class="bi bi-database-fill-add icon mb-2 text-blue-500"></i>
                 <h3 class="font-semibold">Add new book</h3>
@@ -281,7 +281,7 @@ body::-webkit-scrollbar {
             </a>
 
             <!-- Data Science & Analytics -->
-            <a href="log.php">
+            <a href="logs">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
                 <i class="bi bi-stack icon mb-2 text-blue-500"></i>
                 <h3 class="font-semibold">Logs</h3>
