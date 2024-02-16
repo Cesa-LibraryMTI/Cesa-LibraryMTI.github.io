@@ -62,7 +62,7 @@
         session_start();
         $_SESSION['name'] = $uname;
         $_SESSION['logged'] = 0;
-        header('Location: ../about.html');
+        header('Location: ../users.php');
       }else echo "<div class = 'failed'><p>wrong credentials</p></div>";
   }
   }
