@@ -5,7 +5,7 @@
       header('Location: ../');
       exit();
     }else if($_SESSION['logged'] == 0){
-      header('Location: ../about.html');
+      header('Location: users/index.php');
       exit();
     }else if(($_SESSION['logged'] == -1)){  
       session_unset();
@@ -62,7 +62,7 @@
         session_start();
         $_SESSION['name'] = $uname;
         $_SESSION['logged'] = 0;
-        header('Location: ../users.php');
+        header('Location: ../users/index.php');
       }else echo "<div class = 'failed'><p>wrong credentials</p></div>";
   }
   }
