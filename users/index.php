@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-=======
 <?php
     session_start();
     if(isset($_SESSION['logged'])){
@@ -13,7 +10,6 @@
         exit();
     }
 ?>
->>>>>>> f12132c5217eb2357f7c595f5b56952255b6f71c
 
 
 <!DOCTYPE html>
@@ -31,7 +27,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <title>Nav</title>
     <link rel="stylesheet" href="index.css">
-    
+    <link rel='stylesheet' href='usernotification.css'>
     <style>
 
         
@@ -117,6 +113,11 @@ body::-webkit-scrollbar {
 
 <body>
     <?php
+        include 'usernotification.php';
+    ?>
+    <?php
+    
+    
     $totalcount = 1;
     if(isset($_COOKIE['count'])){
         $totalcount = $_COOKIE['count'];
