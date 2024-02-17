@@ -2,7 +2,7 @@
     session_start();
     if(isset($_SESSION['logged'])){
         if($_SESSION['logged'] == 0){
-            header("Location: ../about.html");
+            header("Location: ../users/");
             exit();
         }
         if($_SESSION['logged']==-1){

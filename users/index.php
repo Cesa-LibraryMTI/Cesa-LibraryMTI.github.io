@@ -1,4 +1,19 @@
+<<<<<<< HEAD
 
+=======
+<?php
+    session_start();
+    if(isset($_SESSION['logged'])){
+        if($_SESSION['logged']==-1){
+            header("Location: login/");
+            exit();
+        }
+    }else{
+        header("Location: login/");
+        exit();
+    }
+?>
+>>>>>>> f12132c5217eb2357f7c595f5b56952255b6f71c
 
 
 <!DOCTYPE html>
@@ -133,7 +148,7 @@ body::-webkit-scrollbar {
                 <li><a href="#" class="active">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">settings</a></li>
-                <li><a href="logout/">LOG OUT</a></li>
+                <li><a href="../logout/">LOG OUT</a></li>
             </ul>
         </nav>
     </header>
