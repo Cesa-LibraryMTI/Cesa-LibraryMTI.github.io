@@ -1,19 +1,4 @@
-<?php
-    session_start();
-    if(isset($_SESSION['logged'])){
-        if($_SESSION['logged'] == 1){
-            header("Location: ../");
-            exit();
-        }
-        if($_SESSION['logged']==-1){
-            header("Location: login/");
-            exit();
-        }
-    }else{
-        header("Location: login/");
-        exit();
-    }
-?>
+
 
 
 <!DOCTYPE html>
@@ -166,7 +151,7 @@ body::-webkit-scrollbar {
             <a href="availablebooks.php">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
                 <i class="bi bi-people-fill icon mb-2 text-blue-500"></i>
-                <h3 class="font-semibold">Available Books</h3>
+                <h3 class="font-semibold">bla</h3>
                 
             </div>
             </a>
