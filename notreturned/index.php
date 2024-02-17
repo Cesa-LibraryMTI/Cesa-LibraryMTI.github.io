@@ -76,6 +76,7 @@
                 
             <?php
 include '../database/dbconnect.php';
+include '../database/checker.php';
 
 // Get the current date
 $sql = "SELECT CURDATE() AS currentdate";

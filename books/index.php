@@ -90,6 +90,7 @@
                 
             <?php
                 include '../database/dbconnect.php';
+                include '../database/checker.php';
                 $sql = "SELECT * FROM viewbooks";
                 $result = $conn->query($sql);
 
@@ -124,6 +125,7 @@
        
     </main>
     <?php
+    include '../database/checker.php';
     if($_SERVER['REQUEST_METHOD']=='POST'){
         include '../database/dbconnect.php';
         if(isset($_POST['delete'])){

@@ -74,6 +74,7 @@
             
                 <?php
                 include '../database/dbconnect.php';
+                include '../database/checker.php';
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $bid = $_POST['bid'];
                     $bname = $_POST['bname'];
@@ -95,6 +96,7 @@
         </table>
         <?php
         include '../database/dbconnect.php';
+        include '../database/checker.php';
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
            if(isset($_POST['user'])){
             $uid = $_POST['user'];

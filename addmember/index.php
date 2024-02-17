@@ -50,6 +50,7 @@
       <?php
   if($_SERVER['REQUEST_METHOD']=='POST'){
     include '../database/dbconnect.php';
+    include '../database/checker.php';
     $name=$_POST['name'];
     $password=$_POST['password'];
     $membtype=$_POST['membtype'];
