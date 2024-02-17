@@ -123,6 +123,8 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $message = $_POST['msg'];
     include '../database/dbconnect.php';
+    include '../database/checker.php';
+
     date_default_timezone_set("Asia/Kolkata");
     $name=$_SESSION['name'];
     $sql = "INSERT INTO announce VALUES ('$name','$message',now())";

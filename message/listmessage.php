@@ -14,6 +14,8 @@
         exit();
     }
 include '../database/dbconnect.php';
+include '../database/checker.php';
+
 $uname= $_SESSION['name'];
 $sql="SELECT * FROM announce";
 $result = $conn->query($sql);

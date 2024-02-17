@@ -47,6 +47,7 @@
 
             <?php
               include '../database/dbconnect.php';
+              include '../database/checker.php';
               echo "<option value='other'>new category</option>";
               $sql = "SELECT DISTINCT bcategory FROM books";
               $result = $conn->query($sql);

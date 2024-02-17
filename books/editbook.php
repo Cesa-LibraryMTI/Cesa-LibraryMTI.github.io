@@ -50,6 +50,7 @@
 
             <?php
               include '../database/dbconnect.php';
+              include '../database/checker.php';
               echo "<option value='other'>new category</option>";
               $sql = "SELECT DISTINCT bcategory FROM books";
               $result = $conn->query($sql);
@@ -76,6 +77,7 @@
     </table>
       <button type="submit" id = "submitbutton">confirm</button>
       <?php
+        include '../database/checker.php';
         if(isset($_POST['sent'])){
             $bid = $_POST['book'];
             $bname = $_POST['bookname'];

@@ -50,7 +50,9 @@
             <tbody>
                 
             <?php
+            
                 include '../database/dbconnect.php';
+                include '../database/checker.php';
                 $sql = "SELECT logid,details,loggeddatetime as dat FROM log";
                 $result = $conn->query($sql);
 

@@ -54,7 +54,7 @@
                 
                     <?php
                         include '../database/dbconnect.php';
-
+                        include '../database/checker.php';
                         $sql="SELECT * FROM books WHERE bid NOT IN (SELECT bid FROM copies WHERE available = 0)";
                         $result=$conn->query($sql);
                         if(($result != false)&&($result->num_rows > 0))
