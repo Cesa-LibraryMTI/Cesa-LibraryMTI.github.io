@@ -164,7 +164,7 @@ body::-webkit-scrollbar {
                     <?php
                         
                         include 'database/dbconnect.php';
-                        include '../database/checker.php';
+                        include 'database/checker.php';
 
                         $sql="SELECT COUNT(uid) as member_count FROM members";
                         $result=$conn->query($sql);
@@ -184,7 +184,7 @@ body::-webkit-scrollbar {
                 <p>
                 <?php
                     include 'database/dbconnect.php';
-                    include '../database/checker.php';
+                    include 'database/checker.php';
 
                     $sql = "SELECT COUNT(uid) as member_count FROM members WHERE uid IN (SELECT uid FROM booklog WHERE return_date is NULL)";
                     $result = $conn->query($sql);
@@ -211,7 +211,7 @@ body::-webkit-scrollbar {
                     <?php
                         
                         include 'database/dbconnect.php';
-                        include '../database/checker.php';
+                        include 'database/checker.php';
 
                         $sql="SELECT COUNT(bid) as book_count FROM books";
                         $result=$conn->query($sql);
