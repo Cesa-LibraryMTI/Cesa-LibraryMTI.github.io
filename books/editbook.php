@@ -2,7 +2,7 @@
     session_start();
     if(isset($_SESSION['logged'])){
         if($_SESSION['logged'] == 0){
-            header("Location: ../about.html");
+            header("Location: ../users/");
             exit();
         }
         if($_SESSION['logged']==-1){
@@ -77,7 +77,6 @@
     </table>
       <button type="submit" id = "submitbutton">confirm</button>
       <?php
-        include '../database/checker.php';
         if(isset($_POST['sent'])){
             $bid = $_POST['book'];
             $bname = $_POST['bookname'];
@@ -106,6 +105,7 @@
         }
         if(isset($_POST['chupdate'])){
             include '../database/dbconnect.php';
+            include '../database/checker.php';
             $bookid=$_POST['bookid'];
             $bname=$_POST['bname'];
             $bauthor=$_POST['bauthor'];
