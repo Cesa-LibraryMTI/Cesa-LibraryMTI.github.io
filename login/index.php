@@ -2,10 +2,10 @@
   session_start();
   if((isset($_SESSION['logged']))){
     if($_SESSION['logged'] == 1){
-      header('Location: ../users/');
+      header('Location: ../');
       exit();
     }else if($_SESSION['logged'] == 0){
-      header('Location: users/');
+      header('Location: ../users/');
       exit();
     }else if(($_SESSION['logged'] == -1)){  
       session_unset();
