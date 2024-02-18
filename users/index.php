@@ -6,11 +6,11 @@
             exit();
         }
         if($_SESSION['logged']==-1){
-            header("Location: login/");
+            header("Location: /login/");
             exit();
         }
     }else{
-        header("Location: login/");
+        header("Location: /login/");
         exit();
     }
 ?>
@@ -193,7 +193,10 @@ body::-webkit-scrollbar {
     
 
         <?php
-        include 'usernotification.php';
+        if($totalcount == 1){
+            include 'usernotification.php';
+        }
+        
     ?>
     
 
