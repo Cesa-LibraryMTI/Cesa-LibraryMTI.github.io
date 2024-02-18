@@ -112,9 +112,7 @@ body::-webkit-scrollbar {
 </head>
 
 <body>
-    <?php
-        include 'usernotification.php';
-    ?>
+    
     <?php
     
     
@@ -153,11 +151,7 @@ body::-webkit-scrollbar {
             </ul>
         </nav>
     </header>
-    <?php
-        echo "<div class='messagebox'>messages here</div>";
-
-
-    ?>
+    
 
 
     <div class="container mx-auto text-center p-6">
@@ -194,7 +188,9 @@ body::-webkit-scrollbar {
         
     
 
-    
+        <?php
+        include 'usernotification.php';
+    ?>
     
 
     <script src="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet"></script>
