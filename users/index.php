@@ -180,7 +180,7 @@ body::-webkit-scrollbar {
             </a>
             
             <!-- Data Science & Analytics -->
-            <a href="books">
+            <a href="totbooks.php">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
                 <i class="bi bi-book icon mb-2 text-blue-500"></i>
                 <h3 class="font-semibold">Total Books</h3>
