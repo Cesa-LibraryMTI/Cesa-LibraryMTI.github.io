@@ -32,6 +32,16 @@
         .mbuttons:hover{
             border: 2px solid green;
         }
+        .homebutton{
+            color: #fff;
+            padding: 8px 22px;
+            border-radius: 6px;
+            background: #7d2ae8;
+            transition: all 0.2s ease;  
+        }
+        .homebutton:active{
+            transform: scale(0.96);
+        }
     </style>
      <script>
         function valid(name,bname){
@@ -48,6 +58,7 @@
 
     <header>
         <h1>NOT RETURNED</h1>
+        <button class ='homebutton'>home</button>
     </header>
 
     <main>
