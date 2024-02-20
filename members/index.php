@@ -2,7 +2,7 @@
     session_start();
     if(isset($_SESSION['logged'])){
         if($_SESSION['logged'] == 0){
-            header("Location: ../about.html");
+            header("Location: ../users/");
             exit();
         }
         if($_SESSION['logged']==-1){
@@ -83,6 +83,7 @@
                 
                 <?php
                 include '../database/dbconnect.php';
+                include '../database/checker.php';
                 $sql = "SELECT uid,username FROM members";
                 $result = $conn->query($sql);
 
@@ -100,7 +101,9 @@
             ?>
             </tbody>
             <?php
+
                 include '../database/dbconnect.php';
+                include '../database/checker.php';
                 if($_SERVER['REQUEST_METHOD']=='POST'){
                     $userid = $_POST['user'];
                     $sql = "delete from members where uid = $userid";

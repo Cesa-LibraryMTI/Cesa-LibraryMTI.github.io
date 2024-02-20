@@ -2,7 +2,7 @@
     session_start();
     if(isset($_SESSION['logged'])){
         if($_SESSION['logged'] == 0){
-            header("Location: ../about.html");
+            header("Location: ../users/");
             exit();
         }
         if($_SESSION['logged']==-1){
@@ -86,6 +86,7 @@
             
                 <?php
                 include '../database/dbconnect.php';
+                include '../database/checker.php';
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $bid = $_POST['bid'];
                     $bname = $_POST['bname'];
@@ -107,6 +108,7 @@
         </table>
         <?php
         include '../database/dbconnect.php';
+        include '../database/checker.php';
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
            if(isset($_POST['user'])){
             $uid = $_POST['user'];

@@ -2,7 +2,7 @@
     session_start();
     if(isset($_SESSION['logged'])){
         if($_SESSION['logged'] == 0){
-            header("Location: ../about.html");
+            header("Location: ../users/");
             exit();
         }
         if($_SESSION['logged']==-1){
@@ -50,6 +50,7 @@
       <?php
   if($_SERVER['REQUEST_METHOD']=='POST'){
     include '../database/dbconnect.php';
+    include '../database/checker.php';
     $name=$_POST['name'];
     $password=$_POST['password'];
     $membtype=$_POST['membtype'];

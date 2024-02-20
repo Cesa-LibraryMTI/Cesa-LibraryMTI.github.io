@@ -1,46 +1,16 @@
-<?php
-    session_start();
-    if(isset($_SESSION['logged'])){
-        if($_SESSION['logged'] == 0){
-            header("Location: ../users/");
-            exit();
-        }
-        if($_SESSION['logged']==-1){
-            header("Location: ../login/");
-            exit();
-        }
-    }else{
-        header("Location: ../login/");
-        exit();
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Issue</title>
+    <title>Document</title>
     <link rel="stylesheet" href="../styles/members.css">
     <link rel="stylesheet" href="../styles/search.css">
-    <link rel="stylesheet" href="../styles/tables.css">
-    <style>
-        .homebutton{
-            color: #fff;
-            padding: 8px 22px;
-            border-radius: 6px;
-            background: #7d2ae8;
-            transition: all 0.2s ease;  
-        }
-        .homebutton:active{
-            transform: scale(0.96);
-        }
-    </style>
+    <script src = "../js/search.js"></script>
 </head>
 <body>
-
-    <header>
-        <h1>LOGS</h1>
-        <button class ='homebutton'>home</button>
+<header>
+        <h1>TOTAL BOOKS</h1>
     </header>
 
     <main>
@@ -51,21 +21,26 @@
             <input type="text" class="search__input" id = "myInput" placeholder="Type your text" onkeyup="searchTable()">
             </form></div>
         </div>
+
         <table id="myTable">
             <thead>
             <tr>
-                <th>id</th>
-                <th>details</th>
-                <th>date and time</th>
+                <th>SI NO</th>
+                <th>BOOK NAME</th>
+                <th>AUTHOR</th>
+                <th>PRICE</th>
+                <th>CATEGORY</th>
+                <th>COPIES</th>
+                <th>AVAILABLE</th>
+                <th>MODIFY</th>
             </tr>
             </thead>
             <tbody>
                 
             <?php
-            
                 include '../database/dbconnect.php';
-                include '../database/checker.php';
-                $sql = "SELECT logid,details,loggeddatetime as dat FROM log";
+                
+                $sql = "SELECT * FROM viewbooks";
                 $result = $conn->query($sql);
 
                 
@@ -73,12 +48,16 @@
                 if (($result !== false)&&($result->num_rows > 0)) {
                     while ($row = $result->fetch_assoc()) {
                         // Access individual columns using the column name
-                        $id = $row['logid'];
-                        $det = $row['details'];
-                        $dat = $row['dat'];
-
+                        $bid = $row['bid'];
+                        $bname = $row['bname'];
+                        $bauthor = $row['bauthor'];
+                        $bprice = $row['bprice'];
+                        $bcategory = $row['bcategory'];
+                        $bcopy = $row['copies'];
+                        $bavailable = $row['available'];
                         // Perform actions with the data (e.g., display or process)
-                        echo "<tr><td>$id</td><td>$det</td><td>$dat</td></tr>";
+                        echo "<tr><td>$bid</td><td>$bname</td><td>$bauthor</td><td>$bprice</td><td>$bcategory</td><td>$bcopy</td><td>$bavailable</td>";
+                        echo "</tr>";
                     }
                 }else{
                     print "<br><h1><font color = 'blue'><i>Wrong credentials<i><font></h1><br>";
@@ -90,6 +69,5 @@
 
        
     </main>
-    <script src = "../js/search.js"></script>
-</body>
+    
 </html>

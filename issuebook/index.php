@@ -2,7 +2,7 @@
     session_start();
     if(isset($_SESSION['logged'])){
         if($_SESSION['logged'] == 0){
-            header("Location: ../about.html");
+            header("Location: ../users/");
             exit();
         }
         if($_SESSION['logged']==-1){
@@ -67,7 +67,7 @@
                 
                     <?php
                         include '../database/dbconnect.php';
-
+                        include '../database/checker.php';
                         $sql="SELECT * FROM books WHERE bid NOT IN (SELECT bid FROM copies WHERE available = 0)";
                         $result=$conn->query($sql);
                         if(($result != false)&&($result->num_rows > 0))

@@ -2,7 +2,7 @@
     session_start();
     if(isset($_SESSION['logged'])){
         if($_SESSION['logged'] == 0){
-            header("Location: ../about.html");
+            header("Location: ../users/");
             exit();
         }
         if($_SESSION['logged']==-1){
@@ -87,6 +87,7 @@
                 
             <?php
 include '../database/dbconnect.php';
+include '../database/checker.php';
 
 // Get the current date
 $sql = "SELECT CURDATE() AS currentdate";
@@ -136,6 +137,7 @@ $conn->close();
         </table>
 <?php
 include '../database/dbconnect.php';
+include '../database/checker.php';
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
     $tid = $_POST['tid'];

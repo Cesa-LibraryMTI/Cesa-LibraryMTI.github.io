@@ -2,7 +2,7 @@
     session_start();
     if(isset($_SESSION['logged'])){
         if($_SESSION['logged'] == 0){
-            header("Location: ../about.html");
+            header("Location: ../users/");
             exit();
         }
         if($_SESSION['logged']==-1){
@@ -47,6 +47,7 @@
 
             <?php
               include '../database/dbconnect.php';
+              include '../database/checker.php';
               echo "<option value='other'>new category</option>";
               $sql = "SELECT DISTINCT bcategory FROM books";
               $result = $conn->query($sql);
