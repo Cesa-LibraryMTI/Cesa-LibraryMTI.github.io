@@ -98,8 +98,8 @@ textarea{
         }
     </style>
 </head>
-<body class="bg-black">
-    <div class="modal">
+<body>
+    <div class="modal" id="modal">
         <div class="modal-content text-white">
             <div class="close-btn">&times;</div>
             <h2 class="text-xl mb-2">How was the (book name)?</h2>
@@ -120,11 +120,17 @@ textarea{
               <div class="Feedbackbox"><textarea  name="Feedback" class="Feedback" rows="3" cols="60"></textarea></div>
             <div class="actions mt-6">
                 
-                <button class="button">Not now</button>
+                <button class="button" onclick="closeDiv()">Not now</button>
                 <button class="button submit-btn">Submit</button>
             </div>
         </div>
     </div>
     
+    <script>
+        function closeDiv() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+
 </body>
 </html>

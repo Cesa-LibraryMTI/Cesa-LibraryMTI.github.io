@@ -54,7 +54,7 @@
                 $message = $row['message'];
                 $name = $row['name'];
                 echo "<div id='myDiv'>";
-                echo "<div class='messagebox'>name: $name <br>message: $message<br>";
+                echo "<div id='messagebox'>name: $name <br>message: $message<br>";
                 echo "<button onclick='closeDiv()' class='close'>Close</button></div></div>";
             }
         }
@@ -66,10 +66,8 @@
 
     <script>
         function closeDiv() {
-            var boxes = document.querySelectorAll('.messagebox');
-            boxes.forEach(function(box) {
+            var box = document.getElementByID('messagebox');
             box.style.display = 'none';
-        });
         }
     </script>
 
