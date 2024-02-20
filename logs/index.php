@@ -22,13 +22,25 @@
     <title>Book Issue</title>
     <link rel="stylesheet" href="../styles/members.css">
     <link rel="stylesheet" href="../styles/search.css">
-    
     <link rel="stylesheet" href="../styles/tables.css">
+    <style>
+        .homebutton{
+            color: #fff;
+            padding: 8px 22px;
+            border-radius: 6px;
+            background: #7d2ae8;
+            transition: all 0.2s ease;  
+        }
+        .homebutton:active{
+            transform: scale(0.96);
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <h1>LOGS</h1>
+        <button class ='homebutton'>home</button>
     </header>
 
     <main>
