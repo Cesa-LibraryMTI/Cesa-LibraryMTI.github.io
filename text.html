@@ -1,1 +1,24 @@
-<button><a href="../intex.php"><span id="homebutton"></span></a></button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Animation</title>
+  <style>
+    @keyframes colorChange {
+      0% { color: #15181a; }
+      50% { color: #e74c3c; }
+      100% { color: #3498db; }
+    }
+
+    .animated-word {
+      font-size: 24px;
+      font-weight: bold;
+      animation: colorChange 2s ease infinite; /* 2s duration, ease timing function, infinite loop */
+    }
+  </style>
+</head>
+<body>
+  <div class="animated-word">Animate Me!</div>
+</body>
+</html>
