@@ -44,7 +44,7 @@
             $uid = $row['uid'];
 
 
-            $sql = "SELECT bname FROM books where bid IS (SELECT bid FROM booklog WHERE stars IS NULL AND return_date IS NOT NULL AND uid = $uid)";
+            $sql = "SELECT bname FROM books where bid IN (SELECT bid FROM booklog WHERE stars IS NULL AND return_date IS NOT NULL AND uid = $uid)";
             
         $result = $conn->query($sql);
 
