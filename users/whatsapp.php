@@ -102,11 +102,11 @@ textarea{
 <body>
 
         <?php
-        
-
-        
-       
-    echo "<div class='modal' id='modal'>
+            if(!isset($_SESSION['logged']) or $_SESSION['logged'] == -1){
+                exit();
+            }
+        ?>
+       <div class='modal' id='modal'>
         <div class='modal-content text-white'>
             <div class='close-btn'>&times;</div>
             <h2 class='text-xl mb-2'>How was the $?</h2>
@@ -139,8 +139,7 @@ textarea{
         function closeDiv() {
             document.getElementById('modal').style.display = 'none';
         }
-    </script>";
-            
-    ?>
+    </script>
+        
 </body>
 </html>
