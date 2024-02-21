@@ -103,15 +103,29 @@ textarea{
 
         <?php
             if(!isset($_SESSION['logged']) or $_SESSION['logged'] == -1){
-                exit();
+                    exit();
+            }else{
+                $sql = "SELECT bname FROM books where bid IN (SELECT bid FROM booklog WHERE stars IS NULL AND return_date IS NOT NULL AND uid = $uid)";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc()
+                    $bname = $row['bname'];
+                }
+                else
+                {
+                    exit();
+                }  
             }
+                
+            
+            
         ?>
        <div class='modal' id='modal'>
         <div class='modal-content text-white'>
             <div class='close-btn'>&times;</div>
-            <h2 class='text-xl mb-2'>How was the $?</h2>
+            <h2 class='text-xl mb-2'>How was your last book?</h2>
             <p>Your answer is anonymous. WhatsApp uses it to help improve your call experience</p>
-            <
+            
             <div class='rating'>
                 <input value='5' name='rating' id='star5' type='radio'>
                 <label for='star5'></label>
