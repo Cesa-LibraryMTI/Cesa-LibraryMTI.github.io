@@ -9,9 +9,6 @@
             header("Location: /login/");
             exit();
         }
-    }else{
-        header("Location: /login/");
-        exit();
     }
 ?>
 

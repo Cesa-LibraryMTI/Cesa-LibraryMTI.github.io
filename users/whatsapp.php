@@ -92,6 +92,7 @@ textarea{
             border-radius: 5px;
             margin-top: 20px;
             cursor: pointer;
+            margin-left: 5px;
         }
         .submit-btn {
             float: right;
@@ -99,29 +100,51 @@ textarea{
     </style>
 </head>
 <body>
-    <div class="modal" id="modal">
-        <div class="modal-content text-white">
-            <div class="close-btn">&times;</div>
-            <h2 class="text-xl mb-2">How was the (book name)?</h2>
+
+        <?php
+            if(!isset($_SESSION['logged']) or $_SESSION['logged'] == -1){
+                    exit();
+            }else{
+                $sql = "SELECT bname FROM books where bid IN (SELECT bid FROM booklog WHERE stars IS NULL AND return_date IS NOT NULL AND uid = $uid)";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc()
+                    $bname = $row['bname'];
+                }
+                else
+                {
+                    exit();
+                }  
+            }
+                
+            
+            
+        ?>
+       <div class='modal' id='modal'>
+        <div class='modal-content text-white'>
+            <div class='close-btn'>&times;</div>
+            <h2 class='text-xl mb-2'>How was your last book?</h2>
             <p>Your answer is anonymous. WhatsApp uses it to help improve your call experience</p>
-            <div class="rating ">
-                <input value="5" name="rating" id="star5" type="radio">
-                <label for="star5"></label>
-                <input value="4" name="rating" id="star4" type="radio">
-                <label for="star4"></label>
-                <input value="3" name="rating" id="star3" type="radio">
-                <label for="star3"></label>
-                <input value="2" name="rating" id="star2" type="radio">
-                <label for="star2"></label>
-                <input value="1" name="rating" id="star1" type="radio">
-                <label for="star1"></label>
+            
+            <div class='rating'>
+                <input value='5' name='rating' id='star5' type='radio'>
+                <label for='star5'></label>
+                <input value='4' name='rating' id='star4' type='radio'>
+                <label for='star4'></label>
+                <input value='3' name='rating' id='star3' type='radio'>
+                <label for='star3'></label>
+                <input value='2' name='rating' id='star2' type='radio'>
+                <label for='star2'></label>
+                <input value='1' name='rating' id='star1' type='radio'>
+                <label for='star1'></label>
               </div>
               <label>Feedback</label>
-              <div class="Feedbackbox"><textarea  name="Feedback" class="Feedback" rows="3" cols="60"></textarea></div>
-            <div class="actions mt-6">
+              <div class='Feedbackbox'><textarea  name='Feedback' class='Feedback' rows='3' cols='60'></textarea></div>
+            <div class='actions mt-6'>
                 
-                <button class="button" onclick="closeDiv()">Not now</button>
-                <button class="button submit-btn">Submit</button>
+                <button class='button' onclick='closeDiv()'>Not now</button>
+                <input type='submit' class='button submit-btn'>
+                </form>
             </div>
         </div>
     </div>
@@ -131,6 +154,6 @@ textarea{
             document.getElementById('modal').style.display = 'none';
         }
     </script>
-
+        
 </body>
 </html>
