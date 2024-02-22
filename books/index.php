@@ -72,7 +72,7 @@
 
     <header>
         <h1>TOTAL BOOKS</h1>
-        <button class ='homebutton'>home</button>
+        <a href="../index.php"><button class ='homebutton'>HOME</button></a>
     </header>
 
     <main>

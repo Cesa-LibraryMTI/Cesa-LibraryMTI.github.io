@@ -41,7 +41,7 @@
 
     <header>
         <h1>Book Issue</h1>
-        <button class ='homebutton'>home</button>
+        <a href="../index.php"><button class ='homebutton'>HOME</button></a>
     </header>
 
     <main>

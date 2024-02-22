@@ -61,7 +61,7 @@
 
     <header>
         <h1>TOTAL MEMBERS</h1>
-        <button class ='homebutton'>home</button>
+        <button class ='homebutton'><a href="../index.php">HOME</a></button>
     </header>
 
     <main>
