@@ -1,10 +1,7 @@
 <?php
     session_start();
     if(isset($_SESSION['logged'])){
-        if($_SESSION['logged'] == 1){
-            header("Location: ../index.php");
-            exit();
-        }
+
         if($_SESSION['logged']==-1){
             header("Location: /login/");
             exit();
