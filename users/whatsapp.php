@@ -108,7 +108,7 @@ textarea{
                 $sql = "SELECT bname FROM books where bid IN (SELECT bid FROM booklog WHERE stars IS NULL AND return_date IS NOT NULL AND uid = $uid)";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
-                    $row = $result->fetch_assoc()
+                    $row = $result->fetch_assoc();
                     $bname = $row['bname'];
                 }
                 else
