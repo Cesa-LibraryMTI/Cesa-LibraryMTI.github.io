@@ -119,7 +119,7 @@
                 $r1 = $conn->query($sq1);
                 $c = $r1->fetch_assoc()['cn'];
             }while($c != 0);
-            $sql = "insert into booklog values ($tid,$uid,$bid,now(),NULL)";
+            $sql = "insert into booklog values ($tid,$uid,$bid,now(),NULL,NULL,NULL)";
             $conn->query($sql);
             header("Location: index.php");
            }
