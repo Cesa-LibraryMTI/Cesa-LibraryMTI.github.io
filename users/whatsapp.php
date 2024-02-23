@@ -101,25 +101,8 @@ textarea{
 </head>
 <body>
 
-        <?php
-            if(!isset($_SESSION['logged']) or $_SESSION['logged'] == -1){
-                    exit();
-            }else{
-                $sql = "SELECT bname FROM books where bid IN (SELECT bid FROM booklog WHERE stars IS NULL AND return_date IS NOT NULL AND uid = $uid)";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                    $row = $result->fetch_assoc();
-                    $bname = $row['bname'];
-                }
-                else
-                {
-                    exit();
-                }  
-            }
-                
-            
-            
-        ?>
+     
+        
        <div class='modal' id='modal'>
         <div class='modal-content text-white'>
             <div class='close-btn'>&times;</div>
@@ -148,12 +131,6 @@ textarea{
             </div>
         </div>
     </div>
-    
-    <script>
-        function closeDiv() {
-            document.getElementById('modal').style.display = 'none';
-        }
-    </script>
-        
+            
 </body>
 </html>

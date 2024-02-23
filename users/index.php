@@ -147,6 +147,7 @@ body::-webkit-scrollbar {
             <ul>
                 <li><a href="#" class="active">Home</a></li>
                 <li><a href="#">About</a></li>
+                <li><a href="whatsapp.php">notifications</a></li>
                 <li><a href="#">settings</a></li>
                 <li><a href="../logout/">LOG OUT</a></li>
             </ul>
@@ -193,7 +194,7 @@ body::-webkit-scrollbar {
         if($totalcount == 1){
             include 'usernotification.php';
         }
-        include 'whatsapp.php';
+        
     ?>
     
 
