@@ -148,13 +148,17 @@ body::-webkit-scrollbar {
                 <li><a href="#">settings</a></li>
                 <li><a href="../logout/">
                 <?php
+                    session_start();
+                
                     if(isset($_SESSION['logged']))
-                        echo "LOG OUT";
+                    {
+                            echo "LOG OUT";             
+                    }
                     else
                     {
                         echo "LOG IN";
-                        session_unset();
-
+                        
+                        
                     }
                         
                 ?>
