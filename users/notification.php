@@ -44,7 +44,23 @@ li a:hover:not(.active) {
 
 
 
-  
+.incoming {
+          background-color: #EBF4FF;
+        }
+        .msg {
+          min-width: 50%;
+          max-width: 75%;
+          margin-bottom: 0.75rem;
+          padding: 0.5rem 1rem;
+          border-radius: 25px;
+        }
+        .msg-time {
+          color: #999;
+          font-size: 0.75rem;
+          text-align: right;
+          margin-top: 0.25rem;
+        }
+
 </style>
 
 <script>
@@ -83,8 +99,9 @@ li a:hover:not(.active) {
                 while ($row = $result->fetch_assoc()) 
                 {
                     $message = $row['message'];
-                    $date = $row['date'];        
-                    echo"<p>$date  Message: $message</p>";
+                    $date = $row['date'];   
+                    echo "<div class='msg incoming'><div class='username'><p>ADMIN</p></div><p>$message</p><div class='msg-time'>$date</div></div>";     
+                    
                 
                 }
         }
