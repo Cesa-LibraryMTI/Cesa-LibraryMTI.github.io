@@ -102,9 +102,9 @@
                         $name = $row['username'];
                         $user_type = $row['user_type'];
                         if($user_type==1)
-                            $type="<div class='type' style=background-color:green; ><b>ADMIN</b></div>";
+                            $type="<div class='type' style=background-color:red; ><b>ADMIN</b></div>";
                         else
-                            $type="<div class='type' style=background-color:red;><b>USER</b></div>";
+                            $type="<div class='type' style=background-color:green;><b>USER</b></div>";
 
                         echo "<tr><td>$uid</td><td>$type$name</td><td>";
                         echo "<form method='post'><input type = 'hidden' name = 'user' value = $uid><button class = 'mbuttons' name = 'delete' onclick = 'return valid(`$name`)'><i class='bi bi-trash3-fill icon mb-2'></i></button></form></td></tr>";
