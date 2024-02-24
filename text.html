@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>homepage</title>
+  <style>
+    .homebutton{
+            color: #fff;
+            padding: 8px 22px;
+            border-radius: 6px;
+            background: #7d2ae8;
+            transition: all 0.2s ease;  
+        }
+        .homebutton:active{
+            transform: scale(0.96);
+        }
+  </style>
+</head>
+<body>
+  <header>
+  <button class ='homebutton'><a href="../index.php">HOME</a></button>
+  </header>
+  <script>
+    document.getElementById('homebutton').addEventListener('click',function()
+    {
+      window.href='index.html';
+    });
+  </script>
+</body>
+</html>

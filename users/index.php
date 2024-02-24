@@ -1,18 +1,12 @@
 <?php
-    session_start();
-    if(isset($_SESSION['logged'])){
-        if($_SESSION['logged'] == 1){
-            header("Location: ../index.php");
-            exit();
-        }
-        if($_SESSION['logged']==-1){
-            header("Location: /login/");
-            exit();
-        }
-    }else{
-        header("Location: /login/");
-        exit();
-    }
+    #session_start();
+    #if(isset($_SESSION['logged'])){
+    #
+    #   if($_SESSION['logged']==-1){
+    #        header("Location: /login/");
+    #        exit();
+    #    }
+    #}
 ?>
 
 
@@ -150,8 +144,26 @@ body::-webkit-scrollbar {
             <ul>
                 <li><a href="#" class="active">Home</a></li>
                 <li><a href="#">About</a></li>
+                <li><a href="notification.php">notifications</a></li>
                 <li><a href="#">settings</a></li>
-                <li><a href="../logout/">LOG OUT</a></li>
+                <li>
+                <?php
+                    session_start();
+                
+                    if(isset($_SESSION['logged']))
+                    {
+                            echo "<a href='logout/' onclick='refreshPage()'>LOG OUT</a>";             
+                    }
+                    else
+                    {
+                        echo "<a href='../login/'>LOG IN</a>";
+                        
+                        
+                    }
+                        
+                ?>
+                
+            </li>
             </ul>
         </nav>
     </header>

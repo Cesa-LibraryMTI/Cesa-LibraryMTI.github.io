@@ -56,12 +56,23 @@
             display: inline-block;
             margin-right: 5px;
         }
+        .homebutton{
+            color: #fff;
+            padding: 8px 22px;
+            border-radius: 6px;
+            background: #7d2ae8;
+            transition: all 0.2s ease;  
+        }
+        .homebutton:active{
+            transform: scale(0.96);
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>TOTAL BOOKS</h1>
+        <a href="../index.php"><button class ='homebutton'>HOME</button></a>
     </header>
 
     <main>

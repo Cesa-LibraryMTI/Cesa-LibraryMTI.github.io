@@ -31,7 +31,18 @@
         .mbuttons:hover{
             border: 2px solid red;
         }
+        .homebutton{
+            color: #fff;
+            padding: 8px 22px;
+            border-radius: 6px;
+            background: #7d2ae8;
+            transition: all 0.2s ease;  
+        }
+        .homebutton:active{
+            transform: scale(0.96);
+        }
     </style>
+    
     <script src="../js/search.js"></script>
     <script>
         function valid(bid,uid){
@@ -50,6 +61,7 @@
 
     <header>
         <h1>TOTAL MEMBERS</h1>
+        <button class ='homebutton'><a href="../index.php">HOME</a></button>
     </header>
 
     <main>
