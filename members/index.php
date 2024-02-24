@@ -41,6 +41,13 @@
         .homebutton:active{
             transform: scale(0.96);
         }
+
+        .type{
+            margin-left: auto;
+            width: fit-content;
+            border-radius: 20px;
+            padding: 3px;
+        }
     </style>
     <script src="../js/search.js"></script>
     <script>
@@ -84,7 +91,7 @@
                 <?php
                 include '../database/dbconnect.php';
                 include '../database/checker.php';
-                $sql = "SELECT uid,username FROM members";
+                $sql = "SELECT uid,username,user_type FROM members";
                 $result = $conn->query($sql);
 
                 
@@ -93,7 +100,13 @@
                     while ($row = $result->fetch_assoc()) {
                         $uid = $row['uid'];
                         $name = $row['username'];
-                        echo "<tr><td>$uid</td><td>$name</td><td>";
+                        $user_type = $row['user_type'];
+                        if($user_type==1)
+                            $type="<div class='type' style=background-color:green; ><b>ADMIN</b></div>";
+                        else
+                            $type="<div class='type' style=background-color:red;><b>USER</b></div>";
+
+                        echo "<tr><td>$uid</td><td>$type$name</td><td>";
                         echo "<form method='post'><input type = 'hidden' name = 'user' value = $uid><button class = 'mbuttons' name = 'delete' onclick = 'return valid(`$name`)'><i class='bi bi-trash3-fill icon mb-2'></i></button></form></td></tr>";
                     }
                 }

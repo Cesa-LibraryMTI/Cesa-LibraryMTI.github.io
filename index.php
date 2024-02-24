@@ -143,6 +143,7 @@ body::-webkit-scrollbar {
                 <li><a href="#" class="active">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">settings</a></li>
+                <li><a href="message/">Notification</a></li>
                 <li><a href="logout/">LOG OUT</a></li>
             </ul>
         </nav>
