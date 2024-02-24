@@ -146,24 +146,24 @@ body::-webkit-scrollbar {
                 <li><a href="#">About</a></li>
                 <li><a href="notification.php">notifications</a></li>
                 <li><a href="#">settings</a></li>
-                <li><a href="../logout/">
+                <li>
                 <?php
                     session_start();
                 
                     if(isset($_SESSION['logged']))
                     {
-                            echo "LOG OUT";             
+                            echo "<a href='logout/' onclick='refreshPage()'>LOG OUT</a>";             
                     }
                     else
                     {
-                        echo "LOG IN";
+                        echo "<a href='../login/'>LOG IN</a>";
                         
                         
                     }
                         
                 ?>
                 
-            </a></li>
+            </li>
             </ul>
         </nav>
     </header>
