@@ -85,14 +85,14 @@
     
         do{
             $heldid = rand(1,100000000);
-            $sq1 = "select count(heldid) as cn from heldbook where heldid = $heldid";
+            $sq1 = "select count(heldid) as cn from heldlog where heldid = $heldid";
             $r1 = $conn->query($sq1);
             $c = $r1->fetch_assoc()['cn'];
         }while($c != 0);
 
     
         $currentDate = date("Y-m-d");
-        $sql = "INSERT INTO heldbook values($heldid,$bid,$uid,'$currentDate')";
+        $sql = "INSERT INTO heldlog values($heldid,$bid,$uid,'$currentDate')";
         $conn->query($sql);
         }
         
