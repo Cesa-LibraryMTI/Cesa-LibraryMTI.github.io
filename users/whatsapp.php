@@ -132,9 +132,33 @@ textarea{
         </div>
     </div>
     <?php
-        include 'usernotification.php';
-               
-    ?>
+      
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
+            $rating = isset($_POST['rating']) ? intval($_POST['rating']) : 0;
+            $feedback = isset($_POST['Feedback']) ? htmlspecialchars($_POST['Feedback']) : '';
+        
+            // Validate the star rating
+            if ($rating >= 1 && $rating <= 5) {
+                // Valid rating, you can store it in the database or perform other actions
+                echo "Rating: $rating<br>";
+                $sql = "INSERT INTO booklog (stars,feedback) values ($rating,$feedback) WHERE bid= lgkg ;l     AND    uid =df;skflsfd";
+                $conn->query($sql);
+  
+                
+                }
+            } else {
+                // Invalid rating
+                echo "Please select a valid star rating (1 to 5)<br>";
+            }
+         else {
+            // If not a POST request, handle accordingly
+            echo "Form not submitted";
+        }
+        ?>
+        
+        
+    
     <link rel="stylesheet" href = "usernotification.css">
     
 </body>
