@@ -2,7 +2,7 @@
 include '../database/dbconnect.php';
 $oneWeekBefore = date('Y-m-d', strtotime('-1 week'));
 $currentDate = date('Y-m-d');
-$sql = "SELECT * FROM announce";
+$sql = "SELECT * FROM announce WHERE date BETWEEN '$oneWeekBefore' AND '$currentDate'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
