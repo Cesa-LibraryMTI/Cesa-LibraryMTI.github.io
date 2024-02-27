@@ -53,15 +53,21 @@
     if($result != null){
       $row = $result->fetch_assoc();
       if($row['exist'] == 1){
+        $sql = "select uid from members where username = '$uname'";
+        $uid = ($conn->query($sql))->fetch_assoc()['uid'];
         session_start();
         $_SESSION['name'] = $uname;
         $_SESSION['logged'] = 1;
+        $_SESSION['id'] = $uid;
 
         header('Location: ../');
       }else if($row['exist'] == 0){
+        $sql = "select uid from members where username = '$uname'";
+        $uid = ($conn->query($sql))->fetch_assoc()['uid'];
         session_start();
         $_SESSION['name'] = $uname;
         $_SESSION['logged'] = 0;
+        $_SESSION['id'] = $uid;
         header('Location: ../users/index.php');
       }else echo "<div class = 'failed'><p>wrong credentials</p></div>";
   }
