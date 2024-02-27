@@ -147,11 +147,11 @@ textarea{
   
                 
                 }
-            } else {
+                else {
                 // Invalid rating
                 echo "Please select a valid star rating (1 to 5)<br>";
             }
-         else {
+        }else {
             // If not a POST request, handle accordingly
             echo "Form not submitted";
         }

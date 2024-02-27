@@ -1,6 +1,6 @@
 <?php
 // Include your database connection code here
-include '../dbconnect.php';
+include '../database/dbconnect.php';
 
 // Query to get book counts by category
 $sql = "SELECT bcategory, COUNT(*) AS book_count FROM books GROUP BY bcategory";
