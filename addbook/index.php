@@ -16,11 +16,49 @@
 ?>
 <html>
 <head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Member</title>
+  <style>
+    body {
+      background-color: white; /* Set the overall background color */
+      color: rgb(57, 49, 49); /* Set the text color */
+      margin: 0;
+    }
+
+    header {
+      background-color: rgb(52, 43, 43); /* Set the background color for the title */
+      color: white; /* Set the text color for the title */
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    header a{
+        align-self: center;
+        justify-self: flex-end;
+    }
+    
+        .homebutton{
+            color: #fff;
+            padding: 8px 22px;
+            border-radius: 6px;
+            background: #7d2ae8;
+            transition: all 0.2s ease;
+        }
+        .homebutton:active{
+            transform: scale(0.96);
+        }
+  </style>
+</head>
 
   <script src = '../js/category.js'></script>
   <link rel="stylesheet" href="../styles/pages.css">
 </head>
 <body>
+  <header>
+<h1>Add book</h1>
+        <a href="../index.php"><button class='homebutton'>HOME</button></a>
+    </header>
 <div  class = 'container'>
     
     <form method='POST'>
