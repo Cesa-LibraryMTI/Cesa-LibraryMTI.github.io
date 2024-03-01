@@ -47,7 +47,8 @@
 <body>
     <?php
     // Assuming you have a database connection
-    include '../dbconnect.php';
+    include '../database/dbconnect.php';
+
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
