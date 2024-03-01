@@ -24,14 +24,10 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Management System Chart</title>
+    <title>Category</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f3f3f3;
-        }
+        
         canvas {
             width: 300px;
             height: 300px;
@@ -58,26 +54,28 @@ $conn->close();
             var dataLabels = <?php echo json_encode($labels); ?>;
             var dataValues = <?php echo json_encode($values); ?>;
 
+            // Generate random colors dynamically
+            var dynamicColors = function () {
+                var r = Math.floor(Math.random() * 255);
+                var g = Math.floor(Math.random() * 255);
+                var b = Math.floor(Math.random() * 255);
+                return "rgba(" + r + "," + g + "," + b + ", 0.7)";
+            };
+
+            // Create an array of dynamic colors
+            var backgroundColors = dataLabels.map(function () {
+                return dynamicColors();
+            });
+
             // Create a pie chart using Chart.js
             var ctx = document.getElementById('myChart').getContext('2d');
             var myChart = new Chart(ctx, {
-                type: 'pie',
+                type: 'doughnut',
                 data: {
                     labels: dataLabels,
                     datasets: [{
                         data: dataValues,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.7)',
-                            'rgba(54, 162, 235, 0.7)',
-                            'rgba(255, 206, 86, 0.7)',
-                            'rgba(75, 192, 192, 0.7)',
-                            'rgba(153, 102, 255, 0.7)',
-                            'rgba(255, 159, 64, 0.7)',
-                            'rgba(0, 123, 255, 0.7)',
-                            'rgba(255, 0, 123, 0.7)',
-                            'rgba(0, 255, 123, 0.7)',
-                            'rgba(255, 123, 0, 0.7)'
-                        ],
+                        backgroundColor: backgroundColors,
                         borderWidth: 1
                     }]
                 },
@@ -85,7 +83,7 @@ $conn->close();
                     responsive: false, // Disable responsiveness
                     maintainAspectRatio: false, // Disable aspect ratio
                     legend: {
-                        position: 'bottom',
+                        align: 'end', // Align legend to the end (right side)
                         labels: {
                             fontColor: '#333'
                         }
