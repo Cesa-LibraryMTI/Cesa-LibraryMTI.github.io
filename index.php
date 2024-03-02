@@ -269,7 +269,7 @@ body::-webkit-scrollbar {
         <h2 class="text-2xl font-bold mb-4">MANAGEMENT</h2>
         <div class="grid grid-cols-3 gap-4"> <!-- Update here -->
             <!-- Business Analysis -->
-            <a href="">
+            <a href="charts/">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
                 <i class="fas fa-chart-line icon mb-2 text-blue-500"></i>
                 <h3 class="font-semibold">Report</h3>
