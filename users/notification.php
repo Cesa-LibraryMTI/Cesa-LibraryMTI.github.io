@@ -70,6 +70,8 @@
             mess.style.display = 'none';
             var me = document.getElementById('review');
             me.style.display = 'block';
+            document.getElementById("mb").classList.toggle("active");
+            document.getElementById("rb").classList.toggle("active");
         }
 
         function reviewFunction() {
@@ -77,6 +79,8 @@
             me.style.display = 'none';
             var mess = document.getElementById('messages');
             mess.style.display = 'block';
+            document.getElementById("mb").classList.toggle("active");
+            document.getElementById("rb").classList.toggle("active");
         }
 
         function closeDiv() {
@@ -93,12 +97,13 @@
 <body>
 
     <ul>
-        <li><a class="active" href="#" onclick="reviewFunction()">Messages</a></li>
-        <li><a href="#" onclick="messageFunction()">Review</a></li>
+        <li><a class="active" id = "mb" href="#" onclick="reviewFunction()">Messages</a></li>
+        <li><a href="#" id  = "rb" onclick="messageFunction()">Review</a></li>
     </ul>
 
     <div id="messages" style="padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px;">
         <?php
+        session_start();
         include '../database/dbconnect.php';
         $oneWeekBefore = date('Y-m-d', strtotime('-1 week'));
         $currentDate = date('Y-m-d');
@@ -117,7 +122,7 @@
 
     <div id='review' style="display: none; padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px;">
         <?php
-        session_start();
+        
         include '../database/dbconnect.php';
         
 
