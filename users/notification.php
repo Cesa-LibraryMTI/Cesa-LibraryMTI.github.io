@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,26 +64,29 @@
             text-align: right;
             margin-top: 0.25rem;
         }
+        
     </style>
 
-    <script>
-        function messageFunction() {
-            var mess = document.getElementById('messages');
-            mess.style.display = 'none';
-            var me = document.getElementById('review');
-            me.style.display = 'block';
-            document.getElementById("mb").classList.toggle("active");
-            document.getElementById("rb").classList.toggle("active");
-        }
 
-        function reviewFunction() {
-            var me = document.getElementById('review');
-            me.style.display = 'none';
-            var mess = document.getElementById('messages');
-            mess.style.display = 'block';
-            document.getElementById("mb").classList.toggle("active");
-            document.getElementById("rb").classList.toggle("active");
-        }
+<script>
+function messageFunction() {
+    var mess = document.getElementById('messages');
+    mess.style.display = 'block'; // Show the Messages div
+    var me = document.getElementById('review');
+    me.style.display = 'none';    // Hide the Review div
+    document.getElementById("mb").classList.add("active");
+    document.getElementById("rb").classList.remove("active");
+}
+
+function reviewFunction() {
+    var me = document.getElementById('review');
+    me.style.display = 'block'; // Show the Review div
+    var mess = document.getElementById('messages');
+    mess.style.display = 'none'; // Hide the Messages div
+    document.getElementById("mb").classList.remove("active");
+    document.getElementById("rb").classList.add("active");
+}
+
 
         function closeDiv() {
             var box = document.getElementById('modal');
@@ -91,19 +96,19 @@
             var box = document.getElementById('modal');
             box.style.display = 'flex';
         }
+
     </script>
 </head>
 
 <body>
 
     <ul>
-        <li><a class="active" id = "mb" href="#" onclick="reviewFunction()">Messages</a></li>
-        <li><a href="#" id  = "rb" onclick="messageFunction()">Review</a></li>
+        <li><a class="active" id = "mb" onclick="reviewFunction()">Messages</a></li>
+        <li> <a  id = "rb" onclick="messageFunction()">Review</a></li>
     </ul>
 
     <div id="messages" style="padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px;">
         <?php
-        session_start();
         include '../database/dbconnect.php';
         $oneWeekBefore = date('Y-m-d', strtotime('-1 week'));
         $currentDate = date('Y-m-d');
@@ -116,18 +121,19 @@
                 $date = $row['date'];
                 echo "<div class='msg incoming'><div class='username'><p>ADMIN</p></div><p>$message</p><div class='msg-time'>$date</div></div>";
             }
-        }
+        }else echo "<h2>No Messages Available</h2>";
         ?>
     </div>
 
     <div id='review' style="display: none; padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px;">
         <?php
-        
-        include '../database/dbconnect.php';
+        session_start();
+       
         
 
-        $uid = $_SESSION['id'];
-        $sql = "SELECT bid, bname FROM books WHERE bid IN (SELECT bid FROM booklog WHERE stars IS NULL AND uid IN ($uid))";
+       // $uid = $_SESSION['id'];
+       $uid=12582; 
+       $sql = "SELECT bid, bname FROM books WHERE bid IN (SELECT bid FROM booklog WHERE stars IS NULL AND uid IN ($uid))";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -136,18 +142,18 @@
                 $bname = $row['bname']; 
 
                 echo "<div class='msg incoming'><div class='username'><p>How was the book $bname ?</p>
-                    </div><form method='POST'>
+                    </div><form method='POST' action='whatsapp.php' name='form1'>
                     <input type='hidden' name='bid' value='$bid'>
                     <input type='hidden' name='uid' value='$uid'>
-                    <a onclick='openDiv()'>click here to add review</a></form>
-                    <div class='msg-time'>$date</div></div>";
+                    <input type='hidden' name='bname' value='$bname'>
+                    <a href='whatsapp.php'>click here to add review</a>
+                    <input type='submit' ></form>
+                    <div class='msg-time'>date</div></div>";
             }
         }
-        else echo "not found";
+        else echo "<h2>No Reviews Available</h2>";
         ?>
-        <?php
-        include 'whatsapp.php';
-        ?>
+        
     </div>
 </body>
 

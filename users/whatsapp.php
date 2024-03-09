@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +61,7 @@
 
         .modal {
             background: rgba(0, 0, 0, 0.8);
-            display: none;
+            display: flex;
             justify-content: center;
             align-items: center;
             position: fixed;
@@ -102,15 +103,27 @@
     </style>
 </head>
 
-<body>
 
+
+<body>
+   
     <div class='modal' id='modal'>
         <div class='modal-content text-white'>
-            <div class='close-btn' onclick='closeDiv()'>&times;</div>
-            <h2 class='text-xl mb-2'>How was your last book?</h2>
-            <p>Your answer is anonymous. WhatsApp uses it to help improve your call experience</p>
-            <form method="POST"  >
-            <div class='rating'>
+            <div class='close-btn' onclick='window.location.href="notification.php"'>&times;</div>
+            
+            
+            
+                <?php
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $bid = $_POST['bid'];
+                    $bname = $_POST['bname'];
+                    $uid = $_POST['uid'];
+                    echo "<form method='POST' name='form2' action='' onsubmit='return submitForm()'><input type='hidden' value='$bid' name='bid'> <input type='hidden' value='$bname' name='bname'> <input type='hidden' name='uid' value='$uid'>";
+                    echo "<h2 class='text-xl mb-2'>How was the book $bname ?</h2>";
+                }
+                ?>
+                <p>Your answer is anonymous. WhatsApp uses it to help improve your call experience</p>
+                <div class='rating'>
                 <input value='5' name='rating' id='star5' type='radio'>
                 <label for='star5'></label>
                 <input value='4' name='rating' id='star4' type='radio'>
@@ -121,49 +134,20 @@
                 <label for='star2'></label>
                 <input value='1' name='rating' id='star1' type='radio'>
                 <label for='star1'></label>
-            </div>
-            <label>Feedback</label>
-            <div class='Feedbackbox'>       
-                    
+                              
+                </div>
+                <label>Feedback</label>
+                <div class='Feedbackbox'>
                     <textarea name='Feedback' class='Feedback' rows='3' cols='60'></textarea>
-            </div>
-                    
-                    <div class='actions mt-6'>
-                        <button type="submit" class='button submit-btn' onsubmit="return validateForm()">Submit</button>
-                        <button class='button' onclick='closeDiv()'>Not now</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class='actions mt-6'>
+                    <button type="submit" class='button submit-btn'>Submit</button>
+                    <button type="button" class='button' onclick='window.location.href = "notification.php";'>Not now</button>
+                </div>
+
+            </form>
         </div>
     </div>
-
-    <?php
-    include '../database/dbconnect.php';
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $uid = $_POST['uid'];
-        $bid = $_POST['bid'];
-        $stars = $_POST['rating'];
-        echo "<script>alert('bid: {$bid}');</script>";
-
-        // Validate if the rating is provided
-        if (empty($stars)) {
-            echo '<script>alert("Please provide a rating before submitting.");</script>';
-        } else {
-            // Assuming you have a 'booklog' table with columns 'uid', 'bid', 'stars', and 'feedback'
-            $sql = "UPDATE booklog SET stars = $stars, feedback = '' WHERE uid = '$uid' AND bid = '$bid'";
-
-
-            if ($conn->query($sql)) {
-                echo '<script>alert("Feedback submitted successfully.");</script>';
-            } else {
-                echo '<script>alert("Error updating feedback: ' . $conn->error . '");</script>';
-            }
-            
-        }
-    }
-    $conn->close();
-    ?>
 
     <script>
         function openDiv() {
@@ -176,20 +160,44 @@
             modal.style.display = 'none';
         }
 
-        function validateForm() {
-            var stars = document.querySelector('input[name="rating"]:checked');
-            if (!stars) {
-                alert('Please provide a rating before submitting.');
+        function submitForm() {
+           if(document.getElementById('star1').checked || document.getElementById('star2').checked || document.getElementById('star3').checked || document.getElementById('star4').checked || document.getElementById('star5').checked)
+           {
+                
+                return true;
+           } 
+           else
+           {
+                alert("Please Enter rating before submiting");
                 return false;
-            }
-
-            // Set the value of the hidden rating field
-            document.getElementById('rating').value = stars.value;
-
-            return true;
+           }
+           
+            
         }
     </script>
-
 </body>
 
 </html>
+
+<?php
+include '../database/dbconnect.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['rating'])) {
+    $uid = $_POST['uid'];
+    $bid = $_POST['bid'];
+    $stars = $_POST['rating'];
+    $feedback = $_POST['Feedback'];
+
+    $sql = "UPDATE booklog SET stars = $stars, feedback = '$feedback' WHERE uid = $uid AND bid = $bid";
+
+    if ($conn->query($sql)) {
+        echo '<script>alert("Feedback submitted successfully.");</script>';
+        echo '<script>window.location.href = "notification.php";</script>';
+    } else {
+        echo '<script>alert("Error updating feedback: ' . $conn->error . '");</script>';
+    }
+}
+
+$conn->close();
+
+?>
