@@ -188,13 +188,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['rating'])) {
     $stars = $_POST['rating'];
     $feedback = $_POST['Feedback'];
 
-    $sql = "UPDATE booklog SET stars = $stars, feedback = '$feedback' WHERE uid = $uid AND bid = $bid";
+    $sql = $conn->prepare("UPDATE booklog SET stars = ?, feedback = ? WHERE uid = $uid AND bid = $bid");
+    $sql->bind_param("is",$stars,$feedback);
+    $sql->execute();
 
-    if ($conn->query($sql)) {
+    if ($sql->errno) {
+        echo '<script>alert("Error updating feedback: ' . $sql->error. '");</script>';
+    } else {
         echo '<script>alert("Feedback submitted successfully.");</script>';
         echo '<script>window.location.href = "notification.php";</script>';
-    } else {
-        echo '<script>alert("Error updating feedback: ' . $conn->error . '");</script>';
     }
 }
 

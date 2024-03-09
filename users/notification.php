@@ -146,8 +146,7 @@ function reviewFunction() {
                     <input type='hidden' name='bid' value='$bid'>
                     <input type='hidden' name='uid' value='$uid'>
                     <input type='hidden' name='bname' value='$bname'>
-                    <a href='whatsapp.php'>click here to add review</a>
-                    <input type='submit' ></form>
+                    <input type='submit' value='click here to add review'></form>
                     <div class='msg-time'>date</div></div>";
             }
         }
