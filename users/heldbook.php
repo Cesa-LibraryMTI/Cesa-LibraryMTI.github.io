@@ -40,11 +40,8 @@
             include '../database/dbconnect.php';
           
     session_start();
-    $uname=$_SESSION['name'];
-    $sql="SELECT uid FROM members WHERE username='$uname' ";
-    $res = $conn->query($sql); 
-    $ro = $res->fetch_assoc();
-    $uid=$ro['uid'];
+    
+    $uid=$_SESSION['id'];
 
 
 // Select relevant data from the members table
@@ -54,20 +51,12 @@
     {
         while ($row = $result->fetch_assoc()) 
         {
-            $bid = $row['bid'];
-     
-            #$sql = "SELECT * FROM books WHERE bid IN (SELECT bid FROM booklog WHERE return_date is NULL OR bid=$bid) ";
-            #$res = $conn->query($sql);
-            #if ($res !== false && $res->num_rows > 0) {
-             #   while ($ro = $res->fetch_assoc()) {
-           
-
-            
+            $bid = $row['bid'];            
             $bname = $row['bname'];
             $bauthor = $row['bauthor'];
             $bprice = $row['bprice'];
             $bcategory = $row['bcategory'];
-            echo "<tr><td>$bid</td><td>$bname</td><td>$bauthor</td><td>$bprice</td><td>$bcategory</td><td><form method='POST'><input type='hidden' name ='bid' value ='$bid'><input type='hidden' name ='uid' value ='$uid'><button class = 'mbuttons' name = 'issue' ><i class='bi bi-cart-fill'></i></button></form></td><tr>";
+            echo "<tr><td>$bid</td><td>$bname</td><td>$bauthor</td><td>$bprice</td><td>$bcategory</td><td><form method='POST'><input type='hidden' name ='bid' value ='$bid'><input type='hidden' name ='bname' value ='$bname'><input type='submit'></form></td><tr>";
         }
 
     } 
@@ -75,36 +64,56 @@
     {
         echo "<br><h1><font color='blue'><i>No records found</i></font></h1><br>";
     }
+?>
+    </tbody>
+    </table>
+    </main>
+</body>
+</html>
 
+<?php
 
-
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $bid = $_POST['bid'];
-        $uid = $_POST['uid'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
-        do{
-            $heldid = rand(1,100000000);
-            $sq1 = "select count(heldid) as cn from heldlog where heldid = $heldid";
-            $r1 = $conn->query($sq1);
-            $c = $r1->fetch_assoc()['cn'];
-        }while($c != 0);
-
+    $bid = $_POST['bid'];
+    $uid = $_SESSION['id'];
+    $bname=$_POST['bname'];
+    // Using prepared statement to prevent SQL injection
+    $sqlCheck = "SELECT COUNT(uid) as cn FROM heldlog WHERE uid = ? AND status = 1";
+    $stmtCheck = $conn->prepare($sqlCheck);
+    $stmtCheck->bind_param("i", $uid); // Assuming $uid is an integer, adjust the type accordingly
+    $stmtCheck->execute();
+    $stmtCheck->bind_result($count);
+    $stmtCheck->fetch();
+    $stmtCheck->close();
     
-        $currentDate = date("Y-m-d");
-        $sql = "INSERT INTO heldlog values($heldid,$bid,$uid,'$currentDate')";
-        $conn->query($sql);
-        }
+
+    if ($count != 0) {
+        echo "<script>alert('Only one book can be held by a person');</script>";
         
+    } else {
+        // Continue with your logic to generate heldid and insert into the database
+        do {
+            $heldid = rand(1, 100000000);
+            $sqlCount = "SELECT COUNT(heldid) as cn FROM heldlog WHERE heldid = ?";
+            $stmtCount = $conn->prepare($sqlCount);
+            $stmtCount->bind_param("i", $heldid);
+            $stmtCount->execute();
+            $stmtCount->bind_result($c);
+            $stmtCount->fetch();
+            $stmtCount->close();
+        } while ($c != 0);
 
+        $currentDate = date("Y-m-d");
+        $sqlInsert = "INSERT INTO heldlog (heldid, bid, uid, held_date) VALUES (?, ?, ?, ?)";
+        $stmtInsert = $conn->prepare($sqlInsert);
+        $stmtInsert->bind_param("iiis", $heldid, $bid, $uid, $currentDate);
+        $stmtInsert->execute();
+        $stmtInsert->close();
+        echo "<script>alert('held book $bname succesfully ');</script>";
+    }
+}
 
 // Close the database connection
-    $conn->close();
-    ?>
-            </tbody>
-        </table>
-
-       
-    </main>
-    
-</html>
+$conn->close();
+?>
