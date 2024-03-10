@@ -203,7 +203,7 @@
 <h3>Recomended Books</h3>
     <div class="media-scroller snaps-inline">
         <?php
-            include 'dbconnect.php';
+            include '../database/dbconnect.php';
             $sql = "SELECT * FROM books WHERE bid IN (SELECT DISTINCT bid FROM booklog WHERE stars > (SELECT AVG(stars) FROM booklog where stars IS NOT NULL) ORDER BY stars DESC)";
             
             $result = $conn->query($sql);
@@ -227,7 +227,7 @@
     <h3>Top Rated Books</h3>
     <div class="media-scroller snaps-inline">
         <?php
-            include 'dbconnect.php';
+            include '../database/dbconnect.php';
             $sql = "SELECT * FROM books WHERE bid IN (SELECT DISTINCT bid FROM booklog WHERE stars > (SELECT AVG(stars) FROM booklog where stars IS NOT NULL) ORDER BY stars DESC)";
             
             $result = $conn->query($sql);
@@ -251,7 +251,7 @@
     <br>
     <div class="media-scroller snaps-inline">
         <?php
-            include 'dbconnect.php';
+            include '../database/dbconnect.php';
             $sql = "SELECT DISTINCT bcategory from books";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
@@ -271,7 +271,7 @@
     <br>
     <div class="media-scroller snaps-inline">
         <?php
-            include 'dbconnect.php';
+            include '../database/dbconnect.php';
             $sql = "SELECT DISTINCT bauthor FROM books";
             
             $result = $conn->query($sql);
