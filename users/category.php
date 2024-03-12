@@ -41,17 +41,17 @@
 include '../database/dbconnect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $bauthor = $_POST['bauthor'];
-    echo "<h1>$bauthor</h1>";
+    $bcategory = $_POST['bcategory'];
+    echo "<h1>$bcategory</h1>";
 
-    $sql = "SELECT b.bid, b.bname, b.bcategory, COALESCE(ROUND(AVG(bl.stars), 0), 1) AS avgstars
+    $sql = "SELECT b.bid, b.bname, b.bauthor, COALESCE(ROUND(AVG(bl.stars), 0) ,1) AS avgstars
             FROM books b
             LEFT JOIN booklog bl ON b.bid = bl.bid
-            WHERE b.bauthor = ?
+            WHERE b.bcategory = ?
             GROUP BY b.bid";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $bauthor);
+    $stmt->bind_param("s", $bcategory);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -59,10 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         while ($row = $result->fetch_assoc()) {
             $bid = $row['bid'];
             $bname = $row['bname'];
-            $bcategory = $row['bcategory'];
+            $bauthor = $row['bauthor'];
             $avgstars = $row['avgstars'];
 
-            echo "<div class='box'>$bid <br> $bname <br> $bcategory <br>";
+            echo "<div class='box'>$bid <br> $bname <br> $bauthor <br>";
 
             for ($count = 1; $count <= $avgstars; $count++) {
                 echo "<i class='bi bi-star-fill'></i>";
@@ -70,14 +70,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             echo "</div>";
         }
-    } else {
-        echo "No rows";
     }
-
     $stmt->close();
 }
 ?>
-
   
    
   </div>

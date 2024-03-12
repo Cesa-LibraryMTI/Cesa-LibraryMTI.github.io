@@ -289,45 +289,58 @@
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $bcategory = $row['bcategory'];
-                    echo "<div class='media-element'>
+
+                    echo "<form class='myForm' action='category.php' method='post'>
+                      <a href='#' class='submitForm'>
+                          <div class='media-element'>
                             <img src='nature.jpeg' class='blur-image' alt='$bcategory'>
-                            <div class='text-overlay'><h3>$bcategory</h3></div>
-                        </div>";
+                            <div class='text-overlay'><h3>$bcategory</h3><input type='hidden' name='bcategory' value='$bcategory'></div>
+                          </div>
+                      </a>
+                  </form>";
+
+                   
                 }
             }
         ?>
     </div>
     
 <br>
-    <h3>Authors</h3>
-    <br>
-    <div class="media-scroller snaps-inline">
-        <?php
-            include '../database/dbconnect.php';
-            $sql = "SELECT DISTINCT bauthor FROM books";
-            
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    
-                    $bauthor=$row['bauthor'];
-                    
-                    echo "<form id='myForm' action='author.php' method='post'><a href='#' id='submitForm'><div class='author-elememt'>
-                            <div class='text-overlay'><h3>$bauthor</h3><input type='hidden' name='bauthor' value='$bauthor'></div>
-                            </div></a></form>";
+<h3>Authors</h3>
+<br>
+<div class="media-scroller snaps-inline">
+    <?php
+    include '../database/dbconnect.php';
+    $sql = "SELECT DISTINCT bauthor FROM books";
 
-                }
-            }
-        ?>
-        <script>
-    document.getElementById('submitForm').addEventListener('click', function(event) {
-      event.preventDefault(); // prevent the default action of the anchor tag
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $bauthor = $row['bauthor'];
 
-      // submit the form using JavaScript
-      document.getElementById('myForm').submit();
-    });
-  </script>
-    </div>
+            echo "<form class='myForm' action='author.php' method='post'>
+                      <a href='#' class='submitForm'>
+                          <div class='author-elememt'>
+                              <div class='text-overlay'><h3>$bauthor</h3><input type='hidden' name='bauthor' value='$bauthor'></div>
+                          </div>
+                      </a>
+                  </form>";
+        }
+    }
+    ?>
+    <script>
+        // Get all elements with class 'submitForm' and add an event listener to each
+        var submitForms = document.getElementsByClassName('submitForm');
+        for (var i = 0; i < submitForms.length; i++) {
+            submitForms[i].addEventListener('click', function (event) {
+                event.preventDefault(); // prevent the default action of the anchor tag
+
+                // Find the closest form element and submit it
+                this.closest('.myForm').submit();
+            });
+        }
+    </script>
+</div>
     <br>
     </div>
       
