@@ -24,9 +24,11 @@
 
         .media-scroller {
             display: grid;
-            gap: var(--size-3);
+            gap: var(--size-4);
             grid-auto-flow: column;
             grid-auto-columns: 30%;
+            height: 300px;
+
 
             padding: 0 var(--size-2) var(--size-2);
 
@@ -44,7 +46,7 @@
             border-radius: var(--radius-2);
             box-shadow: var(--shadow-2);
             position: relative; /* Added for absolute positioning of text */
-            min-height: 200px;
+            height: 200px;
             min-width: 200px;
             transition: transform 0.2s ease-in-out;
         }
@@ -179,11 +181,12 @@
           border-radius: 20px;
           padding: 5px 20px;
           border-color: #fff;
-          border-width: 2px;
+          border-width: 0px;
           position: absolute;
           top: 20px;
           right: 50px;
           color: white;
+          background-color: black;
       }
     </style>
 
