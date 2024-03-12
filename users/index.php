@@ -402,10 +402,16 @@ if (isset($_SESSION['logged'])) {
                     
                     $bauthor=$row['bauthor'];
                     
-                    echo "<a href=notification.php><div class='author-elememt'>
-                            <div class='text-overlay'><h3>$bauthor</h3></div>
-                            </div></a>";
-
+                    echo "<a href='#' onclick='document.getElementById('myForm').submit(); return false;'>
+                    <div class='author-element'>
+                        <div class='text-overlay'><h3>$bauthor</h3></div>
+                    </div>
+                </a>
+                
+                <form id='myForm' method='post' action='totbooks.php'>
+                    <!-- Your form fields go here -->
+                </form>";
+                
                 }
             }
         ?>
