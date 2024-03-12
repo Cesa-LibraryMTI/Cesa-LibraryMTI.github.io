@@ -100,10 +100,10 @@
             border-radius: 0 0 50% 50%; /* This creates a semi-circle at the bottom */
         }
 
-        .content {
-            text-align: center; /* Center the text horizontally */
-            color: #fff;
-        }
+    .content {
+        text-align: center; /* Center the text horizontally */
+        color: #fff;
+    }
 
         /* search bar */
 
@@ -309,13 +309,21 @@
                     
                     $bauthor=$row['bauthor'];
                     
-                    echo "<a href=notification.php><div class='author-elememt'>
-                            <div class='text-overlay'><h3>$bauthor</h3></div>
-                            </div></a>";
+                    echo "<form id='myForm' action='author.php' method='post'><a href='#' id='submitForm'><div class='author-elememt'>
+                            <div class='text-overlay'><h3>$bauthor</h3><input type='hidden' name='bauthor' value='$bauthor'></div>
+                            </div></a></form>";
 
                 }
             }
         ?>
+        <script>
+    document.getElementById('submitForm').addEventListener('click', function(event) {
+      event.preventDefault(); // prevent the default action of the anchor tag
+
+      // submit the form using JavaScript
+      document.getElementById('myForm').submit();
+    });
+  </script>
     </div>
     <br>
     </div>
