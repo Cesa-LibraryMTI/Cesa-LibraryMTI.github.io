@@ -12,8 +12,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
-    <script src = "../js/search.js"></script>
     <style>
         /* scrolling */
         @import "https://unpkg.com/open-props";
@@ -175,22 +173,18 @@
             transform: scale(1.1);
         }
 
+
         .log {
           
-            border-radius: 20px;
-            padding: 5px 20px;
-            border-color: #fff;
-            border-width: 2px;
-            position: absolute;
-            top: 20px;
-            right: 50px;
-            color: white;
-        }
-    #myTable{
-        display: none;
-        
-    }
-
+          border-radius: 20px;
+          padding: 5px 20px;
+          border-color: #fff;
+          border-width: 2px;
+          position: absolute;
+          top: 20px;
+          right: 50px;
+          color: white;
+      }
     </style>
 
     <script>
@@ -198,44 +192,33 @@
         {
             var box = document.getElementById('general');
             box.style.display = 'none';
-
-            var b = document.getElementById('myTable');
-            b.style.display = 'contents';
-        }
-
-        function refreshPage() {
-            location.reload();
         }
     </script>
 </head>
 <body>
 
     <div class="curved-bottom-div">
-    
+
+
     <?php
    
-if (isset($_SESSION['logged'])) {
-    $uname=$_SESSION['name'];
-    echo "<a href='logout/' onclick='refreshPage()'><button class='log'><i class='bi bi-person-fill'></i>$uname</button></a>";
-} else {
-    echo "<a href='../login/'><button class='log'><p class='login'>Login</p></button></a>";
-}
-?>
-        
-
-
-
+   if (isset($_SESSION['logged'])) {
+       $uname=$_SESSION['name'];
+       echo "<a href='logout/' onclick='refreshPage()'><button class='log'><i class='bi bi-person-fill'></i>$uname</button></a>";
+   } else {
+       echo "<a href='../login/'><button class='log'><p class='login'>Login</p></button></a>";
+   }
+   ?>
 
         <div class="content">
             <!-- Your content goes here -->
-            
             <h2>CESA</h2>
             <p>Library Management System</p>
             
             
             <div class="search-container">
         <form method="POST">
-        <input type="text" class="search-input" placeholder="Search by book name,author,category" id = "myInput"  onkeyup="searchTable();displaynone()">
+        <input type="text" class="search-input" placeholder="Search by book name,author,category">
         <button class="search-button" onclick="displaynone()">
             <i class="fas fa-search"></i>
         </button>
@@ -245,82 +228,6 @@ if (isset($_SESSION['logged'])) {
                 <i>"The only thing you absolutely have to know is the location of the library." - Albert Einstein</i>
         </div>
     </div>
-
-    <br>
-
-
-
-
-
-
-
-    <div id="myTable">
-    <table>
-            <thead>
-            <tr>
-                <th>SI NO</th>
-                <th>BOOK NAME</th>
-                <th>AUTHOR</th>
-                <th>PRICE</th>
-                <th>CATEGORY</th>
-                <th>COPIES</th>
-                <th>AVAILABLE</th>
-                <th>MODIFY</th>
-            </tr>
-            </thead>
-            <tbody>
-                
-            <?php
-                include '../database/dbconnect.php';
-                include '../database/checker.php';
-                $sql = "SELECT * FROM viewbooks";
-                $result = $conn->query($sql);
-
-                
-            
-                if (($result !== false)&&($result->num_rows > 0)) {
-                    while ($row = $result->fetch_assoc()) {
-                        // Access individual columns using the column name
-                        $bid = $row['bid'];
-                        $bname = $row['bname'];
-                        $bauthor = $row['bauthor'];
-                        $bprice = $row['bprice'];
-                        $bcategory = $row['bcategory'];
-                        $bcopy = $row['copies'];
-                        $bavailable = $row['available'];
-                        // Perform actions with the data (e.g., display or process)
-                        echo "<tr><td>$bid</td><td>$bname</td><td>$bauthor</td><td>$bprice</td><td>$bcategory</td><td>$bcopy</td><td>$bavailable</td>";
-                        echo "<td class = 'modbuttons'>";
-                        echo "<form method='POST' action = 'editbook.php'><input type = 'hidden' name = 'sent' value = '1'><input type = 'hidden' name = 'book' value = $bid><input type = 'hidden' name = 'bookname' value = $bname><input type = 'hidden' name = 'bauthor' value = '$bauthor'><input type = 'hidden' name = 'bprice' value = '$bprice'><input type = 'hidden' name = 'bcategory' value = '$bcategory'><input type = 'hidden' name = 'bcopy' value = '$bcopy'><input type = 'hidden' name = 'bavailable' value = '$bavailable'><button type = 'submit' class = 'ebuttons' name = 'edit'><i class='bi bi-pencil-square icon mb-2'></i></button></form>";
-                        echo "<form method='post'><input type = 'hidden' name = 'book' value = $bid><input type = 'hidden' name = 'bookname' value = $bname><button class = 'dbuttons' name = 'delete' onclick = 'return valid(`$bname`,$bcopy,$bavailable)'><i class='bi bi-trash3-fill icon mb-2'></i></button></form>";
-                        echo "</td>";
-                        echo "</tr>";
-                    }
-                }else{
-                    print "<br><h1><font color = 'blue'><i>Wrong credentials<i><font></h1><br>";
-                }
-                $conn->close();
-            ?>
-            </tbody>
-        </table>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 <div id="general">
 <h3>Recomended Books</h3>
     <div class="media-scroller snaps-inline">
@@ -402,16 +309,10 @@ if (isset($_SESSION['logged'])) {
                     
                     $bauthor=$row['bauthor'];
                     
-                    echo "<a href='#' onclick='document.getElementById('myForm').submit(); return false;'>
-                    <div class='author-element'>
-                        <div class='text-overlay'><h3>$bauthor</h3></div>
-                    </div>
-                </a>
-                
-                <form id='myForm' method='post' action='totbooks.php'>
-                    <!-- Your form fields go here -->
-                </form>";
-                
+                    echo "<a href=notification.php><div class='author-elememt'>
+                            <div class='text-overlay'><h3>$bauthor</h3></div>
+                            </div></a>";
+
                 }
             }
         ?>
@@ -422,5 +323,3 @@ if (isset($_SESSION['logged'])) {
 </body>
 
 </html>
-
-
