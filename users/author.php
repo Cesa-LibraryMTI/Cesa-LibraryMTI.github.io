@@ -21,6 +21,7 @@
   width: 200px;
   height: 200px;
   background-color: #343a40;
+  color: white;
   margin: 15px;
   display: flex;
   justify-content: center;
@@ -31,7 +32,9 @@
 }
 .box:hover{
   transform: scale(1.1);
-}    </style>
+} 
+
+</style>
 </head>
 <body>
   
@@ -60,13 +63,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $bcategory = $row['bcategory'];
             $avgstars = $row['avgstars'];
 
-            echo "<div class='box'>$bid <br> $bname <br> $bcategory <br>";
+            echo "<form class='myForm' action='bookdetails.php' method='post'>
+            <a href='#' class='submitForm'>
+            <div class='box'>$bid <br> $bname <br> $bcategory <br>";
 
             for ($count = 1; $count <= $avgstars; $count++) {
                 echo "<i class='bi bi-star-fill'></i>";
             }
 
-            echo "</div>";
+            echo "</div></a><input type='hidden' name='bid' value='$bid'></form>";
         }
     } else {
         echo "No rows";
@@ -76,8 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-  
-   
+<script src="aSubmit.js"></script>   
   </div>
 </body>
 </html>

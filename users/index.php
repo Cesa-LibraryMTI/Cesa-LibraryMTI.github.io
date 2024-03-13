@@ -245,10 +245,11 @@
                     $bname=$row['bname'];
                     $bcategory=$row['bcategory'];
                     $bprice=$row['bprice'];
-                    echo "<form method='POST'><a href=notification.php><div class='media-element'>
+                    echo "<form class='myForm' action='bookdetails.php' method='post'>
+                    <a href='#' class='submitForm'>
+                    <div class='media-element'>
                             <div class='text-overlay'><h3>$bname</h3></div>
-                            <input type='hidden' value='$bid' name='bid'><input type='hidden' value='$bname' name='bname'><input type='hidden' value='$bcategory' name='bcategory'><input type='hidden' value='$bprice' name='bprice'>
-                            </div></a></form>";
+                            </div></a><input type='hidden' name='bid' value='$bid'></form>";
 
                 }
             }
@@ -269,10 +270,11 @@
                     $bname=$row['bname'];
                     $bcategory=$row['bcategory'];
                     $bprice=$row['bprice'];
-                    echo "<form method='POST'><a href=notification.php><div class='media-element'>
+                    echo "<form class='myForm' action='bookdetails.php' method='post'>
+                    <a href='#' class='submitForm'>
+                    <div class='media-element'>
                             <div class='text-overlay'><h3>$bname</h3></div>
-                            <input type='hidden' value='$bid' name='bid'><input type='hidden' value='$bname' name='bname'><input type='hidden' value='$bcategory' name='bcategory'><input type='hidden' value='$bprice' name='bprice'>
-                            </div></a></form>";
+                            </div></a><input type='hidden' name='bid' value='$bid'></form>";
 
                 }
             }
@@ -328,18 +330,7 @@
         }
     }
     ?>
-    <script>
-        // Get all elements with class 'submitForm' and add an event listener to each
-        var submitForms = document.getElementsByClassName('submitForm');
-        for (var i = 0; i < submitForms.length; i++) {
-            submitForms[i].addEventListener('click', function (event) {
-                event.preventDefault(); // prevent the default action of the anchor tag
-
-                // Find the closest form element and submit it
-                this.closest('.myForm').submit();
-            });
-        }
-    </script>
+    <script src="aSubmit.js"></script>
 </div>
     <br>
     </div>

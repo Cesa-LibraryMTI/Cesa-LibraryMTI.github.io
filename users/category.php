@@ -22,6 +22,7 @@
   width: 200px;
   height: 200px;
   background-color: #343a40;
+  color: white;
   margin: 10px;
   display: flex;
   justify-content: center;
@@ -62,19 +63,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $bauthor = $row['bauthor'];
             $avgstars = $row['avgstars'];
 
-            echo "<div class='box'>$bid <br> $bname <br> $bauthor <br>";
+            echo "<form class='myForm' action='bookdetails.php' method='post'>
+            <a href='#' class='submitForm'>
+<div class='box'>$bid <br> $bname <br> $bauthor <br>";
 
             for ($count = 1; $count <= $avgstars; $count++) {
                 echo "<i class='bi bi-star-fill'></i>";
             }
 
-            echo "</div>";
+            echo "</div></a><input type='hidden' name='bid' value='$bid'></form>";
         }
     }
     $stmt->close();
 }
 ?>
-  
+
+
+<script src="aSubmit.js"></script>
+
    
   </div>
 </body>
