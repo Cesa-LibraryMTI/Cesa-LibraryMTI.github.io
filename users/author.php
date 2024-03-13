@@ -9,10 +9,11 @@
 
   <style>
     body{
-      background-color: black;
+      background-color:#1e2125;
       color: white;
     }
     .container {
+      margin-top: 5%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -20,7 +21,7 @@
 .box {
   width: 200px;
   height: 200px;
-  background-color: grey;
+  background-color: #343a40;
   margin: 10px;
   display: flex;
   justify-content: center;
