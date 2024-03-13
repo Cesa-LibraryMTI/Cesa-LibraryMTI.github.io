@@ -8,12 +8,11 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <style>
-    body{
+     body{
       background-color:#1e2125;
       color: white;
     }
     .container {
-      margin-top: 5%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -22,7 +21,7 @@
   width: 200px;
   height: 200px;
   background-color: #343a40;
-  margin: 10px;
+  margin: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,18 +31,16 @@
 }
 .box:hover{
   transform: scale(1.1);
-}
-
-    </style>
+}    </style>
 </head>
 <body>
-  <div class="container">
+  
   <?php
 include '../database/dbconnect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $bauthor = $_POST['bauthor'];
-    echo "<h1>$bauthor</h1>";
+    echo "<h1>$bauthor</h1><br><div class='container'>";
 
     $sql = "SELECT b.bid, b.bname, b.bcategory, COALESCE(ROUND(AVG(bl.stars), 0), 1) AS avgstars
             FROM books b

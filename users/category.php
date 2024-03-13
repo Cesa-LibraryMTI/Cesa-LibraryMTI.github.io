@@ -14,7 +14,6 @@
       color: white;
     }
     .container {
-      margin-top: 5%;
   display: flex;
   flex-wrap: wrap;
 }
