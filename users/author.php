@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $bauthor = $_POST['bauthor'];
     echo "<h1>$bauthor</h1><br><div class='container'>";
 
-    $sql = "SELECT b.bid, b.bname, b.bcategory, COALESCE(ROUND(AVG(bl.stars), 0), 1) AS avgstars
+    $sql = "SELECT b.bid, b.bname, b.bcategory, COALESCE(ROUND(AVG(bl.stars), 0), 0) AS avgstars
             FROM books b
             LEFT JOIN booklog bl ON b.bid = bl.bid
             WHERE b.bauthor = ?
@@ -67,9 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a href='#' class='submitForm'>
             <div class='box'>$bid <br> $bname <br> $bcategory <br>";
 
-            for ($count = 1; $count <= $avgstars; $count++) {
-                echo "<i class='bi bi-star-fill'></i>";
-            }
+            for ($count = 0; $count < 5; $count++) {
+              if($count < $avgstars) echo "<i class='bi bi-star-fill'></i>";
+              else echo "<i class='bi bi-star'></i>";
+          }
 
             echo "</div></a><input type='hidden' name='bid' value='$bid'></form>";
         }

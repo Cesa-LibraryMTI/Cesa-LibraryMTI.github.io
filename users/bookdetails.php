@@ -1,3 +1,9 @@
+<?php
+    //there is no checking given at in this code to 
+    // chek whether there is session or not 
+    // correct it 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $bid = $_POST['bid'];
 
     // Query to get book details
-    $sql_book = "SELECT b.bname, b.bcategory, b.bauthor, COALESCE(ROUND(AVG(bl.stars), 0), 1) AS avgstars
+    $sql_book = "SELECT b.bname, b.bcategory, b.bauthor, COALESCE(ROUND(AVG(bl.stars), 0), 0) AS avgstars
                  FROM books b
                  LEFT JOIN booklog bl ON b.bid = bl.bid
                  WHERE b.bid = ?
@@ -33,10 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $bcategory = $row_book['bcategory'];
         $avgstars = $row_book['avgstars'];
 
-        echo "id: $bid <br>name: $bname <br>category: $bcategory <br>";
+        echo "id: $bid <br>name: $bname <br>category: $bcategory <br>Author: $bauthor<br>";
 
-        for ($count = 1; $count <= $avgstars; $count++) {
-            echo "<i class='bi bi-star-fill'></i>";
+        for ($count = 0; $count < 5; $count++) {
+            if($count < $avgstars) echo "<i class='bi bi-star-fill'></i>";
+            else echo "<i class='bi bi-star'></i>";
         }
     }
 
@@ -50,12 +57,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt_available->execute();
     $result_available = $stmt_available->get_result();
 
-    if ($result_available->num_rows > 0) {
         $row_available = $result_available->fetch_assoc();
         $available = $row_available['available'];
         if($available > 0) echo "<br>Status: Available ";
-        else echo "<br>Status: Not Available <br><input type='button' value='held book'>";
-    }
+        else 
+        {
+            echo "reached else of status available";
+            $uid=$_SESSION['id'];
+            echo "<br>Status: Not Available <br>";
+            $sqlCheck = "SELECT COUNT(uid) as cn FROM heldlog WHERE uid = ? AND status = 1";
+            $stmtCheck = $conn->prepare($sqlCheck);
+            $stmtCheck->bind_param("i", $uid); // Assuming $uid is an integer, adjust the type accordingly
+            $stmtCheck->execute();
+            $stmtCheck->bind_result($count);
+            $stmtCheck->fetch();
+            $stmtCheck->close();
+    
+
+    if ($count == 0) {
+        //echo "<script>alert('Only one book can be held by a person');</script>";
+        $sqlCheck = "SELECT COUNT(bid) as countbid FROM heldlog WHERE bid = ? AND status = 1";
+        $stmtCheck = $conn->prepare($sqlCheck);
+        $stmtCheck->bind_param("i", $bid); // Assuming $uid is an integer, adjust the type accordingly
+        $stmtCheck->execute();
+        $stmtCheck->bind_result($countbid);
+        $stmtCheck->fetch();
+        $stmtCheck->close();
+        if($countbid < $available)
+        {
+            //echo "<form method='POST' action='test'><input type='button' value='held book'>";
+            echo "you can held this book";
+        }
+        
+    } 
+}
 
     // Query to get feedback
     $sql_feedback = "SELECT u.username, b1.feedback
@@ -84,6 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt_feedback->close();
     $stmt_available->close();
 }
+
 ?>
     
     </h1>
