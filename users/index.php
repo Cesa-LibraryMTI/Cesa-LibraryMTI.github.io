@@ -199,21 +199,6 @@
     </script>
 </head>
 <body>
-    
-    <?php
-    $totalcount = 1;
-    if(isset($_COOKIE['count'])){
-        $totalcount = $_COOKIE['count'];
-        $totalcount++;
-    }
-    if($totalcount == 1){
-        echo "<script> document.body.style.overflow = 'hidden';</script>";
-        echo "<div class='loading-screen'><div class='glowing-text'>CESA</div></div>";
-        echo "<script> setTimeout(function() {document.body.style.overflow = 'auto';}, 2000);</script>";
-    }
-    setcookie('count',$totalcount);
-    ?>
-
 
     <div class="curved-bottom-div">
 
@@ -350,14 +335,6 @@
     <br>
     </div>
       
-
-
-    <?php
-        if($totalcount == 1){
-            include 'usernotification.php';
-        }  
-    ?>
-
 </body>
 
 </html>

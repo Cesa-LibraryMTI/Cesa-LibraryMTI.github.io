@@ -1,20 +1,11 @@
-<?php
-    //there is no checking given at in this code to 
-    // chek whether there is session or not 
-    // correct it 
-    session_start();
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<html>
+    <head><title>Book Details</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <h1>
-    <?php
+
+<?php
+session_start();
 include '../database/dbconnect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -39,61 +30,61 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $bcategory = $row_book['bcategory'];
         $avgstars = $row_book['avgstars'];
 
-        echo "id: $bid <br>name: $bname <br>category: $bcategory <br>Author: $bauthor<br>";
+        echo "<h1>Book Details</h1>";
+        echo "<p>ID: $bid <br>Name: $bname <br>Category: $bcategory <br>Author: $bauthor<br>";
 
+        // Print stars
         for ($count = 0; $count < 5; $count++) {
-            if($count < $avgstars) echo "<i class='bi bi-star-fill'></i>";
-            else echo "<i class='bi bi-star'></i>";
+            if ($count < $avgstars) {
+                echo "<i class='bi bi-star-fill'></i>";
+            } else {
+                echo "<i class='bi bi-star'></i>";
+            }
         }
+        echo "</p>";
     }
 
-
-    $sql_available = "SELECT available
-                 FROM copies
-                 WHERE bid = ? ";
-
+    // Check book availability
+    $sql_available = "SELECT available, copies FROM copies WHERE bid = ?";
     $stmt_available = $conn->prepare($sql_available);
     $stmt_available->bind_param("i", $bid);
     $stmt_available->execute();
     $result_available = $stmt_available->get_result();
 
+    if ($result_available->num_rows > 0) {
         $row_available = $result_available->fetch_assoc();
         $available = $row_available['available'];
-        if($available > 0) echo "<br>Status: Available ";
-        else 
-        {
-            echo "reached else of status available";
-            $uid=$_SESSION['id'];
-            echo "<br>Status: Not Available <br>";
-            $sqlCheck = "SELECT COUNT(uid) as cn FROM heldlog WHERE uid = ? AND status = 1";
-            $stmtCheck = $conn->prepare($sqlCheck);
-            $stmtCheck->bind_param("i", $uid); // Assuming $uid is an integer, adjust the type accordingly
-            $stmtCheck->execute();
-            $stmtCheck->bind_result($count);
-            $stmtCheck->fetch();
-            $stmtCheck->close();
-    
+        $copies = $row_available['copies'];
 
-    if ($count == 0) {
-        //echo "<script>alert('Only one book can be held by a person');</script>";
-        $sqlCheck = "SELECT COUNT(bid) as countbid FROM heldlog WHERE bid = ? AND status = 1";
-        $stmtCheck = $conn->prepare($sqlCheck);
-        $stmtCheck->bind_param("i", $bid); // Assuming $uid is an integer, adjust the type accordingly
-        $stmtCheck->execute();
-        $stmtCheck->bind_result($countbid);
-        $stmtCheck->fetch();
-        $stmtCheck->close();
-        if($countbid < $available)
-        {
-            //echo "<form method='POST' action='test'><input type='button' value='held book'>";
-            echo "you can held this book";
+        echo "<p>Status: ";
+        if ($available > 0) {
+            echo "Available";
+        } else {
+            // Check if the book is held by the user
+            $uid = $_SESSION['id'];
+            $sql_held = "SELECT COUNT(*) AS count FROM heldlog WHERE uid = ? AND bid = ? AND status = 1";
+            $stmt_held = $conn->prepare($sql_held);
+            $stmt_held->bind_param("ii", $uid, $bid);
+            $stmt_held->execute();
+            $result_held = $stmt_held->get_result();
+            $row_held = $result_held->fetch_assoc();
+            $count_held = $row_held['count'];
+
+            if ($count_held == 0 && $copies > 0) {
+                echo "Not Available <br>";
+                echo "<form method='POST' action='InsertHeldbook.php' onsubmit='return confirm(\"Do you want to hold this book?\");'>
+                <input type='hidden' value='$bid' name='bid'>
+                <input type='submit' value='Hold Book'>
+                </form>";
+           } else {
+                echo "Not Available";
+            }
         }
-        
-    } 
-}
+        echo "</p>";
+    }
 
     // Query to get feedback
-    $sql_feedback = "SELECT u.username, b1.feedback
+    $sql_feedback = "SELECT b1.uid, COALESCE(u.username, 'Unknown') AS username, b1.feedback
                      FROM booklog b1
                      LEFT JOIN members u ON b1.uid = u.uid
                      WHERE b1.bid = ? AND b1.feedback IS NOT NULL";
@@ -104,24 +95,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result_feedback = $stmt_feedback->get_result();
     
     if ($result_feedback->num_rows > 0) {
-        echo "<br><br>feedback";
+        echo "<h2>Feedback</h2>";
         while ($row_feedback = $result_feedback->fetch_assoc()) {
             $feedback = $row_feedback['feedback'];
             $username = $row_feedback['username'];
-            echo "<h3>$username : $feedback </h3><br>";
+            echo "<p>UID: $uid, Username: $username, Feedback: $feedback</p>";
         }
     } else {
-        echo "<br><br>No feedback";
+        echo "<p>No feedback</p>";
     }
-
 
     $stmt_book->close();
     $stmt_feedback->close();
     $stmt_available->close();
 }
-
 ?>
-    
-    </h1>
+
+
+
+
+
+
 </body>
 </html>
