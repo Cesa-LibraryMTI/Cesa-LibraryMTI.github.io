@@ -183,11 +183,38 @@
           border-color: #fff;
           border-width: 0px;
           position: absolute;
-          top: 20px;
+          top: 10px;
           right: 50px;
           color: white;
           background-color: black;
       }
+
+      /*  css for buttons to display profile,notification etc..*/
+
+.dropdown{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+          
+}    
+
+  .dropdown-content {
+    display: none;
+    margin-top: 40px;
+    margin-right: 40px;
+    padding: 12px 16px;
+    z-index: 1;
+  }
+
+  .dropdown-content button {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    margin-bottom: 8px;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+  }
     </style>
 
     <script>
@@ -197,6 +224,15 @@
             box.style.display = 'none';
         }
     </script>
+
+    <script>
+        //used to display profile,notification etc..
+function toggleDropdown() {
+  var dropdownContent = document.getElementById("dropdownContent");
+  dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+}
+</script>
+
 </head>
 <body>
 
@@ -207,9 +243,21 @@
    
    if (isset($_SESSION['logged'])) {
        $uname=$_SESSION['name'];
-       echo "<a href='logout/' onclick='refreshPage()'><button class='log'><i class='bi bi-person-fill'></i>$uname</button></a>";
+       echo "       
+       <div class='dropdown'>
+       <button class='log' onclick='toggleDropdown()' ><i class='bi bi-person-fill'></i>$uname</button>    
+
+  <div class='dropdown-content' id='dropdownContent'>
+    <button class='drop'>Profile</button>
+    <button class='drop'>Notifications</button>
+    <button class='drop'>Reviews</button>
+    <a href='logout/' onclick='refreshPage()'><button class='drop'>LOG OUT</button></a>
+  </div>
+</div>
+";
    } else {
        echo "<a href='../login/'><button class='log'><p class='login'>Login</p></button></a>";
+       
    }
    ?>
 
