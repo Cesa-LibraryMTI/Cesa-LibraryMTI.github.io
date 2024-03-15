@@ -1,4 +1,14 @@
 <?php
+    
+    //used to update the heldlog status
+    include 'database/dbconnect.php';
+    $sql="UPDATE heldlog
+    SET status = 0
+    WHERE held_date < DATE_SUB(NOW(), INTERVAL 1 WEEK);";
+    $conn->query($sql);
+?>
+
+<?php
     session_start();
     if(isset($_SESSION['logged'])){
         if($_SESSION['logged'] == 0){

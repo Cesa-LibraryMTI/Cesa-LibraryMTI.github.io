@@ -1,3 +1,14 @@
+<?php
+    
+    //used to update the heldlog status
+    include 'database/dbconnect.php';
+    $sql="UPDATE heldlog
+    SET status = 0
+    WHERE held_date < DATE_SUB(NOW(), INTERVAL 1 WEEK);";
+    $conn->query($sql);
+?>
+
+
 <html>
     <head><title>Book Details</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
