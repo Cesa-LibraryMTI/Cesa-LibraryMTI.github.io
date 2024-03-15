@@ -229,6 +229,32 @@
     background-color: black;
     color: white;
   }
+
+
+
+  /* search divs css */
+
+  #container {
+  display: none;
+  flex-wrap: wrap;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: #343a40;
+  color: white;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border-radius: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+.box:hover{
+  transform: scale(1.1);
+} 
     </style>
 
     <script>
@@ -236,9 +262,33 @@
         {
             var box = document.getElementById('general');
             box.style.display = 'none';
+            var b = document.getElementById('container');
+            b.style.display = 'flex';
         }
     </script>
+    <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var input = document.getElementById("myInput");
+    input.addEventListener("keyup", searchDivs);
+  });
 
+  function searchDivs() {
+    var input, filter, divs, div, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    divs = document.getElementsByClassName("box"); // Select the divs with the class 'box'
+
+    for (i = 0; i < divs.length; i++) {
+      div = divs[i];
+      txtValue = div.textContent || div.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        div.style.display = ""; // Display the div if it matches the search
+      } else {
+        div.style.display = "none"; // Hide the div if it doesn't match the search
+      }
+    }
+  }
+</script>
     <script>
         //used to display profile,notification etc..
 function toggleDropdown() {
@@ -262,9 +312,9 @@ function toggleDropdown() {
        <button class='log' onclick='toggleDropdown()' ><i class='bi bi-person-fill'></i>$uname</button>    
 
   <div class='dropdown-content' id='dropdownContent'>
-    <button class='drop'>Profile</button>
-    <button class='drop'>Notifications</button>
-    <button class='drop'>Reviews</button>
+    <a href=''><button class='drop'>Profile</button></a>
+    <a href='newNotification.php'><button class='drop'>Notifications</button></a>
+    <a href='newReview.php'><button class='drop'>Reviews</button></a>
     <a href='logout/' onclick='refreshPage()'><button class='drop'>LOG OUT</button></a>
   </div>
 </div>
@@ -283,8 +333,8 @@ function toggleDropdown() {
             
             <div class="search-container">
         <form method="POST">
-        <input type="text" class="search-input" placeholder="Search by book name,author,category">
-        <button class="search-button" onclick="displaynone()">
+        <input type="text" class="search-input" onkeyup="displaynone()" id="myInput" placeholder="Search by book name,author,category">
+        <button class="search-button" >
             <i class="fas fa-search"></i>
         </button>
         </form>
@@ -293,6 +343,49 @@ function toggleDropdown() {
                 <i>"The only thing you absolutely have to know is the location of the library." - Albert Einstein</i>
         </div>
     </div>
+
+
+    <div class="container" id="container">
+
+    <?php
+      include '../database/dbconnect.php';
+
+      $sql = "SELECT b.bid, b.bname, b.bauthor, COALESCE(ROUND(AVG(bl.stars), 0) ,0) AS avgstars
+              FROM books b
+              LEFT JOIN booklog bl ON b.bid = bl.bid
+              GROUP BY b.bid";
+
+      $stmt = $conn->prepare($sql);
+      $stmt->execute();
+      $result = $stmt->get_result();
+
+      if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+              $bid = $row['bid'];
+              $bname = $row['bname'];
+              $bauthor = $row['bauthor'];
+              $avgstars = $row['avgstars'];
+              
+              echo "<form class='myForm' action='bookdetails.php' method='post'>
+              <a href='#' class='submitForm'><div class='box'>
+              <p>$bid</p>
+              <p>$bname</p>
+              <p>$bauthor</p><br>";
+
+              for ($count = 0; $count < 5; $count++) {
+                if($count < $avgstars) echo "<i class='bi bi-star-fill'></i>";
+                else echo "<i class='bi bi-star'></i>";
+              }
+
+              echo "</div></a><input type='hidden' name='bid' value='$bid'></form>";
+          }
+      }
+      $stmt->close();
+    ?>
+  </div>
+
+
+
 <div id="general">
 <h3>Recomended Books</h3>
     <div class="media-scroller snaps-inline">

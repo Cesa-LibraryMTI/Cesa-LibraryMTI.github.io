@@ -11,6 +11,9 @@
 
     <style>
         /* Your existing styles remain unchanged */
+        body{
+            background-color: #1e2125;
+        }
         .rating {
             display: flex;
             flex-direction: row-reverse;
@@ -72,7 +75,7 @@
         }
 
         .modal-content {
-            background: #075E54;
+            background: #343a40;
             padding: 2rem;
             border-radius: 1rem;
             width: 90%;
@@ -109,7 +112,7 @@
    
     <div class='modal' id='modal'>
         <div class='modal-content text-white'>
-            <div class='close-btn' onclick='window.location.href="notification.php"'>&times;</div>
+            <div class='close-btn' onclick='window.location.href="newReview.php"'>&times;</div>
             
             
             
@@ -142,7 +145,7 @@
                 </div>
                 <div class='actions mt-6'>
                     <button type="submit" class='button submit-btn'>Submit</button>
-                    <button type="button" class='button' onclick='window.location.href = "notification.php";'>Not now</button>
+                    <button type="button" class='button' onclick='window.location.href = "newReview.php";'>Not now</button>
                 </div>
 
             </form>
@@ -196,7 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['rating'])) {
         echo '<script>alert("Error updating feedback: ' . $sql->error. '");</script>';
     } else {
         echo '<script>alert("Feedback submitted successfully.");</script>';
-        echo '<script>window.location.href = "notification.php";</script>';
+        echo '<script>window.location.href = "newReview.php";</script>';
     }
 }
 
