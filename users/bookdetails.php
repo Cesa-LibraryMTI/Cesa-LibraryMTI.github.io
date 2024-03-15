@@ -70,12 +70,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $row_held = $result_held->fetch_assoc();
             $count_held = $row_held['count'];
 
+            //used to display the expected return date 
+$sql_expected = "SELECT DATE_ADD(MIN(issue_date), INTERVAL 1 WEEK) AS lowest_return_date, tid
+FROM booklog
+WHERE bid = ? AND tid NOT IN (SELECT tid FROM heldlog WHERE status = 1)
+GROUP BY tid";
+
+$stmt_expected = $conn->prepare($sql_expected);
+$stmt_expected->bind_param("i", $bid);
+$stmt_expected->execute();
+$result_expected = $stmt_expected->get_result();
+
+if ($result_expected->num_rows > 0) {
+echo "<h2>Status</h2>";
+$row_expected = $result_expected->fetch_assoc();
+$lowest_return_date = $row_expected['lowest_return_date'];
+$tid = $row_expected['tid'];
+echo "$tid Expected Return Date: $lowest_return_date <br>";
+}
+
+
             if ($count_held == 0 && $copies > 0) {
                 echo "Not Available <br>";
                 echo "<form method='POST' action='InsertHeldbook.php' onsubmit='return confirm(\"Do you want to hold this book?\");'>
                 <input type='hidden' value='$bid' name='bid'>
+                <input type='hidden' value='$tid' name='tid'>
                 <input type='submit' value='Hold Book'>
                 </form>";
+
+                
+                
            } else {
                 echo "Not Available";
             }

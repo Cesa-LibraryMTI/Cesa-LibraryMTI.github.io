@@ -68,7 +68,12 @@
                     <?php
                         include '../database/dbconnect.php';
                         include '../database/checker.php';
-                        $sql="SELECT * FROM books WHERE bid NOT IN (SELECT bid FROM copies WHERE available = 0)";
+                        $sql="SELECT b.*
+                        FROM books b
+                        LEFT JOIN copies c ON b.bid = c.bid AND c.available = 0
+                        LEFT JOIN heldlog h ON b.bid = h.bid AND h.status = 1
+                        WHERE c.bid IS NULL AND h.bid IS NULL;
+                         ";
                         $result=$conn->query($sql);
                         if(($result != false)&&($result->num_rows > 0))
                         {

@@ -150,11 +150,34 @@ body::-webkit-scrollbar {
     </header>
 
 
-
+    
 
     <div class="container mx-auto text-center p-6">
         <h2 class="text-2xl font-bold mb-4">General Information</h2>
-            <div class="grid grid-cols-3 gap-4"><!-- Update here -->
+            <div class="grid grid-cols-4 gap-4"><!-- Update here -->
+
+
+            <a href="adminheld.php">
+            <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
+                <i class="bi bi-people-fill icon mb-2 text-blue-500"></i>
+                <h3 class="font-semibold">Held Books</h3>
+                <p>
+                    
+                    <?php
+                        
+                        include 'database/dbconnect.php';
+                        include 'database/checker.php';
+
+                        $sql="SELECT COUNT(heldid) as held_count FROM heldlog where status = 1";
+                        $result=$conn->query($sql);
+                        if($rows=$result->fetch_assoc());
+                        echo $rows['held_count'];
+                       
+                    ?>
+                </p>
+            </div>
+            </a>
+
                 <!-- Business Analysis -->
             <a href="members">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
