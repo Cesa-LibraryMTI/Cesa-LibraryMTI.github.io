@@ -12,9 +12,10 @@ if ($result->num_rows > 0) {
         $message = $row['message'];
 
         echo "<div class='popup popup$count'>
+    
                 <p>Name: $name</p>
-                <p>Message: $message</p>
-                <button onclick='closePopup($count)'>Close</button>
+                <p>$message</p>
+                <button onclick='closePopup($count)' class='close'>Close</button>
               </div>";
         $count++;
     }
@@ -22,18 +23,19 @@ if ($result->num_rows > 0) {
 ?>
 
 <script>
+    var currentPopupIndex = 1;
     var popups = document.querySelectorAll('.popup');
 
     function openNextPopup() {
-        var currentPopup = popups[0];
-        if (currentPopup) {
+        if (currentPopupIndex <= popups.length) {
+            var currentPopup = document.querySelector('.popup.popup' + currentPopupIndex);
             currentPopup.style.display = 'block';
-            popups = Array.prototype.slice.call(popups, 1);
+            currentPopupIndex++;
         }
     }
 
     function closePopup(count) {
-        var currentPopup = document.querySelector('.popup' + count);
+        var currentPopup = document.querySelector('.popup.popup' + count);
         if (currentPopup) {
             currentPopup.style.display = 'none';
             openNextPopup();

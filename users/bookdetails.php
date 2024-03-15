@@ -1,7 +1,7 @@
 <?php
     
     //used to update the heldlog status
-    include 'database/dbconnect.php';
+    include '../database/dbconnect.php';
     $sql="UPDATE heldlog
     SET status = 0
     WHERE held_date < DATE_SUB(NOW(), INTERVAL 1 WEEK);";
@@ -134,6 +134,8 @@ echo "$tid Expected Return Date: $lowest_return_date <br>";
         while ($row_feedback = $result_feedback->fetch_assoc()) {
             $feedback = $row_feedback['feedback'];
             $username = $row_feedback['username'];
+            $uid = $row_feedback['uid'];
+
             echo "<p>UID: $uid, Username: $username, Feedback: $feedback</p>";
         }
     } else {

@@ -1,5 +1,18 @@
 <?php
     session_start();
+    include '../database/dbconnect.php';
+    //to display popup messages
+    
+    $totalcount = 1;
+    if(isset($_COOKIE['count'])){
+        $totalcount = $_COOKIE['count'];
+        $totalcount++;
+    }
+    setcookie('count',$totalcount);
+    if($totalcount == 1){
+        include 'usernotification.php';
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +25,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel='stylesheet' href='usernotification.css'>
     <style>
         /* scrolling */
         @import "https://unpkg.com/open-props";
