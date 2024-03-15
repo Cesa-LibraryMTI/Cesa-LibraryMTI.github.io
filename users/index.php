@@ -312,7 +312,7 @@ function toggleDropdown() {
        <button class='log' onclick='toggleDropdown()' ><i class='bi bi-person-fill'></i>$uname</button>    
 
   <div class='dropdown-content' id='dropdownContent'>
-    <a href=''><button class='drop'>Profile</button></a>
+    <a href='profile.php'><button class='drop'>Profile</button></a>
     <a href='newNotification.php'><button class='drop'>Notifications</button></a>
     <a href='newReview.php'><button class='drop'>Reviews</button></a>
     <a href='logout/' onclick='refreshPage()'><button class='drop'>LOG OUT</button></a>
