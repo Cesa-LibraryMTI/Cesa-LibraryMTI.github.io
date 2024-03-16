@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         .chart-bar {
             width: 8px;
@@ -44,16 +43,11 @@
     </style>
 </head>
 
-<body>
+<body class="bg-gray-100">
     <?php
-    // Assuming you have a database connection
     include '../database/dbconnect.php';
 
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
+   
     // Get the current week's start and end dates
     $startOfWeek = date('Y-m-d', strtotime('monday this week'));
     $endOfWeek = date('Y-m-d', strtotime('sunday this week'));
@@ -74,15 +68,24 @@
     $conn->close();
     ?>
 
-    <div class="card-container bg-gray-900 text-white rounded-lg p-6 w-full max-w-xs">
-        <h1 class="text-2xl font-bold mb-2">Book Counts This Week</h1>
+    <div class="card-container text-black rounded-lg p-6 w-full max-w-xs">
+        <h1 class="text-lg font-bold">BOOK COUNT'S THIS WEEK</h1><br>
+
         <div class="flex justify-between items-end mb-4 space-x-2">
-            <?php foreach ($dayCounts as $day => $count) : ?>
-                <div class="chart-bar bar-<?php echo strtolower(substr($day, 0, 3)); ?> w-1/12 h-<?php echo $count * 10; ?>"></div>
+            
+            <?php 
+            
+            foreach ($dayCounts as $day => $count) : ?>
+                <div class="relative w-1/12 flex flex-col items-center">
+                    <div class="chart-bar bar-<?php echo strtolower(substr($day, 0, 3)); ?> h-<?php echo $count * 10; ?> "></div>
+                    <span class="text-xs text-center block mt-2"><?php echo $count; ?></span>
+                </div>
             <?php endforeach; ?>
         </div>
         <div class="flex justify-between">
-            <?php foreach ($dayCounts as $day => $count) : ?>
+            <?php 
+            
+            foreach ($dayCounts as $day => $count) : ?>
                 <span class="text-xs w-1/12 text-center"><?php echo substr($day, 0, 3); ?></span>
             <?php endforeach; ?>
         </div>

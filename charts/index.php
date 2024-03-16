@@ -6,15 +6,16 @@
     <title>Responsive Flexbox Example</title>
     <style>
         body {
-            margin: 0;
+            
             font-family: Arial, sans-serif;
         }
 
         .main-container {
+            margin-top: 0px;
             display: flex;
             justify-content: space-between;
-            padding: 20px;
-            background-color: #f0f0f0;
+            padding: 60px 10px 10px 10px;
+           
         }
 
         .child-box {
@@ -22,7 +23,7 @@
             background-color: #fff;
             padding: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-right: 10px;
+            
         }
 
         @media (max-width: 768px) {
@@ -30,10 +31,7 @@
                 flex-direction: column; /* Stack child boxes vertically on smaller screens */
             }
 
-            .child-box {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
+           
         }
     </style>
 </head>

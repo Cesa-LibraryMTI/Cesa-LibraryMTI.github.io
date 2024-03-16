@@ -2,17 +2,18 @@
     session_start();
     include '../database/dbconnect.php';
     //to display popup messages
-    
-    $totalcount = 1;
-    if(isset($_COOKIE['count'])){
-        $totalcount = $_COOKIE['count'];
-        $totalcount++;
+    if(isset($_SESSION['logged']))
+    {
+        $totalcount = 1;
+        if(isset($_COOKIE['count'])){
+            $totalcount = $_COOKIE['count'];
+            $totalcount++;
+        }
+        setcookie('count',$totalcount);
+        if($totalcount == 1){
+            include 'usernotification.php';
+        }
     }
-    setcookie('count',$totalcount);
-    if($totalcount == 1){
-        include 'usernotification.php';
-    }
-
 ?>
 
 <!DOCTYPE html>
@@ -391,7 +392,7 @@ function toggleDropdown() {
     <div class="media-scroller snaps-inline">
         <?php
             include '../database/dbconnect.php';
-            $sql = "SELECT * FROM books WHERE bid IN (SELECT DISTINCT bid FROM booklog WHERE stars > (SELECT AVG(stars) FROM booklog where stars IS NOT NULL) ORDER BY stars DESC)";
+            $sql = "SELECT * FROM books WHERE bid IN (SELECT DISTINCT bid FROM booklog WHERE stars >= (SELECT AVG(stars) FROM booklog where stars IS NOT NULL) ORDER BY stars DESC)";
             
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {

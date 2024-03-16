@@ -41,10 +41,19 @@ $conn->close();
             text-align: center;
             color: #333;
         }
+
+        .text-lg {
+  font-size: 1.25rem; /* Adjust font size as needed */
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
     </style>
 </head>
 <body>
-    <h1>Categories</h1>
+<h1 class="text-lg font-bold">CATEGORIES</h1>
     <canvas id="myChart"></canvas>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

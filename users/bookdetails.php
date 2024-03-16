@@ -103,12 +103,14 @@ echo "$tid Expected Return Date: $lowest_return_date <br>";
 
             if ($count_held == 0 && $copies > 0) {
                 echo "Not Available <br>";
+                if(isset($_SESSION['logged']))
+                {
                 echo "<form method='POST' action='InsertHeldbook.php' onsubmit='return confirm(\"Do you want to hold this book?\");'>
                 <input type='hidden' value='$bid' name='bid'>
                 <input type='hidden' value='$tid' name='tid'>
                 <input type='submit' value='Hold Book'>
                 </form>";
-
+                }
                 
                 
            } else {
