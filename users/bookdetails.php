@@ -5,13 +5,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Book Details</Details></title>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.3/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
 
         <style>
+            body{
+                background-color: #1e2125;
+
+            }
             .container{
                 width: 100%;
                 height: 100%;
-                background-color: wheat;
+            
             
             }
             .child{
@@ -25,7 +31,7 @@
             }
             #image{
                 width: 130px;
-                height: 130px;
+                height: 160px;
                 background-image: url('javaBook.jpg');
                 background-size: cover;
                 background-repeat: no-repeat;
@@ -99,14 +105,7 @@ include '../database/dbconnect.php';
         echo "<p> BOOK ID : $bid <br> NAME : $bname <br> CATEGORY : $bcategory <br>AUTHOR : $bauthor<br>";
 
         // Print stars
-        for ($count = 0; $count < 5; $count++) {
-            if ($count < $avgstars) {
-                echo "<i class='bi bi-star-fill'></i>";
-            } else {
-                echo "<i class='bi bi-star'></i>";
-            }
-        }
-        echo "</p>";
+        
     }
 
     // Check book availability
@@ -218,7 +217,18 @@ while ($row = $result->fetch_assoc()) {
 
     <div class="text-black rounded-lg p-6 w-full max-w-xs">
         <div class="flex justify-between items-center mb-4">
-            <h1 class="text-lg font-bold">Customer reviews</h1>
+            <h1 class="text-lg font-bold">Customer reviews <br>
+        <?php
+            for ($count = 0; $count < 5; $count++) {
+            if ($count < $avgstars) {
+                echo "<i class='bi bi-star-fill'></i>";
+            } else {
+                echo "<i class='bi bi-star'></i>";
+            }
+        }
+        ?>
+
+            </h1>
         </div>
 
         <ul>
@@ -245,7 +255,7 @@ $starCounts = array();
     $percentageWidth = ($count > 0 && max($starCounts) > 0) ? ($count / max($starCounts) * 100) : 0;
     ?>
     <li class="flex items-center mb-2">
-        <i class="fas fa-shield-alt text-red-500 mr-2"></i>
+
         <span class="flex-1"><?php echo "$i stars"; ?></span>
         <span class="font-bold"><?php echo $count; ?></span>
         <div class="w-24 h-2 bg-gray-700 rounded-full ml-2">
