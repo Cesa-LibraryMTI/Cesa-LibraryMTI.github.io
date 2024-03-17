@@ -6,8 +6,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: wheat; /* White background */
-    color: #333333; /* Dark text color */
+    background-color: rgb(250, 250, 250); /* White background */
+    color: #000000; /* Dark text color */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow effect */

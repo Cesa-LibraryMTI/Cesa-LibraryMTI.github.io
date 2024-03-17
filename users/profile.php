@@ -35,17 +35,17 @@
 
     <!-- Header -->
     <header class="flex justify-between items-center pb-10 text-white">
-      <h1 class="text-xl font-bold">Profile</h1>
+      <h1 class="text-xxl font-bold">Profile</h1>
       
     </header>
     
     <!-- Profile section -->
-    <div class="bg-gray-800 p-6 rounded-lg shadow-md text-white text-center mb-6">
+    <div class="bg-gray-800 p-7 rounded-lg shadow-md text-white text-center mb-6">
       <div class="border-4 border-yellow-400 rounded-full w-24 h-24 mx-auto overflow-hidden profile-image-container">
         <!-- Profile image goes here -->
-        <img src="default-profile-image.png" class="w-full h-full object-cover">
+        <img src="hitler.jpg" class="w-full h-full object-cover">
       </div>
-      <h2 class="font-semibold text-lg">name</h2>
+      <h2 class="font-semibold text-lg">hitler</h2>
       
     </div>
 

@@ -485,7 +485,7 @@ function toggleDropdown() {
                   </form>";
         }
     }
-    ?>
+    ?>  
     <script src="aSubmit.js"></script>
 </div>
     <br>

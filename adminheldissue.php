@@ -19,6 +19,10 @@
         {
             $sql_insert = "INSERT INTO booklog (tid, uid, bid, issue_date) VALUES ($tid, $uid, $bid, NOW())";
             $conn->query($sql_insert);
+            
+            $sql_update="UPDATE copies SET available =(available - 1)  WHERE bid = $bid";
+            $res=$conn->query($sql_update);  
+
             header("Location: index.php");
         }
         
