@@ -55,6 +55,7 @@
                 padding: 0.5rem 1rem;
                 border-radius: 20px;
                 width: 100%;
+                background-color: wheat;
             }
 
             .msg-time {
@@ -226,6 +227,7 @@ while ($row = $result->fetch_assoc()) {
                 echo "<i class='bi bi-star'></i>";
             }
         }
+        echo "    $avgstars out of 5 rating";
         ?>
 
             </h1>
@@ -291,13 +293,13 @@ $result_feedback = $stmt_feedback->get_result();
 
 if ($result_feedback) {
     if ($result_feedback->num_rows > 0) {
-        echo "<h2>Feedback</h2>";
+        
         while ($row_feedback = $result_feedback->fetch_assoc()) {
             $feedback = $row_feedback['feedback'];
             $username = $row_feedback['username'];
             $uid = $row_feedback['uid'];
 
-            echo "<div class='msg'><p>UID: $uid  Username: $username</p><p>Feedback: $feedback</p><div class='msg-time'>$date</div></div>";
+            echo "<div class='msg'><p>UID: $uid  Username: $username</p><p>Feedback: $feedback</p></div>";
         }
     } else {
         echo "<p>No feedback</p>";
