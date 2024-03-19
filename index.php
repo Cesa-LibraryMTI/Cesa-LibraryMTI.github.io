@@ -1,12 +1,4 @@
-<?php
-    
-    //used to update the heldlog status
-    include 'database/dbconnect.php';
-    $sql="UPDATE heldlog
-    SET status = 0
-    WHERE held_date < DATE_SUB(NOW(), INTERVAL 1 WEEK);";
-    $conn->query($sql);
-?>
+
 
 <?php
     session_start();
@@ -151,8 +143,7 @@ body::-webkit-scrollbar {
             </label>
             <ul>
                 <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">settings</a></li>
+                
                 <li><a href="message/">Notification</a></li>
                 <li><a href="logout/">LOG OUT</a></li>
             </ul>
@@ -300,7 +291,7 @@ body::-webkit-scrollbar {
 
     <div class="container mx-auto text-center p-6">
         <h2 class="text-2xl font-bold mb-4">MANAGEMENT</h2>
-        <div class="grid grid-cols-3 gap-4"> <!-- Update here -->
+        <div class="grid grid-cols-2 gap-4"> <!-- Update here -->
             <!-- Business Analysis -->
             <a href="charts/">
             <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
@@ -310,14 +301,7 @@ body::-webkit-scrollbar {
             </div>
             </a>
 
-            <!-- Computer Science -->
-            <a href="">
-            <div class="bg-white p-4 shadow-lg rounded-lg topic-card">
-                <i class="bi bi-database icon mb-2 text-blue-500"></i>
-                <h3 class="font-semibold">Database</h3>
-                
-            </div>
-            </a>
+           
 
             <!-- Data Science & Analytics -->
             <a href="logs">

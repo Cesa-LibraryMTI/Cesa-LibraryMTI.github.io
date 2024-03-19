@@ -388,29 +388,6 @@ function toggleDropdown() {
 
 
 <div id="general">
-<h3>Recomended Books</h3>
-    <div class="media-scroller snaps-inline">
-        <?php
-            include '../database/dbconnect.php';
-            $sql = "SELECT * FROM books WHERE bid IN (SELECT DISTINCT bid FROM booklog WHERE stars >= (SELECT AVG(stars) FROM booklog where stars IS NOT NULL) ORDER BY stars DESC)";
-            
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $bid=$row['bid'];
-                    $bname=$row['bname'];
-                    $bcategory=$row['bcategory'];
-                    $bprice=$row['bprice'];
-                    echo "<form class='myForm' action='bookdetails.php' method='post'>
-                    <a href='#' class='submitForm'>
-                    <div class='media-element'>
-                            <div class='text-overlay'><h3>$bname</h3></div>
-                            </div></a><input type='hidden' name='bid' value='$bid'></form>";
-
-                }
-            }
-        ?>
-    </div>
     <br>
 
     <h3>Top Rated Books</h3>
