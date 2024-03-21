@@ -45,7 +45,13 @@
         <!-- Profile image goes here -->
         <img src="hitler.jpg" class="w-full h-full object-cover">
       </div>
-      <h2 class="font-semibold text-lg">hitler</h2>
+      <h2 class="font-semibold text-lg">
+        <?php 
+          session_start();
+          $name=$_SESSION['name'];
+          echo "$name";
+        ?>
+       </h2>
       
     </div>
 
@@ -67,8 +73,13 @@
       <!-- Card 3 -->
       <div class="bg-gray-800 p-4 rounded-lg shadow-md text-center text-white">
         <i class="fas fa-gem fa-2x"></i>
-        <p class="text-sm mt-2"></p>
-        <h3 class="text-2xl font-semibold">0</h3>
+        <p class="text-sm mt-2">HELD BOOK</p>
+        <h3 class="text-2xl font-semibold">
+          <?php
+            $uid=$_SESSION['id'];
+            
+          ?>
+        </h3>
       </div>
       <!-- Card 4 -->
       <div class="bg-gray-800 p-4 rounded-lg shadow-md text-center text-white">

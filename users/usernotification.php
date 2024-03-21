@@ -18,11 +18,10 @@ $resultAnnouncements = $stmtAnnouncements->get_result();
 $uid = $_SESSION['id'];
 $sqlHeldBooks = "SELECT b.bname
                 FROM booklog b1 
-                LEFT JOIN heldlog h ON b1.tid = h.tid 
                 LEFT JOIN books b ON b1.bid = b.bid  
                 WHERE b1.return_date IS NULL 
                 AND b1.uid = ?
-                AND b1.issue_date >= DATE_SUB(CURDATE(), INTERVAL 1 WEEK)";
+                AND b1.issue_date <= DATE_SUB(NOW(), INTERVAL 7 DAY)";
 $stmtHeldBooks = $conn->prepare($sqlHeldBooks);
 $stmtHeldBooks->bind_param("i", $uid);
 $stmtHeldBooks->execute();
@@ -49,8 +48,8 @@ if ($resultHeldBooks->num_rows > 0) {
 
     // Display held book popup
     echo "<div class='popup popup$count'>
-            <p> @BOT: </p>
-            <p> THE BOOK YOU HELD $bname SHOULD BE RETURNED </p>
+            <p> ALERT </p>
+            <p> THE BOOK YOU HOLD $bname SHOULD BE RETURNED!! </p>
             <button onclick='closePopup($count)' class='close'>Close</button>
           </div>";
     $count++;
