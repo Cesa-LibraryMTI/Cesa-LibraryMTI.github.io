@@ -247,6 +247,7 @@
   color: white;
   margin: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 20px;
@@ -371,14 +372,14 @@ function toggleDropdown() {
               <a href='#' class='submitForm'><div class='box'>
               <p>$bid</p>
               <p>$bname</p>
-              <p>$bauthor</p><br>";
+              <p>$bauthor</p><p>";
 
               for ($count = 0; $count < 5; $count++) {
                 if($count < $avgstars) echo "<i class='bi bi-star-fill'></i>";
                 else echo "<i class='bi bi-star'></i>";
               }
 
-              echo "</div></a><input type='hidden' name='bid' value='$bid'></form>";
+              echo "</p></div></a><input type='hidden' name='bid' value='$bid'></form>";
           }
       }
       $stmt->close();

@@ -9,13 +9,18 @@
 
   
    <style>
-     body{
-      background-color:#1e2125;
-      color: white;
-    }
-    .container {
+     body {
+  background-color: #1e2125;
+  color: white;
+  font-family: Arial, sans-serif; /* Add a fallback font */
+}
+
+.container {
   display: flex;
   flex-wrap: wrap;
+  
+  gap: 20px; /* Add some spacing between flex items */
+  padding: 20px; /* Add padding to the container */
 }
 
 .box {
@@ -23,17 +28,28 @@
   height: 200px;
   background-color: #343a40;
   color: white;
-  margin: 10px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center; /* Center content vertically */
   font-size: 20px;
   border-radius: 10px;
   transition: transform 0.2s ease-in-out;
 }
-.box:hover{
+
+.box p {
+  margin: 0; /* Remove default margin for paragraphs */
+}
+
+.box:hover {
   transform: scale(1.1);
 }
+
+/* Styles for stars */
+.box i {
+  color: gold; /* Change the color of stars */
+}
+
     </style>
 </head>
 <body>
@@ -57,24 +73,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $bid = $row['bid'];
-            $bname = $row['bname'];
-            $bauthor = $row['bauthor'];
-            $avgstars = $row['avgstars'];
-
-            echo "<form class='myForm' action='bookdetails.php' method='post'>
-            <a href='#' class='submitForm'>
-<div class='box'>$bid <br> $bname <br> $bauthor <br>";
-
-      for ($count = 0; $count < 5; $count++) {
-        if($count < $avgstars) echo "<i class='bi bi-star-fill'></i>";
-        else echo "<i class='bi bi-star'></i>";
+      while ($row = $result->fetch_assoc()) {
+          $bid = $row['bid'];
+          $bname = $row['bname'];
+          $bauthor = $row['bauthor'];
+          $avgstars = $row['avgstars'];
+  
+          echo "<form class='myForm' action='bookdetails.php' method='post'>
+                  <a href='#' class='submitForm'>
+                    <div class='box'>
+                      <p> $bid </p>
+                      <p> $bname </p>
+                      <p> $bauthor </p>
+                      <p>";
+  
+          // Display stars
+          for ($count = 0; $count < 5; $count++) {
+              if($count < $avgstars) {
+                  echo "<i class='bi bi-star-fill'></i>";
+              } else {
+                  echo "<i class='bi bi-star'></i>";
+              }
+          }
+  
+          echo "</p>
+                    </div>
+                  </a>
+                  <input type='hidden' name='bid' value='$bid'>
+                </form>";
       }
-
-            echo "</div></a><input type='hidden' name='bid' value='$bid'></form>";
-        }
-    }
+  }
+  
     $stmt->close();
 }
 ?>

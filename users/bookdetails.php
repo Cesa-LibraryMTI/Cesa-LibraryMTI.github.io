@@ -55,7 +55,13 @@
             background-color: grey;
             border-radius: 20px;
         }
-        
+        .hold{
+            border-radius: 20px;
+            padding: 5px 10px;
+            color: white;
+            background-color: red;
+            
+        }
     </style>
 </head>
 <body>
@@ -71,7 +77,7 @@
 
             // Fetch book details
             $bid = $_POST['bid'];
-            $sql_book = "SELECT b.bname, b.bcategory, b.bauthor, COALESCE(ROUND(AVG(bl.stars), 0), 0) AS avgstars
+            $sql_book = "SELECT b.bname, b.bcategory, b.bauthor, COALESCE(ROUND(AVG(bl.stars), 1), 0) AS avgstars
                          FROM books b
                          LEFT JOIN booklog bl ON b.bid = bl.bid
                          WHERE b.bid = ?
@@ -108,9 +114,11 @@
 
                 echo "<p>STATUS : ";
                 if ($available > 0) {
-                    echo "Available";
+                    echo "Available <br>";
                 } else {
+
                     // Check if the book is held by the user
+                    echo "Not Available <br>";
                     $uid = $_SESSION['id'];
                     $sql_held = "SELECT COUNT(*) AS count FROM heldlog WHERE uid = ? AND bid = ? AND status = 1";
                     $stmt_held = $conn->prepare($sql_held);
@@ -132,21 +140,21 @@
                     $result_expected = $stmt_expected->get_result();
 
                     if ($result_expected->num_rows > 0) {
-                        echo "<h2>Status</h2>";
+                        
                         $row_expected = $result_expected->fetch_assoc();
                         $lowest_return_date = $row_expected['lowest_return_date'];
                         $tid = $row_expected['tid'];
-                        echo "$tid Expected Return Date: $lowest_return_date <br>";
+                        echo "Expected Return Date: $lowest_return_date <br>";
                     }
 
                     // Display availability and option to hold the book
                     if ($count_held == 0 && $copies > 0) {
-                        echo "Not Available <br>";
+                        
                         if (isset($_SESSION['logged'])) {
                             echo "<form method='POST' action='InsertHeldbook.php' onsubmit='return confirm(\"Do you want to hold this book?\");'>
                                   <input type='hidden' value='$bid' name='bid'>
                                   <input type='hidden' value='$tid' name='tid'>
-                                  <input type='submit' value='Hold Book'>
+                                  <input type='submit' class='hold' value='Hold Book'>
                                   </form>";
                         }
                     } else {
@@ -217,7 +225,7 @@
         <h1 class="text-lg font-bold">Feedback</h1>
         <?php
         // Fetch feedback for the book
-        $uid = $_SESSION['id'];
+        
         $bid = $_POST['bid'];
         $sql_feedback = "SELECT b1.uid, COALESCE(u.username, 'Unknown') AS username, b1.feedback
                          FROM booklog b1
