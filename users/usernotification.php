@@ -1,4 +1,6 @@
 <?php
+if(isset($_SESSION['logged']))
+{
 include '../database/dbconnect.php';
 
 // Get one week before and current date
@@ -14,12 +16,13 @@ $resultAnnouncements = $stmtAnnouncements->get_result();
 
 // Query to check if the user is holding any book without returning
 $uid = $_SESSION['id'];
-$sqlHeldBooks = "SELECT b.bname 
+$sqlHeldBooks = "SELECT b.bname
                 FROM booklog b1 
                 LEFT JOIN heldlog h ON b1.tid = h.tid 
                 LEFT JOIN books b ON b1.bid = b.bid  
-                WHERE b.return_date IS NULL 
-                AND b.uid = ?";
+                WHERE b1.return_date IS NULL 
+                AND b1.uid = ?
+                AND b1.issue_date >= DATE_SUB(CURDATE(), INTERVAL 1 WEEK)";
 $stmtHeldBooks = $conn->prepare($sqlHeldBooks);
 $stmtHeldBooks->bind_param("i", $uid);
 $stmtHeldBooks->execute();
@@ -42,15 +45,16 @@ while ($row = $resultAnnouncements->fetch_assoc()) {
 // Check if the user is holding any book without returning
 if ($resultHeldBooks->num_rows > 0) {
     $row = $resultHeldBooks->fetch_assoc();
-    $bid = $row['bid'];
+    $bname = $row['bname'];
 
     // Display held book popup
     echo "<div class='popup popup$count'>
-            <p>@BOT:</p>
-            <p>THE BOOK YOU HELD</p>
+            <p> @BOT: </p>
+            <p> THE BOOK YOU HELD $bname SHOULD BE RETURNED </p>
             <button onclick='closePopup($count)' class='close'>Close</button>
           </div>";
     $count++;
+}
 }
 ?>
 
