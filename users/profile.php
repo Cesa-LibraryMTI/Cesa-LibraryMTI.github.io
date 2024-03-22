@@ -26,6 +26,14 @@
     .profile-image-container {
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
+
+    #submit{
+      border-radius: 20px;
+      color: white;
+      background-color: red;
+      margin-top: 10px;
+      padding: 5px 20px;
+    }
   </style>
 </head>
 <body class="bg-gray-100">
@@ -48,6 +56,7 @@
       <h2 class="font-semibold text-lg">
         <?php 
           session_start();
+          include '../database/dbconnect.php';
           $name=$_SESSION['name'];
           echo "$name";
         ?>
@@ -75,10 +84,35 @@
         <i class="fas fa-gem fa-2x"></i>
         <p class="text-sm mt-2">HELD BOOK</p>
         <h3 class="text-2xl font-semibold">
-          <?php
-            $uid=$_SESSION['id'];
-            
-          ?>
+        <?php
+$uid=$_SESSION['id'];
+$sql = "SELECT b.bid, b.bname
+        FROM heldlog h 
+        LEFT JOIN books b ON h.bid = b.bid  
+        WHERE h.uid = ?
+        AND h.status = 1"; // Removed the extra closing parenthesis
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $uid); // Assuming $uid is an integer
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();  
+        $bid = $row['bid'];
+        $bname = $row['bname'];
+        echo "Name : $bname  
+        <form method='POST' action='unheld.php'>
+          <input type='submit' value='Un Held' id='submit'>
+
+        </form>
+        
+        ";
+        
+    
+} else {
+    echo "NO BOOKS";
+}
+?>
         </h3>
       </div>
       <!-- Card 4 -->
