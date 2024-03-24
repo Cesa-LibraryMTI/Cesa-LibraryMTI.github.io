@@ -71,13 +71,35 @@
       <div class="bg-gray-800 p-4 rounded-lg shadow-md text-center text-white">
         <i class="bi bi-book"></i>
         <p class="text-sm mt-2">NUMBER OF BOOKS READ</p>
-        <h3 class="text-2xl font-semibold">0</h3>
+        <h3 class="text-2xl font-semibold">
+          <?php
+            $uid=$_SESSION['id'];
+            $sql="SELECT COUNT(tid) AS readcount FROM booklog where uid = $uid";
+            $result = $conn->query($sql);         
+            $row = $result->fetch_assoc();
+            
+            $readcount = $row['readcount'];
+            echo "$readcount";
+            
+          ?>
+        </h3>
       </div>
       <!-- Card 2 -->
       <div class="bg-gray-800 p-4 rounded-lg shadow-md text-center text-white">
         <i class="fas fa-clipboard-check fa-2x"></i>
         <p class="text-sm mt-2">REVIEWS SUBMITTED</p>
-        <h3 class="text-2xl font-semibold">0%</h3>
+        <h3 class="text-2xl font-semibold">
+        <?php
+            $uid=$_SESSION['id'];
+            $sql="SELECT COUNT(tid) AS readcount FROM booklog where uid = $uid AND stars IS NOT NULL";
+            $result = $conn->query($sql);         
+            $row = $result->fetch_assoc();
+            
+            $readcount = $row['readcount'];
+            echo "$readcount";
+            
+          ?>
+        </h3>
       </div>
       <!-- Card 3 -->
       <div class="bg-gray-800 p-4 rounded-lg shadow-md text-center text-white">
@@ -118,8 +140,20 @@ if ($result->num_rows > 0) {
       <!-- Card 4 -->
       <div class="bg-gray-800 p-4 rounded-lg shadow-md text-center text-white">
         <i class="fas fa-users fa-2x"></i>
-        <p class="text-sm mt-2">SOCIAL INDEX</p>
-       <h3 class="text-2xl font-semibold">0</h3>
+        <p class="text-sm mt-2">BOOK YOU HAVE</p>
+       <h3 class="text-2xl font-semibold">
+       <?php
+            $uid=$_SESSION['id'];
+            $sql="SELECT bname FROM books WHERE bid = (SELECT bid FROM booklog where uid = $uid AND return_date IS NULL)";
+            $result = $conn->query($sql);         
+            $row = $result->fetch_assoc();
+            
+            $bname = $row['bname'];
+            echo "$bname";
+            
+          ?>
+
+       </h3>
       </div>
     </div>
 
