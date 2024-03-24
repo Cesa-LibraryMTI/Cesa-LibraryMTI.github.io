@@ -21,8 +21,21 @@
     <title>Login</title>
     <script src = "../js/login.js"></script>
     <link rel = "stylesheet" href = "../styles/pages.css">
+    <style>
+    body{
+      background: url('../users/library.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      
+
+    }
+    
+
+  </style>
+  
   </head>
   <body>
+
     <div class = "container">  
       <form name = "login.html" method = "POST">
 
@@ -39,9 +52,7 @@
           <tr>
             <td><input type="submit" value="Log in" id = "submitbutton" onclick="return check()"></td>
           </tr>
-          <tr>
-            <td>Dont have an account? <a href = "register.php">SIGN UP</a></td>
-          </tr>
+      
         </table>
 <?php
   include '../database/dbconnect.php';
