@@ -72,32 +72,8 @@
         </tr>
         <tr>
             <td><label>AUTHOR:</label></td>
-            <td><select name="bauthor" id="myDropdown" onchange="showInputBox()">
-            <option value = '' disabled>select a author</option>
-
-            <?php
-              include '../database/dbconnect.php';
-              include '../database/checker.php';
-              echo "<option value='other'>new author</option>";
-              $sql = "SELECT DISTINCT bauthor FROM books";
-              $result = $conn->query($sql);
-
-              if (($result !== false) && ($result->num_rows > 0)) {
-                while ($row = $result->fetch_assoc()) {
-                $author = $row['bauthor'];
-                echo "<option value='$author'>$author</option>";
-                }
-              } else {
-              echo "<h1>wrong credentials</h1>";
-              }
-              echo "</select></td></tr>";
-        ?>
-        
-        <tr id="inputBoxContainer">
-        <td><label for="inputBox">New Author:</label></td>
-        <td><input type="text" id="inputBox" name="new_author" placeholder="author name"></td>
+            <td><input type="text" name="bauthor"></td>
         </tr>
-        
         <tr>
             <td><label>COPIES:</label></td>
             <td><input type="number" name="copy" min=1></td>
@@ -139,22 +115,19 @@
   if($_SERVER['REQUEST_METHOD']=='POST'){
     include '../database/dbconnect.php';
     $bname=$_POST['bname'];
+    $bauthor=$_POST['bauthor'];
     $bprice=$_POST['bprice'];
     $category=$_POST['bcategory'];
-    $author=$_POST['bauthor'];
     $copy = $_POST['copy'];
     if($category==='other')
       $category=$_POST['new_category'];
-    if($author==='other')
-      $author=$_POST['new_author'];
-
-      do{
+    do{
       $bid = rand(1,100000000);
       $sq1 = "select count(bid) as cn from books where bid = $bid";
       $rt1 = $conn->query($sq1);
       $c = $rt1->fetch_assoc()['cn'];
     }while($c != 0);
-    $sql = "insert into books values($bid,'$bname','$author','$bprice','$category')";
+    $sql = "insert into books values($bid,'$bname','$bauthor','$bprice','$category')";
     $sql2 = "insert into copies values($bid,$copy,$copy)";
     $r1 = $conn->query($sql);
     $r2 = $conn->query($sql2);
