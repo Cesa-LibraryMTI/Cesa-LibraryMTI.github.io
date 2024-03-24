@@ -22,7 +22,7 @@
                             GROUP BY bl.bid 
                             ORDER BY COUNT(bl.bid) DESC LIMIT 5");
 
-    if ($result->num_rows > 0) {
+    
         // Calculate the maximum count
         $maxCount = maxCount($result);
         ?>
@@ -55,12 +55,9 @@
                 ?>
             </ul>
         </div>
-
+                
         <?php
-    } else {
-        echo "No data available";
-    }
-
+   
     $conn->close();
 
     function maxCount($result)

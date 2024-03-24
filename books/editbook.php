@@ -37,8 +37,26 @@
         </tr>
         <tr>
             <td><label>AUTHOR:</label></td>
-            <td><input type="text" name="bauthor" id="bauthor"></td>
-        </tr>
+            <td><select name="bauthor" id="myDropdown" onchange="showInputBox()">
+            <option value = '' disabled>select a author</option>
+
+            <?php
+              include '../database/dbconnect.php';
+              include '../database/checker.php';
+              echo "<option value='other'>new author</option>";
+              $sql = "SELECT DISTINCT bauthor FROM books";
+              $result = $conn->query($sql);
+
+              if (($result !== false) && ($result->num_rows > 0)) {
+                while ($row = $result->fetch_assoc()) {
+                $author = $row['bauthor'];
+                echo "<option value='$author'>$author</option>";
+                }
+              } else {
+              echo "<h1>wrong credentials</h1>";
+              }
+              echo "</select></td></tr>";
+        ?>
         <tr>
             <td><label>COPIES:</label></td>
             <td><input type="number" name="copy" id="copy" min=1></td>
@@ -108,7 +126,8 @@
             include '../database/checker.php';
             $bookid=$_POST['bookid'];
             $bname=$_POST['bname'];
-            $bauthor=$_POST['bauthor'];
+            $author=$_POST['bauthor'];
+            if($author==='other') $author=$_POST['new_author'];
             $bprice=$_POST['bprice'];
             $category=$_POST['bcategory'];
             $copy = $_POST['copy'];
