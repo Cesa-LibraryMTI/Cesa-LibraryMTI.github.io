@@ -122,10 +122,7 @@
             $sql = "insert into booklog values ($tid,$uid,$bid,now(),NULL,NULL,NULL)";
             $conn->query($sql);
 
-            $sql = "UPDATE copies SET available = (available - 1) WHERE bid = $bid";
-            $conn->query($sql);
-
-            header("Location: index.php");
+                        header("Location: index.php");
            }
         }
         $conn->close();

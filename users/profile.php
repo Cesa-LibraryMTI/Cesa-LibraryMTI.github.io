@@ -144,12 +144,20 @@ if ($result->num_rows > 0) {
        <h3 class="text-2xl font-semibold">
        <?php
             $uid=$_SESSION['id'];
+        
             $sql="SELECT bname FROM books WHERE bid = (SELECT bid FROM booklog where uid = $uid AND return_date IS NULL)";
-            $result = $conn->query($sql);         
-            $row = $result->fetch_assoc();
-            
-            $bname = $row['bname'];
-            echo "$bname";
+            $result = $conn->query($sql);
+            if($result->num_rows > 0) 
+            {        
+              $row = $result->fetch_assoc();
+          
+              $bname = $row['bname'];
+              echo "$bname";
+            }
+            else
+            {
+              echo "NO BOOKS";
+            }
             
           ?>
 

@@ -41,7 +41,7 @@
        $sql="SELECT b.bid, b.bname, b1.return_date 
        FROM booklog b1 
        LEFT JOIN books b ON b1.bid = b.bid 
-       WHERE b1.stars IS NULL AND b1.uid IN ($uid)";
+       WHERE b1.stars IS NULL AND b1.uid IN ($uid) AND b1.return_date IS NULL";
 
           $result = $conn->query($sql);
 

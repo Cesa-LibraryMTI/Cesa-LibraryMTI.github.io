@@ -395,7 +395,7 @@ function toggleDropdown() {
     <div class="media-scroller snaps-inline">
         <?php
             include '../database/dbconnect.php';
-            $sql = "SELECT * FROM books WHERE bid IN (SELECT DISTINCT bid FROM booklog WHERE stars > (SELECT AVG(stars) FROM booklog where stars IS NOT NULL) ORDER BY stars DESC)";
+            $sql = "SELECT * FROM books WHERE bid IN (SELECT DISTINCT bid FROM booklog WHERE stars >= (SELECT AVG(stars) FROM booklog where stars IS NOT NULL) ORDER BY stars DESC)";
             
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
