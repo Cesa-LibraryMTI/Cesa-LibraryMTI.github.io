@@ -1,4 +1,5 @@
 <?php
 session_start();
 session_destroy();
-header("Location: tasklogin.php")
+header("Location: tasklogin.php");
+?>
