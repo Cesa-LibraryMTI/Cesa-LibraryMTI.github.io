@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
     session_start();
-    if(isset($_SESSION['name']){
+    if(isset($_SESSION['name'])){
         header("Location: webproject.php");
         exit();
     }
@@ -90,7 +90,7 @@
 </html>
 
 <?php
-    include 'dbconnect.php';
+    include 'database/dbconnect.php';
     if($_SERVER['REQUEST_METHOD']=='POST')
     {
         $name=$_POST['name'];
